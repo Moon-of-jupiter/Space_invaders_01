@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Space_invaders_01;
 
 namespace Space_invaders_01
 {
@@ -44,11 +45,11 @@ namespace Space_invaders_01
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Left))
             {
-                vel = -1;
+                vel = -speed;
             }
             else if (Keyboard.GetState().IsKeyDown(Keys.Right))
             {
-                vel = 1;
+                vel = speed;
             }
             
         }
@@ -67,10 +68,11 @@ namespace Space_invaders_01
         public void draw(SpriteBatch __spriteBatch)
         {
             
-            //Vector2 _pos = new Vector2(pos.X-size.X*0.5f+window.X, pos.Y-size.Y * 0.5f+window.Y);
-            Vector2 _pos = new Vector2(pos.X - size.X * 0.5f, pos.Y - size.Y * 0.5f );
+            Vector2 Centerd_pos = new Vector2(pos.X+ Game1.Window_size.X*0.5f,pos.Y);
+            
+            Vector2 offset_pos = new Vector2(Centerd_pos.X - size.X * 0.5f, Centerd_pos.Y - size.Y * 0.5f );
 
-            Rectangle _rectangle = new Rectangle((int)_pos.X,(int)_pos.Y,(int)size.X,(int)size.Y);
+            Rectangle _rectangle = new Rectangle((int)offset_pos.X,(int)offset_pos.Y,(int)size.X,(int)size.Y);
             __spriteBatch.Draw(texture, _rectangle, color);
         }
 
