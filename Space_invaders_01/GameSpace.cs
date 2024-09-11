@@ -19,13 +19,15 @@ namespace Space_invaders_01
         public Texture2D Far_Background;
 
         public int row_spaceing;
+        public float ad_speed;
 
         
 
-        public GameSpace(Player p, Texture2D tex, int r)
+        public GameSpace(Player p, Texture2D tex, int r, float s)
         {
             this.Far_Background = tex;
             this._player = p;
+            this.ad_speed = s;
             
             this.enemy_list = new List<List<Enemy>>();
             this.row_spaceing = r;
@@ -61,7 +63,7 @@ namespace Space_invaders_01
         {
             _player.run(gameTime);
             uppdate_enemies();
-            enemy_advancement++;
+            enemy_advancement+=ad_speed;
         }
 
         public void draw(SpriteBatch _SpriteBatch)
