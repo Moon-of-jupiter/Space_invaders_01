@@ -13,64 +13,42 @@ namespace Space_invaders_01
     public class GameSpace
     {
         public Player _player;
-        public List<List<Enemy>> enemy_list;
         
-        public float enemy_advancement;
         public Texture2D Far_Background;
 
-        public int row_spaceing;
-        public float ad_speed;
-
+        
+        public EnemyManeger _EnemyManeger;
         
 
         public GameSpace(Player p, Texture2D tex, int r, float s)
         {
+            _EnemyManeger = new EnemyManeger(r,s);
             this.Far_Background = tex;
             this._player = p;
-            this.ad_speed = s;
             
-            this.enemy_list = new List<List<Enemy>>();
-            this.row_spaceing = r;
 
         }
 
         public void Add_row_enemy_list(int enemy_amount, int enemy_x_spaceing,Enemy_type type)
         {
-            int row_count = enemy_list.Count + 1;
-            List<Enemy> _enemies = new List<Enemy>();
-            for (int i = 0; i < enemy_amount; i++) {
-                _enemies.Add(new Enemy(type,new Vector2((i+0.5f)*enemy_x_spaceing-enemy_x_spaceing*enemy_amount*0.5f,-row_count*row_spaceing)));
-            }
-
-            enemy_list.Add(_enemies);
+            _EnemyManeger.Add_row_enemy_list(enemy_amount,enemy_x_spaceing,type);
 
 
         }
 
-        public void uppdate_enemies()
-        {
-            for (int i = 0; i < enemy_list.Count; i++)
-            {
-                for (int j = 0; j < enemy_list[i].Count; j++)
-                {
-                    enemy_list[i][j].Update(enemy_advancement);
-                }
-            }
-
-        }
-
+        
         public void update(GameTime gameTime)
         {
             _player.run(gameTime);
-            uppdate_enemies();
-            enemy_advancement+=ad_speed;
+            _EnemyManeger.uppdate_enemies();
+            _EnemyManeger.enemy_advancement += _EnemyManeger.ad_speed;
         }
 
         public void draw(SpriteBatch _SpriteBatch)
         {
 
-            for (int i = 0; i < enemy_list.Count; i++) { 
-                foreach(Enemy enemy in enemy_list[i])
+            for (int i = 0; i < _EnemyManeger.enemy_list.Count; i++) { 
+                foreach(Enemy enemy in _EnemyManeger.enemy_list[i])
                 {
                     enemy.Draw(_SpriteBatch);
                 }

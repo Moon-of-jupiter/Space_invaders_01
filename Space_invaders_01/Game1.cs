@@ -52,7 +52,7 @@ namespace Space_invaders_01
 
             standard_Enemy_Type = new Enemy_type(1,new Vector2(60,60),Color.Aqua,pixel);
             //Game_window = new Rectangle( (int)(Window_size.X*0.5f-Game_size.X*0.5+Game_window_offset.X), (int)Game_window_offset.Y, (int)Game_size.X, (int)Game_size.Y);
-            _gamespace = new GameSpace(new Player(new Vector2(0, Window_size.Y-100), pixel, Color.Wheat, 10, 10, 100, 100), pixel,70,0.1f);
+            _gamespace = new GameSpace(new Player(new Vector2(0, Window_size.Y-100), pixel, Color.Wheat, 10, 10, 100, 100), pixel,70,1f);
             _gamespace.Add_row_enemy_list(11, 70, standard_Enemy_Type);
             _gamespace.Add_row_enemy_list(11, 70, standard_Enemy_Type);
             _gamespace.Add_row_enemy_list(10, 70, standard_Enemy_Type);
