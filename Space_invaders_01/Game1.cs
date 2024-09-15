@@ -14,15 +14,21 @@ namespace Space_invaders_01
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
-        public Texture2D pixel;
+        public static Texture2D pixel;
 
-        public Enemy_type standard_Enemy_Type;
+        //public Enemy_type standard_Enemy_Type;
 
         static public Vector2 Window_size = new Vector2(800,1000);
         //public Vector2 Game_size = new Vector2(500, 600);
         //public Vector2 Game_window_offset = new Vector2(0, 100);
         //public Rectangle Game_window;
-        public GameSpace _gamespace;
+        //public GameSpace _gamespace;
+
+
+        private GameState_Maneger GS_Maneger;
+
+        public static TypeManeger _TypeManeger;
+
 
         bool space_is_pressed = false;
         
@@ -49,13 +55,11 @@ namespace Space_invaders_01
 
         private void game_intitialize()
         {
-
-            standard_Enemy_Type = new Enemy_type(1,new Vector2(60,60),Color.Aqua,pixel);
+            _TypeManeger = new TypeManeger();
+            GS_Maneger = new GameState_Maneger();
+            
             //Game_window = new Rectangle( (int)(Window_size.X*0.5f-Game_size.X*0.5+Game_window_offset.X), (int)Game_window_offset.Y, (int)Game_size.X, (int)Game_size.Y);
-            _gamespace = new GameSpace(new Player(new Vector2(0, Window_size.Y-100), pixel, Color.Wheat, 10, 10, 100, 100), pixel,70,1f);
-            _gamespace.Add_row_enemy_list(11, 70, standard_Enemy_Type);
-            _gamespace.Add_row_enemy_list(11, 70, standard_Enemy_Type);
-            _gamespace.Add_row_enemy_list(10, 70, standard_Enemy_Type);
+            
 
         }
 
@@ -75,18 +79,10 @@ namespace Space_invaders_01
                 game_intitialize();
             }
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space) && space_is_pressed == false)
-            {
-                _gamespace.Add_row_enemy_list(11, 70, standard_Enemy_Type);
-                space_is_pressed = true;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Space) == false)
-            {
-                space_is_pressed = false;
-            }
+            
                 
 
-            _gamespace.update(gameTime);
+            GS_Maneger.Update_Current_Gamespace();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -99,7 +95,7 @@ namespace Space_invaders_01
             _spriteBatch.Begin();
             //_spriteBatch.Draw(pixel, Game_window, new Color(50,50,50));
 
-            _gamespace.draw(_spriteBatch);
+            GS_Maneger.Draw_Current_Gamespace(_spriteBatch);
             _spriteBatch.End();
 
             // TODO: Add your drawing code here

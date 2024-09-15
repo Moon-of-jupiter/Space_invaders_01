@@ -44,8 +44,46 @@ namespace Space_invaders_01
 
         }
 
+        public void Destroy_Enemy(Enemy marked)
+        {
+            for (int i = 0; i < enemy_list.Count; i++)
+            {
+                for(int j = 0; j < enemy_list[i].Count; j++)
+                {
+                    if(enemy_list[i][j] == marked)
+                    {
+                        enemy_list[i].Remove(marked);
+                        if (enemy_list[i].Count == 0)
+                        {
+                            enemy_list.RemoveAt(i);
+                        }
+                        return;
+                    }
+                }
+            }
+        }
+
         public void uppdate_enemies()
         {
+            for (int i = 0; i < enemy_list.Count; i++)
+            {
+                
+
+
+                for (int j = 0; j < enemy_list[i].Count; j++)
+                {
+                    if (enemy_list[i][j].health <= 0)
+                    {
+                         Destroy_Enemy(enemy_list[i][j]);
+                    }
+                    if(enemy_list.Count <= i)
+                    {
+                        break;
+                    }
+                }
+                
+            }
+
             for (int i = 0; i < enemy_list.Count; i++)
             {
                 for (int j = 0; j < enemy_list[i].Count; j++)
@@ -53,6 +91,19 @@ namespace Space_invaders_01
                     enemy_list[i][j].Update(enemy_advancement);
                 }
             }
+
+        }
+
+        public void draw_enemies(SpriteBatch _SpriteBatch)
+        {
+            for (int i = 0; i < enemy_list.Count; i++)
+            {
+                foreach (Enemy enemy in enemy_list[i])
+                {
+                    enemy.Draw(_SpriteBatch);
+                }
+            }
+
 
         }
 

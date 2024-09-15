@@ -12,6 +12,16 @@ namespace Space_invaders_01
 {
     public class Player
     {
+
+        
+
+        public int stagger_timer = 0;
+
+        public int weapon_cooldown_timer = 0;
+        public bool has_shot = false;
+        public Prodectile_type curent_weapon;
+
+        
         //world properties
         public Vector2 pos;
         public float vel;
@@ -20,37 +30,67 @@ namespace Space_invaders_01
         public Texture2D texture;
         public Color color;
         public Vector2 size;
+        public Vector2 hitbox_size;
 
         public float speed;
 
-        public int HP;
+        public Keys Left_key;
+        public Keys Right_key;
+        public Keys Shoot_key;
 
-        public Player(Vector2 p, Texture2D t, Color c, int h, float s, int s_x, int s_y) { 
+        public Rectangle hitBox;
+        public Rectangle spriteBox;
+
+        public Player(Vector2 p, Texture2D t, Color c, float s, int s_x, int s_y, int hb_s_x, int hb_s_y) {
+            
             this.pos = p;
             this.vel = 0;
             this.texture = t;
             this.color = c;
             this.size = new Vector2(s_x,s_y);
+            this.hitbox_size = new Vector2(hb_s_x,hb_s_y);
             this.speed = s;
-            this.HP = h;
+
+
+
+            Left_key = Keys.A;
+            Right_key = Keys.D;
+            Shoot_key = Keys.Space;
         
         }
 
         private void intput()
         {
             vel = 0;
-            if (Keyboard.GetState().IsKeyDown(Keys.Left) && Keyboard.GetState().IsKeyDown(Keys.Right))
+            has_shot = false;
+
+            if (Keyboard.GetState().IsKeyDown(Left_key) && Keyboard.GetState().IsKeyDown(Right_key))
             {
                 
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Left))
+            else if (Keyboard.GetState().IsKeyDown(Left_key))
             {
                 vel = -speed;
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.Right))
+            else if (Keyboard.GetState().IsKeyDown(Right_key))
             {
                 vel = speed;
             }
+
+            if (weapon_cooldown_timer >= 0)
+            {
+                if (Keyboard.GetState().IsKeyDown(Shoot_key))
+                {
+                    has_shot = true;
+                    weapon_cooldown_timer = -curent_weapon.cooldown;
+                    stagger(curent_weapon.cooldown+1);
+                }
+            }
+            else
+            {
+                weapon_cooldown_timer++;
+            }
+
             
         }
 
@@ -59,21 +99,37 @@ namespace Space_invaders_01
             pos = new Vector2(pos.X+f, pos.Y);
         }
 
-        public void run(GameTime gameTime) {
+        public void stagger(int frames)
+        {
+            stagger_timer = -frames;
+        }
+        
+
+        public void Update() {
             intput();
-            move(vel);
+
+            if (stagger_timer >= 0)
+            {
+                
+                move(vel);
+            }
+            else { stagger_timer++; }
+
+            Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
+
+            Vector2 offset_pos = new Vector2(Centerd_pos.X - size.X * 0.5f, Centerd_pos.Y - size.Y * 0.5f);
+
+            hitBox = new Rectangle((int)offset_pos.X, (int)offset_pos.Y, (int)(hitbox_size.X+size.X), (int)(hitbox_size.Y + size.Y));
+            spriteBox = new Rectangle((int)offset_pos.X, (int)offset_pos.Y, (int)size.X, (int)size.Y);
 
         }
 
         public void draw(SpriteBatch __spriteBatch)
         {
             
-            Vector2 Centerd_pos = new Vector2(pos.X+ Game1.Window_size.X*0.5f,pos.Y);
-            
-            Vector2 offset_pos = new Vector2(Centerd_pos.X - size.X * 0.5f, Centerd_pos.Y - size.Y * 0.5f );
 
-            Rectangle _rectangle = new Rectangle((int)offset_pos.X,(int)offset_pos.Y,(int)size.X,(int)size.Y);
-            __spriteBatch.Draw(texture, _rectangle, color);
+
+            __spriteBatch.Draw(texture, spriteBox, color);
         }
 
     }
