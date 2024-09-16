@@ -23,8 +23,21 @@ namespace Space_invaders_01
         public GameState_InGame()
         {
             Create_Standard_GameSpace();
-            
 
+            Initiate_UI();
+
+        }
+
+        public void Initiate_UI()
+        {
+            UI_element[] game_UI = new UI_element[3];
+            game_UI[0] = new UI_element(Game1.font_1,new Vector2(10,10),Color.Wheat, "space invaders");
+
+            game_UI[1] = new UI_element(Game1.font_1, new Vector2(15, 30), Color.Red, "Health: ");
+            game_UI[2] = new UI_element(Game1.font_1, new Vector2(100, 30), Color.Gold, "Score: ");
+
+
+            _User_Interface = new User_Interface(game_UI); // 0 = spelets namn // 1 = HP // 2 = score
         }
 
         public void Create_Standard_GameSpace() //Temp
@@ -57,14 +70,26 @@ namespace Space_invaders_01
 
         public override void Update()
         {
+            if (_GameSpace.Health <= 0)
+            {
+                new_gamestate(new GameState_EndScreen());
+                return;
+            }
             base.Update();
             _GameSpace.Update();
+
+            _User_Interface.text_interface[1].Uppdate_UI_numb(_GameSpace.Health);
+            _User_Interface.text_interface[2].Uppdate_UI_numb(_GameSpace.score);
+            //add ui uppdate
+
         }
 
         public override void Draw(SpriteBatch _spriteBatch)
         {
             base.Draw(_spriteBatch);
             _GameSpace.draw(_spriteBatch);
+
+            _User_Interface.Draw(_spriteBatch);
         }
 
     }

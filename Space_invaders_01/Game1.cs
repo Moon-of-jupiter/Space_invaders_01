@@ -14,6 +14,8 @@ namespace Space_invaders_01
 
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        public static SpriteFont font_1;
         public static Texture2D pixel;
 
         //public Enemy_type standard_Enemy_Type;
@@ -25,7 +27,7 @@ namespace Space_invaders_01
         //public GameSpace _gamespace;
 
 
-        private GameState_Maneger GS_Maneger;
+        private GameState_Controler GS_Controler;
 
         public static TypeManeger _TypeManeger;
 
@@ -56,7 +58,7 @@ namespace Space_invaders_01
         private void game_intitialize()
         {
             _TypeManeger = new TypeManeger();
-            GS_Maneger = new GameState_Maneger();
+            GS_Controler = new GameState_Controler();
             
             //Game_window = new Rectangle( (int)(Window_size.X*0.5f-Game_size.X*0.5+Game_window_offset.X), (int)Game_window_offset.Y, (int)Game_size.X, (int)Game_size.Y);
             
@@ -65,6 +67,7 @@ namespace Space_invaders_01
 
         protected override void LoadContent()
         {
+            font_1 = Content.Load<SpriteFont>("font1");
             pixel = Content.Load<Texture2D>("Pixel");
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -79,10 +82,10 @@ namespace Space_invaders_01
                 game_intitialize();
             }
 
-            
-                
 
-            GS_Maneger.Update_Current_Gamespace();
+
+
+            GS_Controler.Update_Current_Gamespace();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -95,12 +98,14 @@ namespace Space_invaders_01
             _spriteBatch.Begin();
             //_spriteBatch.Draw(pixel, Game_window, new Color(50,50,50));
 
-            GS_Maneger.Draw_Current_Gamespace(_spriteBatch);
+            GS_Controler.Draw_Current_Gamespace(_spriteBatch);
             _spriteBatch.End();
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+
+            
         }
     }
 }

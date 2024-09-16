@@ -12,15 +12,19 @@ using Space_invaders_01;
 
 namespace Space_invaders_01
 {
-    public class GameState_Maneger
+    public class GameState_Controler
     {
         private GameState_Foundation current_gamestate;
-        public GameState_Maneger() {
+        public GameState_Controler() {
             current_gamestate = new GameState_InGame();
         }
 
         public void Update_Current_Gamespace()
         {
+            if(current_gamestate.Next_state != null)
+            {
+                current_gamestate = current_gamestate.Next_state;
+            }
             current_gamestate.Update();
         }
 

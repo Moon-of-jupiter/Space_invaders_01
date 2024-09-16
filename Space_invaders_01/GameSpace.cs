@@ -15,6 +15,10 @@ namespace Space_invaders_01
         public Player _player;
 
         public int Health;
+        public int MaxHealth {  get; private set; }
+
+        public int score { get; private set; }
+        
 
         private Rectangle Enemy_End_Zone;
 
@@ -30,6 +34,7 @@ namespace Space_invaders_01
             
             this._player = p;
             this.Health = Starting_Health;
+            this.MaxHealth = Starting_Health;
 
             Enemy_End_Zone = new Rectangle(0, (int)Game1.Window_size.Y, (int)Game1.Window_size.X, (int)(Game1.Window_size.Y * 0.5f));
 
@@ -84,6 +89,8 @@ namespace Space_invaders_01
             {
                 _enemy.health -= _prodectile.heath;
                 _prodectile.heath -= _enemy.type.type_damege;
+
+                score++;
 
             }
 

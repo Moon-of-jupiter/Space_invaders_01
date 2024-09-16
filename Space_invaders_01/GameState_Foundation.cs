@@ -15,9 +15,15 @@ namespace Space_invaders_01
 {
     public class GameState_Foundation
     {
+        public GameState_Foundation Next_state;
 
         public GameState_Foundation() { 
 
+        }
+
+        public virtual void new_gamestate(GameState_Foundation gs)
+        {
+            Next_state = gs;
         }
 
         public virtual void Update() { 
