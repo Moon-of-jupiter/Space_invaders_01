@@ -40,6 +40,9 @@ namespace Space_invaders_01
             this.texture = projectile_texture;
             this.base_color = projectile_base_color;
             this.acceleration = projectile_acceleration;
+
+            
+           
         }
     }
 }

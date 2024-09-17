@@ -19,6 +19,7 @@ namespace Space_invaders_01
         public float enemy_advancement;
         public int row_spaceing;
         public float ad_speed;
+        public int enemys_destroyed;
 
         public EnemyManeger(int r, float s)
         {
@@ -27,6 +28,8 @@ namespace Space_invaders_01
 
             this.enemy_list = new List<List<Enemy>>();
             this.row_spaceing = r;
+
+            enemys_destroyed = 0;
 
         }
 
@@ -56,7 +59,10 @@ namespace Space_invaders_01
                         if (enemy_list[i].Count == 0)
                         {
                             enemy_list.RemoveAt(i);
+
+                            
                         }
+                        enemys_destroyed++;
                         return;
                     }
                 }

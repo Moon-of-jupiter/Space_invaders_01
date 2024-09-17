@@ -22,7 +22,6 @@ namespace Space_invaders_01
         public float heath;
 
         public readonly Prodectile_type type;
-        public bool Marked_for_Explode = false;
 
         public Prodectile(Prodectile_type t, Vector2 p){
             this.type = t;

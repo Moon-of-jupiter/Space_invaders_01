@@ -90,7 +90,7 @@ namespace Space_invaders_01
                 _enemy.health -= _prodectile.heath;
                 _prodectile.heath -= _enemy.type.type_damege;
 
-                score++;
+                
 
             }
 
@@ -149,6 +149,7 @@ namespace Space_invaders_01
             _ProdectileManeger.Update();
 
             _EnemyManeger.uppdate_enemies();
+            score = _EnemyManeger.enemys_destroyed;
             _EnemyManeger.enemy_advancement += _EnemyManeger.ad_speed;
 
 
