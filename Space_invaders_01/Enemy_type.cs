@@ -14,14 +14,16 @@ namespace Space_invaders_01
     {
         public float type_max_HP;
         public float type_damege;
+        public int points_uppon_destruction;
         public Vector2 type_size;
         public Color type_color;
         public Texture2D type_texture;
 
-        public Enemy_type(float h, float d, Vector2 s, Color c, Texture2D t)
+        public Enemy_type(float h, float d, int p, Vector2 s, Color c, Texture2D t)
         {
             this.type_damege = d;
             this.type_max_HP = h;
+            this.points_uppon_destruction = p;
             this.type_size = s; 
             this.type_texture = t;
             this.type_color = c;

@@ -19,7 +19,7 @@ namespace Space_invaders_01
         public float enemy_advancement;
         public int row_spaceing;
         public float ad_speed;
-        public int enemys_destroyed;
+        public int points_earned_from_killing;
 
         public EnemyManeger(int r, float s)
         {
@@ -29,7 +29,7 @@ namespace Space_invaders_01
             this.enemy_list = new List<List<Enemy>>();
             this.row_spaceing = r;
 
-            enemys_destroyed = 0;
+            points_earned_from_killing = 0;
 
         }
 
@@ -55,6 +55,7 @@ namespace Space_invaders_01
                 {
                     if(enemy_list[i][j] == marked)
                     {
+                        int points = enemy_list[i][j].type.points_uppon_destruction;
                         enemy_list[i].Remove(marked);
                         if (enemy_list[i].Count == 0)
                         {
@@ -62,7 +63,7 @@ namespace Space_invaders_01
 
                             
                         }
-                        enemys_destroyed++;
+                        points_earned_from_killing += points;
                         return;
                     }
                 }

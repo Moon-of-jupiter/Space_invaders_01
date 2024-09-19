@@ -24,7 +24,10 @@ namespace Space_invaders_01
         public override void Draw(SpriteBatch _spriteBatch)
         {
             base.Draw(_spriteBatch);
-
+            
+            _spriteBatch.Draw(Game1.pixel,new Rectangle(new Point(0,0),Game1.Window_size.ToPoint()),new Color(100,10,0));
+            
+            
         }
 
     }

@@ -149,7 +149,7 @@ namespace Space_invaders_01
             _ProdectileManeger.Update();
 
             _EnemyManeger.uppdate_enemies();
-            score = _EnemyManeger.enemys_destroyed;
+            score = _EnemyManeger.points_earned_from_killing;
             _EnemyManeger.enemy_advancement += _EnemyManeger.ad_speed;
 
 

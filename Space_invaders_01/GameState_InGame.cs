@@ -28,22 +28,26 @@ namespace Space_invaders_01
 
         }
 
-        public void Initiate_UI()
+        public void Initiate_UI() // typ temp
         {
             UI_element[] game_UI = new UI_element[3];
-            game_UI[0] = new UI_element(Game1.font_1,new Vector2(10,10),Color.Wheat, "space invaders");
+            game_UI[0] = new UI_element(Game1.font_1,new Vector2(10,10),Color.Wheat, "SPACE   INVADERS");
 
-            game_UI[1] = new UI_element(Game1.font_1, new Vector2(15, 30), Color.Red, "Health: ");
+            game_UI[1] = new UI_element(Game1.font_1, new Vector2(15, 30), new Color(230,100,100), "Health: ");
             game_UI[2] = new UI_element(Game1.font_1, new Vector2(100, 30), Color.Gold, "Score: ");
 
+            RTD_rectangle[] UI_backgrounds = new RTD_rectangle[1];
 
-            _User_Interface = new User_Interface(game_UI); // 0 = spelets namn // 1 = HP // 2 = score
+            UI_backgrounds[0] = new RTD_rectangle(new Color(50,50,55),Game1.pixel ,new Vector2(0,0), (int)Game1.Window_size.X, 60);
+
+
+            _User_Interface = new User_Interface(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
         }
 
         public void Create_Standard_GameSpace() //Temp
         {
             
-            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,5, 100, 100,10,10), 70, 0.5f, 10);
+            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,5, 100, 100,10,10), 70, 0.5f, 3);
             _GameSpace._player.curent_weapon = Game1._TypeManeger.standard_Prodectile_type;
             
 

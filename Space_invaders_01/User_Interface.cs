@@ -13,18 +13,24 @@ namespace Space_invaders_01
     public class User_Interface
     {
         public UI_element[] text_interface;
+        public RTD_rectangle[] rectangles_interface;
         //public Rectangle[] UI_BG;
 
-        public User_Interface(UI_element[] list_of_ui)
+        public User_Interface(UI_element[] array_of_ui, RTD_rectangle[] arry_of_ui_backgrounds)
         {
-            text_interface = list_of_ui;
+            text_interface = array_of_ui;
+            rectangles_interface = arry_of_ui_backgrounds;
         }
 
 
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            foreach(UI_element text in text_interface)
+            foreach (RTD_rectangle rectangle in rectangles_interface)
+            {
+                rectangle.draw(_spriteBatch);
+            }
+            foreach (UI_element text in text_interface)
             {
                 text.draw(_spriteBatch);
             }
