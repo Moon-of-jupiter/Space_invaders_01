@@ -20,6 +20,8 @@ namespace Space_invaders_01
         public int weapon_cooldown_timer = 0;
         public bool has_shot = false;
         public Prodectile_type curent_weapon;
+        
+        
 
         
         //world properties

@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using SharpDX.XAudio2;
 using Space_invaders_01;
 
 
@@ -24,11 +25,19 @@ namespace Space_invaders_01
         
         public int row_spaceing { get; private set; }
 
-        public EnemyPhalanx(Enemy_type[] rows, int nr_of_collums, int centerX, int row_space, int collum_space)
+        public int advancement;
+        public int advancement_speed { get; private set; }
+
+        public int direction = 1;
+        private float starting_x_velocety;
+        private float end_x_velocety;
+
+        public EnemyPhalanx(Enemy_type[] rows, int nr_of_collums, int centerX, int row_space, int collum_space, int ad_speed)
         {
             collum_spaceing = collum_space;
             row_spaceing = row_space;
-
+            advancement = 0;
+            advancement_speed = ad_speed;
 
 
             phalanx = new Enemy[nr_of_collums,rows.Length];
@@ -43,5 +52,49 @@ namespace Space_invaders_01
             }
 
         }
+
+        public int Count()
+        {
+            int counter = 0;
+
+            for (int i = 0; i < phalanx.GetLength(0); i++)
+            {
+                for (int j = 0; j < phalanx.GetLength(1); j++)
+                {
+                    if (phalanx[i,j] != null)
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+
+            return counter;
+        }
+
+        
+
+        public Rectangle Get_full_phalanx_bounds()
+        {
+            
+
+
+            return new Rectangle();
+        }
+
+
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            for (int i = 0; i < phalanx.GetLength(0); i++)
+            {
+                for (int j = 0; j < phalanx.GetLength(1); j++)
+                {
+                    phalanx[i,j].Draw(_spriteBatch);
+                }
+            }
+
+        }
+
+        
     }
 }

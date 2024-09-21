@@ -25,12 +25,14 @@ namespace Space_invaders_01
         
         public EnemyManeger _EnemyManeger;
         public ProdectileManeger _ProdectileManeger;
+        public ExplotionManeger _ExplotionManeger;
         
 
         public GameSpace(Player p, int r, float s, int Starting_Health)
         {
             this._EnemyManeger = new EnemyManeger(r,s);
             this._ProdectileManeger = new ProdectileManeger();
+            this._ExplotionManeger = new ExplotionManeger();
             
             this._player = p;
             this.Health = Starting_Health;
@@ -76,7 +78,10 @@ namespace Space_invaders_01
                 Health--;
                 _player.stagger(60);
 
-                
+                Vector2 ex_point = new Vector2(_enemy.hitbox.X + _enemy.hitbox.Width * 0.5f, _enemy.hitbox.Bottom);
+                _ExplotionManeger.Random_Explotion_FromPoint(ex_point, 60);
+
+
             }
 
             
@@ -90,7 +95,10 @@ namespace Space_invaders_01
                 _enemy.health -= _prodectile.heath;
                 _prodectile.heath -= _enemy.type.type_damege;
 
-                
+                Vector2 ex_point = new Vector2(_prodectile.hitbox.X+_prodectile.hitbox.Width*0.5f,_prodectile.hitbox.Y);
+                _ExplotionManeger.Random_Explotion_FromPoint(ex_point,40);
+
+
 
             }
 
@@ -147,8 +155,9 @@ namespace Space_invaders_01
             }
 
             _ProdectileManeger.Update();
-
+            _ExplotionManeger.Update();
             _EnemyManeger.uppdate_enemies();
+
             score = _EnemyManeger.points_earned_from_killing;
             _EnemyManeger.enemy_advancement += _EnemyManeger.ad_speed;
 
@@ -165,6 +174,8 @@ namespace Space_invaders_01
             
             
             _player.draw(_SpriteBatch);
+            
+            _ExplotionManeger.Draw( _SpriteBatch );
 
 
         }

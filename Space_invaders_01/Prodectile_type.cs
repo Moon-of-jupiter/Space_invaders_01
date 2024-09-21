@@ -19,6 +19,8 @@ namespace Space_invaders_01
         public int damege;
         public float speed;
         public float acceleration;
+        //public float motion_timer_counter;
+        //public float motion_scaling;
 
         public Vector2 startoffset;
 
@@ -41,6 +43,7 @@ namespace Space_invaders_01
             this.base_color = projectile_base_color;
             this.acceleration = projectile_acceleration;
 
+            
             
            
         }
