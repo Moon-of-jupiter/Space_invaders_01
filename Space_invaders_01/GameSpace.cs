@@ -79,7 +79,7 @@ namespace Space_invaders_01
                 _player.stagger(60);
 
                 Vector2 ex_point = new Vector2(_enemy.hitbox.X + _enemy.hitbox.Width * 0.5f, _enemy.hitbox.Bottom);
-                _ExplotionManeger.Random_Explotion_FromPoint(ex_point, 60);
+                _ExplotionManeger.Random_Explotion_FromPoint(ex_point, (int)(_enemy.size.X*0.9f));
 
 
             }
