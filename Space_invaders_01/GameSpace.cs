@@ -23,14 +23,14 @@ namespace Space_invaders_01
         private Rectangle Enemy_End_Zone;
 
         
-        public EnemyManeger _EnemyManeger;
+        //public EnemyManeger _EnemyManeger;
         public ProdectileManeger _ProdectileManeger;
         public ExplotionManeger _ExplotionManeger;
         
 
         public GameSpace(Player p, int r, float s, int Starting_Health)
         {
-            this._EnemyManeger = new EnemyManeger(r,s);
+            //this._EnemyManeger = new EnemyManeger(r,s);
             this._ProdectileManeger = new ProdectileManeger();
             this._ExplotionManeger = new ExplotionManeger();
             
@@ -42,16 +42,12 @@ namespace Space_invaders_01
 
         }
 
-        public void Add_row_enemy_list(int enemy_amount, int enemy_x_spaceing,Enemy_type type)
-        {
-            _EnemyManeger.Add_row_enemy_list(enemy_amount,enemy_x_spaceing,type);
-
-
-        }
+        
 
         private int Check_Enemy_goal(List<Enemy> row)
         {
             int enemies_at_end = 0;
+            /*
             if (_EnemyManeger.enemy_list.Count != 0) {
                 
                 List<Enemy> enemies = row;
@@ -65,6 +61,7 @@ namespace Space_invaders_01
                 }
                 
             }
+            */
 
             return enemies_at_end;
 
@@ -106,6 +103,7 @@ namespace Space_invaders_01
         
         public void ColitionManeger()
         {
+            /*
             if (_EnemyManeger.enemy_list.Count != 0)
             {
                 int damege_to_player = 0;
@@ -138,6 +136,7 @@ namespace Space_invaders_01
                 
                 this.Health -= damege_to_player;
             }
+            */
 
         }
 
@@ -156,10 +155,10 @@ namespace Space_invaders_01
 
             _ProdectileManeger.Update();
             _ExplotionManeger.Update();
-            _EnemyManeger.uppdate_enemies();
+            //_EnemyManeger.uppdate_enemies();
 
-            score = _EnemyManeger.points_earned_from_killing;
-            _EnemyManeger.enemy_advancement += _EnemyManeger.ad_speed;
+            //score = _EnemyManeger.points_earned_from_killing;
+            //_EnemyManeger.enemy_advancement += _EnemyManeger.ad_speed;
 
 
 
@@ -170,7 +169,7 @@ namespace Space_invaders_01
         {
             _ProdectileManeger.Draw(_SpriteBatch);
 
-            _EnemyManeger.draw_enemies(_SpriteBatch);
+            //_EnemyManeger.draw_enemies(_SpriteBatch);
             
             
             _player.draw(_SpriteBatch);

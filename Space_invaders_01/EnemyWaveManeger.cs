@@ -14,7 +14,7 @@ namespace Space_invaders_01
 {
     public class EnemyWaveManeger
     {
-        public EnemyPhalanx[][] Waves;
+        public EnemyPhalanx[] Waves;
         public int current_wave;
 
 
