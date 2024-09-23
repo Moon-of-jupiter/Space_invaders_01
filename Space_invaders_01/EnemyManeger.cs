@@ -42,6 +42,8 @@ namespace Space_invaders_01
                 _enemies.Add(new Enemy(type, new Vector2((i + 0.5f) * enemy_x_spaceing - enemy_x_spaceing * enemy_amount * 0.5f, -row_count * row_spaceing)));
             }
 
+            
+
             enemy_list.Add(_enemies);
 
 
