@@ -21,9 +21,9 @@ namespace Space_invaders_01
         private Enemy[,] phalanx;
 
         public int center_pointX {  get; private set; }
-        public int collum_spaceing {  get; private set; }
+        public float collum_spaceing {  get; private set; }
         
-        public int row_spaceing { get; private set; }
+        public float row_spaceing { get; private set; }
 
         public int advancement;
         public int advancement_speed { get; private set; }
@@ -32,7 +32,7 @@ namespace Space_invaders_01
         private float starting_x_velocety;
         private float end_x_velocety;
 
-        public EnemyPhalanx(Enemy_type[] rows, int nr_of_collums, int centerX, int row_space, int collum_space, int ad_speed)
+        public EnemyPhalanx(Enemy_type[] rows, int nr_of_collums, int centerX, float row_space, float collum_space, int ad_speed)
         {
             collum_spaceing = collum_space;
             row_spaceing = row_space;
@@ -52,6 +52,28 @@ namespace Space_invaders_01
             }
 
         }
+
+        public EnemyPhalanx(PhalanxPreset preset)
+        {
+            collum_spaceing = preset.collum_space;
+            row_spaceing = preset.row_space;
+            advancement = 0;
+            advancement_speed = preset.ad_speed;
+
+
+            phalanx = new Enemy[preset.nr_of_collums, preset.rows.Length];
+
+            for (int i = 0; i < preset.rows.Length; i++)
+            {
+                for (int j = 0; j < preset.nr_of_collums; j++)
+                {
+                    Vector2 enemy_pos = new Vector2((j + 0.5f) * collum_spaceing - collum_spaceing * preset.nr_of_collums * 0.5f, (i-preset.rows.Length) * row_spaceing);
+                    phalanx[j, i] = new Enemy(preset.rows[i], enemy_pos);
+                }
+            }
+
+        }
+
 
         public int Count()
         {
@@ -80,6 +102,18 @@ namespace Space_invaders_01
 
 
             return new Rectangle();
+        }
+
+        public void Update()
+        {
+            for (int i = 0; i < phalanx.GetLength(0); i++)
+            {
+                for (int j = 0; j < phalanx.GetLength(1); j++)
+                {
+                    phalanx[i, j].Update(advancement);
+                }
+            }
+            advancement += advancement_speed;
         }
 
 

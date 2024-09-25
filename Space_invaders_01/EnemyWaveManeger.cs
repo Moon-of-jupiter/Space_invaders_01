@@ -14,8 +14,36 @@ namespace Space_invaders_01
 {
     public class EnemyWaveManeger
     {
-        public EnemyPhalanx[] Waves;
-        public int current_wave;
+        private EnemyPhalanx[] waves;
+
+        public int wave_counter = 0;
+
+        public EnemyWaveManeger(PhalanxPreset[] _waves)
+        {
+            waves = new EnemyPhalanx[_waves.Length];
+
+            for (int i = 0; i < waves.Length; i++)
+            {
+                waves[i] = new EnemyPhalanx(_waves[i]);
+            }
+
+
+        }
+
+        public void Update()
+        {
+            waves[wave_counter].Update();
+        }
+
+        public void Draw(SpriteBatch _spriteBatch)
+        {
+            waves[wave_counter].Draw(_spriteBatch);
+        }
+
+
+
+
+
 
 
     }

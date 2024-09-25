@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
 using System.Xml.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,7 +18,12 @@ namespace Space_invaders_01
     {
         public GameSpace _GameSpace;
         public User_Interface _User_Interface;
-        
+
+        public bool FBF = false; // frame by frame for debugging
+        private bool FBF_paused;
+        private bool FBF_has_pressed;
+
+
 
         public GameState_InGame()
         {
@@ -75,13 +80,40 @@ namespace Space_invaders_01
 
         public override void Update()
         {
-            if (_GameSpace.Health <= 0)
+            
+                
+            if (FBF_has_pressed == false && Keyboard.GetState().IsKeyDown(Keys.O))
             {
-                new_gamestate(new GameState_EndScreen());
-                return;
+                FBF_paused = false;
+                FBF_has_pressed = true;
+                FBF = true;
+
             }
-            base.Update();
-            _GameSpace.Update();
+            else if (Keyboard.GetState().IsKeyDown(Keys.O) == false)
+            {
+                FBF_has_pressed = false;
+            }
+
+
+                
+
+            
+
+            if (FBF == false || FBF_paused == false)
+            {
+
+
+                if (_GameSpace.Health <= 0)
+                {
+                    new_gamestate(new GameState_EndScreen());
+                    return;
+                }
+                base.Update();
+                _GameSpace.Update();
+
+                FBF_paused = true;
+            }
+            
 
             _User_Interface.text_interface[1].Uppdate_UI_numb(_GameSpace.Health);
             _User_Interface.text_interface[2].Uppdate_UI_numb(_GameSpace.score);

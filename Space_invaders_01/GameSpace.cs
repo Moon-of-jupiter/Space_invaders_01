@@ -24,6 +24,8 @@ namespace Space_invaders_01
 
         
         //public EnemyManeger _EnemyManeger;
+
+        public EnemyWaveManeger _EnemyWaveManeger;
         public ProdectileManeger _ProdectileManeger;
         public ExplotionManeger _ExplotionManeger;
         
@@ -31,6 +33,10 @@ namespace Space_invaders_01
         public GameSpace(Player p, int r, float s, int Starting_Health)
         {
             //this._EnemyManeger = new EnemyManeger(r,s);
+            PhalanxPreset[] wave_chart = new PhalanxPreset[2]{Game1._PhalanxPresetManeger.Block_Standard_Monolith, Game1._PhalanxPresetManeger.Block_Standard_Monolith };
+
+
+            this._EnemyWaveManeger = new EnemyWaveManeger(wave_chart);
             this._ProdectileManeger = new ProdectileManeger();
             this._ExplotionManeger = new ExplotionManeger();
             
@@ -154,6 +160,10 @@ namespace Space_invaders_01
             }
 
             _ProdectileManeger.Update();
+
+            _EnemyWaveManeger.Update();
+
+
             _ExplotionManeger.Update();
             //_EnemyManeger.uppdate_enemies();
 
@@ -171,7 +181,8 @@ namespace Space_invaders_01
 
             //_EnemyManeger.draw_enemies(_SpriteBatch);
             
-            
+            _EnemyWaveManeger.Draw(_SpriteBatch);
+
             _player.draw(_SpriteBatch);
             
             _ExplotionManeger.Draw( _SpriteBatch );

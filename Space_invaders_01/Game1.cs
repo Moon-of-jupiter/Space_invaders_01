@@ -29,6 +29,9 @@ namespace Space_invaders_01
 
         private GameState_Controler GS_Controler;
 
+
+        public static PhalanxPresetManeger _PhalanxPresetManeger;
+
         public static TypeManeger _TypeManeger;
 
 
@@ -58,6 +61,7 @@ namespace Space_invaders_01
         private void game_intitialize()
         {
             _TypeManeger = new TypeManeger();
+            _PhalanxPresetManeger = new PhalanxPresetManeger(55,55);
             GS_Controler = new GameState_Controler();
             
             //Game_window = new Rectangle( (int)(Window_size.X*0.5f-Game_size.X*0.5+Game_window_offset.X), (int)Game_window_offset.Y, (int)Game_size.X, (int)Game_size.Y);
