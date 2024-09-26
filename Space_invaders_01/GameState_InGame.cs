@@ -18,6 +18,7 @@ namespace Space_invaders_01
     {
         public GameSpace _GameSpace;
         public User_Interface _User_Interface;
+        public KeybindManeger _keybindManeger;
 
         public bool FBF = false; // frame by frame for debugging
         private bool FBF_paused;
@@ -27,9 +28,13 @@ namespace Space_invaders_01
 
         public GameState_InGame()
         {
+            _keybindManeger = new KeybindManeger();
+
             Create_Standard_GameSpace();
 
             Initiate_UI();
+
+
 
         }
 
@@ -52,44 +57,24 @@ namespace Space_invaders_01
         public void Create_Standard_GameSpace() //Temp
         {
             
-            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,5, 100, 100,10,10), 70, 0.5f, 3);
+            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,3,5, 100, 100,10,10, _keybindManeger.player_move_left, _keybindManeger.player_move_right, _keybindManeger.player_shoot));
             _GameSpace._player.curent_weapon = Game1._TypeManeger.standard_Prodectile_type;
             
-            /*
-            _GameSpace.Add_row_enemy_list(10, 70, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(10, 80, Game1._TypeManeger.hardy_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(10, 70, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(10, 70, Game1._TypeManeger.standard_Enemy_Type);
-
-            _GameSpace.Add_row_enemy_list(11, 70, Game1._TypeManeger.easy_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(11, 70, Game1._TypeManeger.easy_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(11, 70, Game1._TypeManeger.easy_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(11, 70, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(10, 80, Game1._TypeManeger.hardy_Enemy_Type);
-
-            _GameSpace.Add_row_enemy_list(0, 80, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(3, 80, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(0, 80, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(0, 80, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(0, 80, Game1._TypeManeger.standard_Enemy_Type);
-            _GameSpace.Add_row_enemy_list(0, 80, Game1._TypeManeger.standard_Enemy_Type);
-
-            _GameSpace.Add_row_enemy_list(1, 80, Game1._TypeManeger.boss_Enemy_Type);
-            */
+         
         }
 
         public override void Update()
         {
             
                 
-            if (FBF_has_pressed == false && Keyboard.GetState().IsKeyDown(Keys.O))
+            if (FBF_has_pressed == false && Keyboard.GetState().IsKeyDown(_keybindManeger.frame_by_frame))
             {
                 FBF_paused = false;
                 FBF_has_pressed = true;
                 FBF = true;
 
             }
-            else if (Keyboard.GetState().IsKeyDown(Keys.O) == false)
+            else if (Keyboard.GetState().IsKeyDown(_keybindManeger.frame_by_frame) == false)
             {
                 FBF_has_pressed = false;
             }
@@ -103,7 +88,7 @@ namespace Space_invaders_01
             {
 
 
-                if (_GameSpace.Health <= 0)
+                if (_GameSpace._player.health <= 0)
                 {
                     new_gamestate(new GameState_EndScreen());
                     return;
@@ -115,7 +100,7 @@ namespace Space_invaders_01
             }
             
 
-            _User_Interface.text_interface[1].Uppdate_UI_numb(_GameSpace.Health);
+            _User_Interface.text_interface[1].Uppdate_UI_numb(_GameSpace._player.health);
             _User_Interface.text_interface[2].Uppdate_UI_numb(_GameSpace.score);
             //add ui uppdate
 

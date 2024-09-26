@@ -17,8 +17,12 @@ namespace Space_invaders_01
 {
     public class PhalanxPresetManeger
     {
-        float stadard_rowspacing;
-        float stadard_columnspacing;
+        private float stadard_rowspacing;
+        private float stadard_columnspacing;
+
+        
+
+
 
         public PhalanxPreset Block_Standard_Monolith;
         public PhalanxPreset Block_Space_invaders;
@@ -28,6 +32,8 @@ namespace Space_invaders_01
         {
             stadard_rowspacing = _RowSpacing;
             stadard_columnspacing = _ColumSpacing;
+
+            
 
             Block_Standard_Monolith = GeneratePreset_OneType(Game1._TypeManeger.standard_Enemy_Type, 10, 5);
 
@@ -48,7 +54,7 @@ namespace Space_invaders_01
             }
 
 
-            PhalanxPreset preset = new PhalanxPreset(EnemyRows, phalanx_countX, 0, stadard_rowspacing, stadard_columnspacing, 1);
+            PhalanxPreset preset = new PhalanxPreset(EnemyRows, phalanx_countX, 0, stadard_rowspacing, stadard_columnspacing, 50f, 1.05f, 30);
             return  preset;
         }
         

@@ -24,6 +24,7 @@ namespace Space_invaders_01
         public Texture2D texture;
 
         public Rectangle hitbox;
+
         
 
         public Color color;
@@ -31,6 +32,7 @@ namespace Space_invaders_01
 
         public Enemy(Enemy_type t, Vector2 p) {
 
+            //this.horisontal_acceleration = _horisontal_acceleration;
             this.texture = t.type_texture;
             this.type = t;
             this.health = t.type_max_HP;
@@ -41,8 +43,8 @@ namespace Space_invaders_01
 
         
 
-        public void Update(float f) {
-            _pos = new Vector2(starting_pos.X,starting_pos.Y+f);
+        public void Update(float x, float y) {
+            _pos = new Vector2(starting_pos.X += x,starting_pos.Y+y);
 
 
             Vector2 Centerd_pos = new Vector2(_pos.X + Game1.Window_size.X * 0.5f, _pos.Y);

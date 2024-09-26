@@ -24,15 +24,34 @@ namespace Space_invaders_01
 
             for (int i = 0; i < waves.Length; i++)
             {
-                waves[i] = new EnemyPhalanx(_waves[i]);
+                waves[i] = new EnemyPhalanx(_waves[i], 300);
             }
 
 
         }
 
+        
+        public Enemy[] Get_flat_array_of_current_wave()
+        {
+            return waves[wave_counter].Get_flat_array_of_enemys();
+        }
+
+
         public void Update()
         {
-            waves[wave_counter].Update();
+            if (waves[wave_counter].Count() <= 0)
+            {
+                wave_counter++;
+            }
+
+            if (wave_counter < waves.Length)
+            {
+                waves[wave_counter].Update();
+            }
+            
+            
+
+            
         }
 
         public void Draw(SpriteBatch _spriteBatch)
@@ -41,7 +60,7 @@ namespace Space_invaders_01
         }
 
 
-
+        
 
 
 
