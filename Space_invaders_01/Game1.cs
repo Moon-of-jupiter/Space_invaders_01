@@ -20,7 +20,7 @@ namespace Space_invaders_01
 
         //public Enemy_type standard_Enemy_Type;
 
-        static public Vector2 Window_size = new Vector2(800,1000);
+        static public Vector2 Window_size = new Vector2(1000,1000);
         //public Vector2 Game_size = new Vector2(500, 600);
         //public Vector2 Game_window_offset = new Vector2(0, 100);
         //public Rectangle Game_window;
@@ -54,6 +54,7 @@ namespace Space_invaders_01
             _graphics.PreferredBackBufferHeight = (int)Window_size.Y;
             _graphics.PreferredBackBufferWidth = (int)Window_size.X;
             _graphics.ApplyChanges();
+            
 
             base.Initialize();
         }
@@ -61,7 +62,7 @@ namespace Space_invaders_01
         private void game_intitialize()
         {
             _TypeManeger = new TypeManeger();
-            _PhalanxPresetManeger = new PhalanxPresetManeger(55,55);
+            _PhalanxPresetManeger = new PhalanxPresetManeger(70,70);
             GS_Controler = new GameState_Controler();
             
             //Game_window = new Rectangle( (int)(Window_size.X*0.5f-Game_size.X*0.5+Game_window_offset.X), (int)Game_window_offset.Y, (int)Game_size.X, (int)Game_size.Y);

@@ -36,7 +36,7 @@ namespace Space_invaders_01
              smol_Enemy_Type = new Enemy_type(0.1f, 0.1f, 1, new Vector2(20, 20), Color.White, Game1.pixel);
 
 
-             standard_Prodectile_type = new Prodectile_type(new Vector2(15, 40), new Vector2(0, -20), 1, 15, 1, 100, 0.4f, Game1.pixel, Color.Wheat);
+             standard_Prodectile_type = new Prodectile_type(new Vector2(10, 30), new Vector2(0, -20), 1, 15, 1, 100, 0.7f, Game1.pixel, Color.Lime);
              cheat_Prodectile_type = new Prodectile_type(new Vector2(15, 40), new Vector2(0, -20), 1000, 1, 10, 150, 0.4f, Game1.pixel, Color.Lime);
         }
         

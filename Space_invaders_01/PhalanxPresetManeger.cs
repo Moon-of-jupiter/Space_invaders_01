@@ -37,7 +37,12 @@ namespace Space_invaders_01
 
             Block_Standard_Monolith = GeneratePreset_OneType(Game1._TypeManeger.standard_Enemy_Type, 10, 5);
 
-
+            Enemy_type[] space_invaders = new Enemy_type[5]
+            {
+                Game1._TypeManeger.easy_Enemy_Type, Game1._TypeManeger.easy_Enemy_Type,
+                Game1._TypeManeger.standard_Enemy_Type, Game1._TypeManeger.standard_Enemy_Type, Game1._TypeManeger.hardy_Enemy_Type
+            };
+            Block_Space_invaders = new PhalanxPreset(space_invaders, 10, 0, stadard_rowspacing, stadard_columnspacing, 50f, 1.05f, 30);
 
 
         }

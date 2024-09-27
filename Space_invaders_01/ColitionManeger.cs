@@ -13,7 +13,9 @@ namespace Space_invaders_01
     public class ColitionManeger
     {
         private ExplotionManeger reference_ExplotionManeger;
-        public Rectangle enemy_end_zone {  get; private set; }
+        public Rectangle enemy_end_zone { get; private set; }
+
+        
 
         public ColitionManeger(ExplotionManeger _ExplotionManeger, Rectangle _enemy_End_Zone)
         {

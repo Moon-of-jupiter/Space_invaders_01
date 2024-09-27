@@ -34,7 +34,7 @@ namespace Space_invaders_01
         public GameSpace(Player p)
         {
             //this._EnemyManeger = new EnemyManeger(r,s);
-            PhalanxPreset[] wave_chart = new PhalanxPreset[2]{Game1._PhalanxPresetManeger.Block_Standard_Monolith, Game1._PhalanxPresetManeger.Block_Standard_Monolith };
+            PhalanxPreset[] wave_chart = new PhalanxPreset[3]{ Game1._PhalanxPresetManeger.Block_Standard_Monolith, Game1._PhalanxPresetManeger.Block_Space_invaders, Game1._PhalanxPresetManeger.GeneratePreset_OneType(Game1._TypeManeger.hardy_Enemy_Type, 11, 3) };
 
 
             this._EnemyWaveManeger = new EnemyWaveManeger(wave_chart);
@@ -45,9 +45,6 @@ namespace Space_invaders_01
             this._ColitionManeger = new ColitionManeger(_ExplotionManeger, Enemy_End_Zone);
             
             this._player = p;
-            
-            
-
             
 
         }
@@ -70,6 +67,8 @@ namespace Space_invaders_01
 
 
             _ExplotionManeger.Update();
+
+            score += _EnemyWaveManeger.score_this_tick;
             //_EnemyManeger.uppdate_enemies();
 
             //score = _EnemyManeger.points_earned_from_killing;

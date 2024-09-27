@@ -17,6 +17,8 @@ namespace Space_invaders_01
     public class EnemyPhalanx
     {
 
+        public int score_this_tick {  get; private set; }
+
         private Rectangle left_border;
         private Rectangle right_border;
         
@@ -83,7 +85,7 @@ namespace Space_invaders_01
                 for (int j = 0; j < preset.nr_of_collums; j++)
                 {
                     Vector2 enemy_pos = new Vector2((j + 0.5f) * collum_spaceing - collum_spaceing * preset.nr_of_collums * 0.5f, starting_pos + (i-preset.rows.Length) * row_spaceing);
-                    phalanx[j, i] = new Enemy(preset.rows[i], enemy_pos);
+                    phalanx[j, i] = new Enemy(preset.rows[preset.rows.Length - i - 1], enemy_pos);
                 }
             }
 
@@ -171,6 +173,7 @@ namespace Space_invaders_01
 
         public void Update()
         {
+            score_this_tick = 0;
             if (check_border_colition(left_border))
             {
                 if (direction < 0)
@@ -201,8 +204,10 @@ namespace Space_invaders_01
                     {
                         if (phalanx[i, j].health <= 0)
                         {
+                            score_this_tick += phalanx[i, j].type.points_uppon_destruction;
                             phalanx[i, j] = null;
                             x_velocety *= death_acceleration;
+                            
                         }
                         else
                         {

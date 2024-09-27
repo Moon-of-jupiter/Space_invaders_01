@@ -23,6 +23,7 @@ namespace Space_invaders_01
         public bool FBF = false; // frame by frame for debugging
         private bool FBF_paused;
         private bool FBF_has_pressed;
+        private int FBF_counter = 0;
 
 
 
@@ -58,7 +59,7 @@ namespace Space_invaders_01
         {
             
             _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,3,5, 50, 50,10,10, _keybindManeger.player_move_left, _keybindManeger.player_move_right, _keybindManeger.player_shoot));
-            _GameSpace._player.curent_weapon = Game1._TypeManeger.cheat_Prodectile_type;
+            _GameSpace._player.curent_weapon = Game1._TypeManeger.standard_Prodectile_type;
             
          
         }
@@ -77,14 +78,21 @@ namespace Space_invaders_01
             else if (Keyboard.GetState().IsKeyDown(_keybindManeger.frame_by_frame) == false)
             {
                 FBF_has_pressed = false;
+                FBF_counter = 0;
             }
+            else 
+            {
+                FBF_counter++;
+            }
+            
+
 
 
                 
 
             
 
-            if (FBF == false || FBF_paused == false)
+            if (FBF == false || FBF_paused == false || FBF_counter >= 30)
             {
 
 
