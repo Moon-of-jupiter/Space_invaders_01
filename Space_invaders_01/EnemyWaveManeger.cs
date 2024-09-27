@@ -16,37 +16,48 @@ namespace Space_invaders_01
     {
         private EnemyPhalanx[] waves;
 
-        public int wave_counter = 0;
+        private int wave_counter = 0;
 
         public EnemyWaveManeger(PhalanxPreset[] _waves)
         {
-            waves = new EnemyPhalanx[_waves.Length];
+            waves = new EnemyPhalanx[_waves.Length + 1];
 
-            for (int i = 0; i < waves.Length; i++)
+            for (int i = 0; i < _waves.Length; i++)
             {
                 waves[i] = new EnemyPhalanx(_waves[i], 300);
             }
 
-
         }
+
+        private int Total_nr_waves()
+        {
+            return waves.Length - 1; 
+        }
+
 
         
         public Enemy[] Get_flat_array_of_current_wave()
         {
-            return waves[wave_counter].Get_flat_array_of_enemys();
+            if (wave_counter < Total_nr_waves())
+            {
+                return waves[wave_counter].Get_flat_array_of_enemys();
+            }
+            return new Enemy[0];
         }
 
 
         public void Update()
         {
-            if (waves[wave_counter].Count() <= 0)
-            {
-                wave_counter++;
-            }
-
-            if (wave_counter < waves.Length)
-            {
+            if (wave_counter < Total_nr_waves()) 
+            { 
+                
                 waves[wave_counter].Update();
+
+                if (waves[wave_counter].Count() <= 0)
+                {
+                    wave_counter++;
+                }
+
             }
             
             
@@ -56,7 +67,10 @@ namespace Space_invaders_01
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            waves[wave_counter].Draw(_spriteBatch);
+            if (waves[wave_counter] != null)
+            {
+                waves[wave_counter].Draw(_spriteBatch);
+            }
         }
 
 

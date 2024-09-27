@@ -87,6 +87,8 @@ namespace Space_invaders_01
                 }
             }
 
+            border = preset.boarder_distance;
+
             left_border = new Rectangle(0, 0, border, (int)Game1.Window_size.Y);
             right_border = new Rectangle((int)Game1.Window_size.X-border, 0, border, (int)Game1.Window_size.Y);
 
@@ -217,6 +219,8 @@ namespace Space_invaders_01
 
         public void Draw(SpriteBatch _spriteBatch)
         {
+            
+
             for (int i = 0; i < phalanx.GetLength(0); i++)
             {
                 for (int j = 0; j < phalanx.GetLength(1); j++)

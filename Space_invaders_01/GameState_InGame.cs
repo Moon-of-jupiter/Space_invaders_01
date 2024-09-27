@@ -57,8 +57,8 @@ namespace Space_invaders_01
         public void Create_Standard_GameSpace() //Temp
         {
             
-            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,3,5, 100, 100,10,10, _keybindManeger.player_move_left, _keybindManeger.player_move_right, _keybindManeger.player_shoot));
-            _GameSpace._player.curent_weapon = Game1._TypeManeger.standard_Prodectile_type;
+            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,3,5, 50, 50,10,10, _keybindManeger.player_move_left, _keybindManeger.player_move_right, _keybindManeger.player_shoot));
+            _GameSpace._player.curent_weapon = Game1._TypeManeger.cheat_Prodectile_type;
             
          
         }

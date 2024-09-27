@@ -70,7 +70,7 @@ namespace Space_invaders_01
         public void Run(Player _player, Enemy[] _enemies, List<Prodectile> _prodectiles)
         {
             
-            if (_enemies.Length != 0)
+             if (_enemies.Length != 0)
             {   
                 for (int i = 0; i < _enemies.Length; i++)
                 {

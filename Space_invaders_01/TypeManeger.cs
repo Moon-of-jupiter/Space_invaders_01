@@ -22,7 +22,9 @@ namespace Space_invaders_01
         public Enemy_type smol_Enemy_Type;
 
 
-        public Prodectile_type standard_Prodectile_type = new Prodectile_type(new Vector2(15, 40), new Vector2(0, -20), 1, 15, 1, 100, 0.4f, Game1.pixel, Color.Lime);
+        public Prodectile_type standard_Prodectile_type;
+        public Prodectile_type cheat_Prodectile_type;
+
 
         public TypeManeger()
         {
@@ -32,6 +34,10 @@ namespace Space_invaders_01
              easy_Enemy_Type = new Enemy_type(0.5f, 0.5f, 5, standard_enemy_size, Color.LightBlue, Game1.pixel);
              boss_Enemy_Type = new Enemy_type(10, 10, 100, new Vector2(200, 200), Color.DarkOrchid, Game1.pixel);
              smol_Enemy_Type = new Enemy_type(0.1f, 0.1f, 1, new Vector2(20, 20), Color.White, Game1.pixel);
+
+
+             standard_Prodectile_type = new Prodectile_type(new Vector2(15, 40), new Vector2(0, -20), 1, 15, 1, 100, 0.4f, Game1.pixel, Color.Wheat);
+             cheat_Prodectile_type = new Prodectile_type(new Vector2(15, 40), new Vector2(0, -20), 1000, 1, 10, 150, 0.4f, Game1.pixel, Color.Lime);
         }
         
 
