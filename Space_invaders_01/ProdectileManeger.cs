@@ -35,19 +35,21 @@ namespace Space_invaders_01
             }
         }
 
+        
+
         public void Update()
         {
             for (int i = 0; i < prodectiles.Count; i++)
             {
-                if (prodectiles[i].heath <= 0) { Destroy_Prodjectile(prodectiles[i]); }
+                if (prodectiles[i].health <= 0) { Destroy_Prodjectile(prodectiles[i]); }
                
   
-
+                   
             }
 
             for (int i = 0; i < prodectiles.Count; i++)
             {
-                if (prodectiles[i].hitbox.Bottom < -10) { prodectiles[i].heath = -100; }
+                if (prodectiles[i].hitbox.Bottom < -10 || prodectiles[i].hitbox.Top > Game1.Window_size.Y + 10) { prodectiles[i].health = -100; }
                 prodectiles[i].Update();
 
                 

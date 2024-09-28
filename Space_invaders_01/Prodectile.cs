@@ -12,29 +12,29 @@ using Space_invaders_01;
 
 namespace Space_invaders_01
 {
-    public class Prodectile
+    public class Prodectile : GameObject
     {
         
         public Vector2 pos;
         public Rectangle hitbox;
         public Vector2 vel;
-        private float speed;
-        public float heath;
+        public float speed {  get; protected set; }
+        
 
-        public readonly Prodectile_type type;
+        public Prodectile_type type { get; protected set; }
 
-        public Prodectile(Prodectile_type t, Vector2 p){
-            this.type = t;
+        public Prodectile(Prodectile_type _type, Vector2 _staringPos){
+            this.type = _type;
 
-            this.heath = t.damege;
+            this.health = _type.damege;
 
-            this.pos = p;
-            this.hitbox = new Rectangle((int)(p.X-t.hitbox.X*0.5f), (int)(p.Y - t.hitbox.Y * 0.5f),(int)t.hitbox.X, (int)t.hitbox.Y);
+            this.pos = _staringPos;
+            this.hitbox = new Rectangle((int)(pos.X-type.hitbox.X*0.5f), (int)(pos.Y - type.hitbox.Y * 0.5f),(int)type.hitbox.X, (int)type.hitbox.Y);
             this.speed = 0;
 
         }
 
-        public void Update()
+        public override void Update()
         {
             if (speed < type.speed) {
                 speed += type.acceleration;
@@ -45,15 +45,13 @@ namespace Space_invaders_01
             
 
             Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
-            Vector2 offset_pos = new Vector2(Centerd_pos.X - type.hitbox.X * 0.5f, Centerd_pos.Y - type.hitbox.Y * 0.5f);
-            hitbox = new Rectangle((int)offset_pos.X, (int)offset_pos.Y, (int)type.hitbox.X, (int)type.hitbox.Y);
 
-
+            hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, type.hitbox);
         }
 
         
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public override void Draw(SpriteBatch _spriteBatch)
         {
             _spriteBatch.Draw(type.texture, hitbox, type.base_color);
         }

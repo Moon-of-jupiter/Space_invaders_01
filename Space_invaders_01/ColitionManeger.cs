@@ -25,34 +25,39 @@ namespace Space_invaders_01
 
         public void player_colition(Enemy _enemy, Player _player)
         {
-            if (_player.hitBox.Intersects(_enemy.hitbox))
+            if (_player.hitbox.Intersects(_enemy.hitbox))
             {
                 _enemy.health = 0;
                 _player.health--;
-                _player.stagger(60);
+                _player.Stagger(60);
 
                 Vector2 ex_point = new Vector2(_enemy.hitbox.X + _enemy.hitbox.Width * 0.5f, _enemy.hitbox.Bottom);
                 reference_ExplotionManeger.Random_Explotion_FromPoint(ex_point, (int)(_enemy.size.X * 0.9f));
 
 
             }
-
-
-
         }
 
-        public void enemy_projectile_collition(Enemy _enemy, Prodectile _prodectile)
+
+
+        
+
+        public void object_projectile_collition(GameObject _target, Prodectile _prodectile)
         {
-            if (_enemy.hitbox.Intersects(_prodectile.hitbox))
+            if( _prodectile == null || _target == null) {  return; }
+
+            if (_prodectile.can_colide_with.Contains(_target.GetType()) )
             {
-                _enemy.health -= _prodectile.heath;
-                _prodectile.heath -= _enemy.type.type_damege;
+                if (_target.hitbox.Intersects(_prodectile.hitbox))
+                {
 
-                Vector2 ex_point = new Vector2(_prodectile.hitbox.X + _prodectile.hitbox.Width * 0.5f, _prodectile.hitbox.Y);
-                reference_ExplotionManeger.Random_Explotion_FromPoint(ex_point, 40);
+                    _target.health -= _prodectile.health;
+                    _prodectile.health -= _target.damege;
 
+                    Vector2 ex_point = new Vector2(_prodectile.hitbox.X + _prodectile.hitbox.Width * 0.5f, _prodectile.hitbox.Y);
+                    reference_ExplotionManeger.Random_Explotion_FromPoint(ex_point, 40);
 
-
+                }
             }
 
         }
@@ -86,9 +91,10 @@ namespace Space_invaders_01
 
                         for (int k = 0; k < _prodectiles.Count; k++)
                         {
-                            if (_prodectiles[k].heath > 0)
+                            if (_prodectiles[k].health > 0)
                             {
-                                enemy_projectile_collition(_enemies[i], _prodectiles[k]);
+                                object_projectile_collition(_player, _prodectiles[k]);
+                                object_projectile_collition(_enemies[i], _prodectiles[k]);
                             }
                         }
 

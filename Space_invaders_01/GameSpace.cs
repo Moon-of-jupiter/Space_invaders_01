@@ -87,7 +87,7 @@ namespace Space_invaders_01
             
             _EnemyWaveManeger.Draw(_SpriteBatch);
 
-            _player.draw(_SpriteBatch);
+            _player.Draw(_SpriteBatch);
             
             _ExplotionManeger.Draw( _SpriteBatch );
 

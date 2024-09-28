@@ -12,23 +12,22 @@ using Space_invaders_01;
 
 namespace Space_invaders_01
 {
-    public class Enemy
+    public class Enemy : GameObject
     {
         public readonly Enemy_type type;
-        public float health;
+        
         
         public Vector2 starting_pos;
         public Vector2 _pos;
 
         public Vector2 vel;
-        public Texture2D texture;
-
-        public Rectangle hitbox;
+        
 
         
 
-        public Color color;
-        public Vector2 size;
+        
+
+        
 
         public Enemy(Enemy_type t, Vector2 p) {
 
@@ -39,6 +38,7 @@ namespace Space_invaders_01
             this.starting_pos = p;
             this.color = t.type_color;
             this.size = t.type_size;
+            this.damege = t.type_damege;
         }
 
         
@@ -60,9 +60,9 @@ namespace Space_invaders_01
             return th;
         }
 
-        public void Draw(SpriteBatch __spriteBatch) {
+        public override void Draw(SpriteBatch _spriteBatch) {
             
-            __spriteBatch.Draw(texture, hitbox, color);
+            _spriteBatch.Draw(texture, hitbox, color);
         }
 
     }

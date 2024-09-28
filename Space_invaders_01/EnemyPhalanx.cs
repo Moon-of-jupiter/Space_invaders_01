@@ -42,6 +42,8 @@ namespace Space_invaders_01
         private int border;
 
         public int direction = 1;
+
+        
         
 
         /*

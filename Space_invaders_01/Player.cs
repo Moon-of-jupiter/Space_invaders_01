@@ -10,10 +10,10 @@ using Space_invaders_01;
 
 namespace Space_invaders_01
 {
-    public class Player
+    public class Player : GameObject
     {
 
-        public int health;
+        
 
         public int stagger_timer = 0;
 
@@ -29,9 +29,7 @@ namespace Space_invaders_01
         public float vel;
 
         //visual properties
-        public Texture2D texture;
-        public Color color;
-        public Vector2 size;
+        
         public Vector2 hitbox_size;
 
         public float speed;
@@ -40,7 +38,7 @@ namespace Space_invaders_01
         public Keys Right_key;
         public Keys Shoot_key;
 
-        public Rectangle hitBox;
+        
         public Rectangle spriteBox;
 
         public Player(Vector2 _position, Texture2D _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, Keys _keyleft, Keys _keyright, Keys _keyshoot) {
@@ -62,7 +60,7 @@ namespace Space_invaders_01
         
         }
 
-        private void intput()
+        private void Intput()
         {
             vel = 0;
             has_shot = false;
@@ -86,7 +84,7 @@ namespace Space_invaders_01
                 {
                     has_shot = true;
                     weapon_cooldown_timer = -curent_weapon.cooldown;
-                    stagger(curent_weapon.cooldown+1);
+                    Stagger(curent_weapon.cooldown+1);
                 }
             }
             else
@@ -97,41 +95,41 @@ namespace Space_invaders_01
             
         }
 
-        private void move(float f)
+        private void Move(float f)
         {
             pos = new Vector2(pos.X+f, pos.Y);
         }
 
-        public void stagger(int frames)
+        public void Stagger(int frames)
         {
             stagger_timer = -frames;
         }
         
 
-        public void Update() {
-            intput();
+        public override void Update() {
+            Intput();
 
             if (stagger_timer >= 0)
             {
                 
-                move(vel);
+                Move(vel);
             }
             else { stagger_timer++; }
 
             Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
 
-            Vector2 offset_pos = new Vector2(Centerd_pos.X - size.X * 0.5f, Centerd_pos.Y - size.Y * 0.5f);
 
-            hitBox = new Rectangle((int)offset_pos.X, (int)offset_pos.Y, (int)(hitbox_size.X+size.X), (int)(hitbox_size.Y + size.Y));
-            spriteBox = new Rectangle((int)offset_pos.X, (int)offset_pos.Y, (int)size.X, (int)size.Y);
+            hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, hitbox_size + size);
+            spriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
+            
+
+            
 
         }
 
-        public void draw(SpriteBatch __spriteBatch)
+        public override void Draw(SpriteBatch __spriteBatch)
         {
             
-
-
             __spriteBatch.Draw(texture, spriteBox, color);
         }
 
