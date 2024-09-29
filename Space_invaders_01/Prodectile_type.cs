@@ -31,7 +31,7 @@ namespace Space_invaders_01
         public Texture2D texture;
         public Color base_color;
 
-        public Prodectile_type(Vector2 projectile_hitbox, Vector2 projectile_startoffset, float projectile_health, int projectile_cooldown, int projectile_damege, float projectile_speed, float projectile_acceleration, Texture2D projectile_texture, Color projectile_base_color)
+        public Prodectile_type(Vector2 projectile_hitbox, Vector2 projectile_startoffset, int projectile_cooldown, int projectile_damege, float projectile_speed, float projectile_acceleration, Texture2D projectile_texture, Color projectile_base_color)
         {
             this.startoffset = projectile_startoffset;
             //this.max_health = projectile_health;

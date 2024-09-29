@@ -14,44 +14,79 @@ namespace Space_invaders_01
 {
     public class Enemy : GameObject
     {
-        public readonly Enemy_type type;
+        public Enemy_type type {  get; private set; }
         
         
         public Vector2 starting_pos;
-        public Vector2 _pos;
+        
 
         public Vector2 vel;
-        
 
-        
+        public bool has_shot = false;
 
-        
+        private int shooting_cooldown;
 
-        
+        private Random random = new Random();
 
-        public Enemy(Enemy_type t, Vector2 p) {
+
+
+
+
+
+        public Enemy(Enemy_type _type, Vector2 _position)
+        {
+
+
+            tag = colition_tags.enemy;
+
+
 
             //this.horisontal_acceleration = _horisontal_acceleration;
-            this.texture = t.type_texture;
-            this.type = t;
-            this.health = t.type_max_HP;
-            this.starting_pos = p;
-            this.color = t.type_color;
-            this.size = t.type_size;
-            this.damege = t.type_damege;
+            this.texture = _type.texture;
+            this.type = _type;
+            this.health = _type.max_HP;
+            this.starting_pos = _position;
+            this.color = _type.color;
+            this.size = _type.size;
+            this.damege = _type.damege;
+
+            if (type.prodectile != null)
+            { 
+                shooting_cooldown = type.prodectile.cooldown * random.Next(1, 40);
+            }
         }
 
+        public void shoot()
+        {
+            if(type.prodectile != null)
+            {
+                has_shot = false;
+                if(shooting_cooldown > 0)
+                {
+                    shooting_cooldown--;
+                }
+                else
+                {
+                    has_shot = true;
+                    shooting_cooldown = type.prodectile.cooldown * random.Next(1, 40);
+                }
+
+
+            }
+        }
+        
         
 
         public void Update(float x, float y) {
-            _pos = new Vector2(starting_pos.X += x,starting_pos.Y+y);
+            position = new Vector2(starting_pos.X += x,starting_pos.Y+y);
 
 
-            Vector2 Centerd_pos = new Vector2(_pos.X + Game1.Window_size.X * 0.5f, _pos.Y);
+            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
             Vector2 offset_pos = new Vector2(Centerd_pos.X - size.X * 0.5f, Centerd_pos.Y - size.Y * 0.5f);
 
             hitbox = new Rectangle((int)offset_pos.X, (int)offset_pos.Y, (int)size.X, (int)size.Y);
 
+            shoot();
         }
 
         public Rectangle exit_hitbox()

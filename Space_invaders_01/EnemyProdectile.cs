@@ -19,6 +19,8 @@ namespace Space_invaders_01
         public EnemyProdectile(Prodectile_type _type, Vector2 _staringPos) : base(_type, _staringPos)
         {
             
+            tag = colition_tags.prodectile;
+            can_colide_with = new colition_tags[1] { colition_tags.player};
             
             type = _type;
 
@@ -27,11 +29,27 @@ namespace Space_invaders_01
             this.pos = _staringPos;
             this.hitbox = new Rectangle((int)(pos.X - type.hitbox.X * 0.5f), (int)(pos.Y - type.hitbox.Y * 0.5f), (int)type.hitbox.X, (int)type.hitbox.Y);
             speed = 0;
+
+            Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
+
+            hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, type.hitbox);
+
         }
 
         public override void Update()
         {
-            base.Update();
+            if (speed < type.speed)
+            {
+                speed += type.acceleration;
+            }
+            vel = new Vector2(0, -speed);
+
+            pos = new Vector2(pos.X - vel.X, pos.Y - vel.Y);
+
+
+            Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
+
+            hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, type.hitbox);
         }
 
         public override void Draw(SpriteBatch _spriteBatch)

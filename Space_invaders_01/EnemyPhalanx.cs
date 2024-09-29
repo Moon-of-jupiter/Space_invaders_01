@@ -73,6 +73,8 @@ namespace Space_invaders_01
 
         public EnemyPhalanx(PhalanxPreset preset, int starting_pos)
         {
+            
+
             collum_spaceing = preset.collum_space;
             row_spaceing = preset.row_space;
             advancement = 0;

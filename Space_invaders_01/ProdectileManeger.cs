@@ -23,6 +23,25 @@ namespace Space_invaders_01
             prodectiles.Add(new Prodectile(type, pos+type.startoffset));
         }
 
+        public void Create_Enemy_Prodectile(Vector2 pos, Prodectile_type type)
+        {
+            prodectiles.Add(new EnemyProdectile(type, pos - type.startoffset));
+        }
+
+        public void Handle_Enemy_Shooting(Enemy[] enemies)
+        {
+            foreach(Enemy enemy in enemies)
+            {
+                if(enemy != null)
+                {
+                    if(enemy.type.prodectile != null && enemy.has_shot)
+                    {
+                        Create_Enemy_Prodectile(enemy.position, enemy.type.prodectile);
+                    }
+                }
+            }
+        }
+
         public void Destroy_Prodjectile(Prodectile marked)
         {
             for (int i = 0; i < prodectiles.Count; i++)
@@ -41,7 +60,10 @@ namespace Space_invaders_01
         {
             for (int i = 0; i < prodectiles.Count; i++)
             {
-                if (prodectiles[i].health <= 0) { Destroy_Prodjectile(prodectiles[i]); }
+                if (prodectiles[i].health <= 0) 
+                { 
+                    Destroy_Prodjectile(prodectiles[i]); 
+                }
                
   
                    

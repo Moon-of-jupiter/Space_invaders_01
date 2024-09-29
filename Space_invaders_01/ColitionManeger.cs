@@ -46,7 +46,7 @@ namespace Space_invaders_01
         {
             if( _prodectile == null || _target == null) {  return; }
 
-            if (_prodectile.can_colide_with.Contains(_target.GetType()) )
+            if(_target.get_can_colide_with().Contains(_prodectile.get_tag()) || _prodectile.get_can_colide_with().Contains(_target.get_tag()))
             {
                 if (_target.hitbox.Intersects(_prodectile.hitbox))
                 {

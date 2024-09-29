@@ -31,6 +31,8 @@ namespace Space_invaders_01
         
         }
 
+        
+
         public virtual void Draw(SpriteBatch _spriteBatch) { 
         
         }

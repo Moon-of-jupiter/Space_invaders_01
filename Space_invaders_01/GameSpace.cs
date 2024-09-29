@@ -34,7 +34,7 @@ namespace Space_invaders_01
         public GameSpace(Player p)
         {
             //this._EnemyManeger = new EnemyManeger(r,s);
-            PhalanxPreset[] wave_chart = new PhalanxPreset[3]{ Game1._PhalanxPresetManeger.Block_Standard_Monolith, Game1._PhalanxPresetManeger.Block_Space_invaders, Game1._PhalanxPresetManeger.GeneratePreset_OneType(Game1._TypeManeger.hardy_Enemy_Type, 11, 3) };
+            PhalanxPreset[] wave_chart = new PhalanxPreset[3] { Game1._PhalanxPresetManeger.Block_Standard_Monolith, Game1._PhalanxPresetManeger.Block_Space_invaders, Game1._PhalanxPresetManeger.GeneratePreset_OneType(Game1._TypeManeger.hardy_Enemy_Type, 11, 3) };
 
 
             this._EnemyWaveManeger = new EnemyWaveManeger(wave_chart);
@@ -65,6 +65,7 @@ namespace Space_invaders_01
 
             _EnemyWaveManeger.Update();
 
+            _ProdectileManeger.Handle_Enemy_Shooting(_EnemyWaveManeger.Get_flat_array_of_current_wave());
 
             _ExplotionManeger.Update();
 
@@ -75,7 +76,7 @@ namespace Space_invaders_01
             //_EnemyManeger.enemy_advancement += _EnemyManeger.ad_speed;
 
 
-
+            
             _ColitionManeger.Run(_player,_EnemyWaveManeger.Get_flat_array_of_current_wave(),_ProdectileManeger.prodectiles);
         }
 

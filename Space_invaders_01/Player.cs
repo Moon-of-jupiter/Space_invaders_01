@@ -42,7 +42,10 @@ namespace Space_invaders_01
         public Rectangle spriteBox;
 
         public Player(Vector2 _position, Texture2D _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, Keys _keyleft, Keys _keyright, Keys _keyshoot) {
-            
+            damege = 1000;
+            tag = colition_tags.player;
+            can_colide_with = new colition_tags[1] { colition_tags.enemy };
+
             this.health = _starting_health;
             this.pos = _position;
             this.vel = 0;

@@ -23,18 +23,38 @@ namespace Space_invaders_01
         public float health;
         public float damege;
 
-        
+        public enum colition_tags { player = 1, enemy = 2, prodectile = 3}
+        protected colition_tags tag;
+        protected colition_tags[] can_colide_with;
 
-        public List<Type> can_colide_with;
 
-
-
-        
 
         public GameObject()
         {
-
+            
         }
+
+        public int get_tag()
+        {
+            int t = (int)tag;
+            return t;
+        }
+
+        public int[] get_can_colide_with()
+        {
+            if(can_colide_with == null) { return new int[0]; }
+
+
+            
+            int[] colition = new int[can_colide_with.Length];
+            for(int i = 0; i < colition.Length; i++)
+            {
+                colition[i] = (int)can_colide_with[i];
+            }
+
+            return colition;
+        }
+
 
         public virtual void Update()
         {

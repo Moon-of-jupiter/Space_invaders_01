@@ -26,7 +26,7 @@ namespace Space_invaders_01
 
             for (int i = 0; i < _waves.Length; i++)
             {
-                waves[i] = new EnemyPhalanx(_waves[i], 400);
+                waves[i] = new EnemyPhalanx(_waves[i], 450);
             }
 
         }
@@ -67,10 +67,6 @@ namespace Space_invaders_01
                 }
 
             }
-            
-            
-
-            
         }
 
         public void Draw(SpriteBatch _spriteBatch)

@@ -22,7 +22,8 @@ namespace Space_invaders_01
         
 
         private GameState_Foundation current_gamestate;
-        public GameState_Controler() {
+        public GameState_Controler() 
+        {
             current_gamestate = new GameState_InGame();
             
         }

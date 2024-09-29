@@ -12,21 +12,26 @@ namespace Space_invaders_01
 {
     public class Enemy_type
     {
-        public float type_max_HP;
-        public float type_damege;
+        public float max_HP;
+        public float damege;
+        public Prodectile_type prodectile;
         public int points_uppon_destruction;
-        public Vector2 type_size;
-        public Color type_color;
-        public Texture2D type_texture;
+        public Vector2 size;
+        public Color color;
+        public Texture2D texture;
+        
 
-        public Enemy_type(float h, float d, int p, Vector2 s, Color c, Texture2D t)
+        public Enemy_type(Prodectile_type _prodectile,  float _max_HP, float _damege, int _points, Vector2 _size, Color _color, Texture2D _texture)
         {
-            this.type_damege = d;
-            this.type_max_HP = h;
-            this.points_uppon_destruction = p;
-            this.type_size = s; 
-            this.type_texture = t;
-            this.type_color = c;
+            max_HP = _max_HP;
+            damege = _damege;
+            prodectile = _prodectile;
+            points_uppon_destruction = _points;
+            size = _size;
+            color = _color;
+            texture = _texture;
+
+
         }
 
 

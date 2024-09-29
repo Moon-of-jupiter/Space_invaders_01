@@ -16,7 +16,7 @@ namespace Space_invaders_01
     {
         
         public Vector2 pos;
-        public Rectangle hitbox;
+        
         public Vector2 vel;
         public float speed {  get; protected set; }
         
@@ -24,6 +24,9 @@ namespace Space_invaders_01
         public Prodectile_type type { get; protected set; }
 
         public Prodectile(Prodectile_type _type, Vector2 _staringPos){
+            tag = colition_tags.prodectile;
+            can_colide_with = new colition_tags[1] { colition_tags.enemy };
+
             this.type = _type;
 
             this.health = _type.damege;
