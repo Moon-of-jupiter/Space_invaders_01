@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Space_invaders_01;
+
+using System.Runtime.CompilerServices;
 //using System.Windows.Forms;
 
 namespace Space_invaders_01
@@ -11,11 +14,12 @@ namespace Space_invaders_01
         public static Game1 Instance => instance;
 
         static Game1 instance;
-
+        
         public KeybindManeger _keybindmaneger;
 
         private bool pause_active = false;
 
+        public static ContentManager _content;
 
         private GraphicsDeviceManager _graphics;
         
@@ -54,7 +58,13 @@ namespace Space_invaders_01
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
+            
             Content.RootDirectory = "Content";
+            _content = Content;
+            _content.RootDirectory = "Content";
+            
+            
+
             IsMouseVisible = true;
         }
 
@@ -94,6 +104,8 @@ namespace Space_invaders_01
 
             // TODO: use this.Content to load your game content here
         }
+
+        
 
         protected override void Update(GameTime gameTime)
         {
