@@ -16,9 +16,13 @@ namespace Space_invaders_01
     public class GameState_Foundation
     {
         public GameState_Foundation Next_state;
+        public KeybindManeger _keybindManeger;
 
-        public GameState_Foundation() { 
+        public bool can_pause = false;
 
+        public GameState_Foundation(KeybindManeger _keys) 
+        { 
+            _keybindManeger = _keys;
         }
 
         public virtual void new_gamestate(GameState_Foundation gs)
@@ -26,8 +30,9 @@ namespace Space_invaders_01
             Next_state = gs;
         }
 
-        public virtual void Update() { 
-        
+        public virtual void Update() 
+        { 
+            
         
         }
 

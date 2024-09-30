@@ -14,6 +14,11 @@ namespace Space_invaders_01
 {
     public class GameState_EndScreen : GameState_Foundation
     {
+        public GameState_EndScreen(KeybindManeger _keys) : base(_keys)
+        {
+
+        }
+
         public bool win_or_lose;
 
         public override void Update()

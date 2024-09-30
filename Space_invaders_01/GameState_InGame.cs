@@ -17,8 +17,10 @@ namespace Space_invaders_01
     public class GameState_InGame : GameState_Foundation
     {
         public GameSpace _GameSpace;
-        public User_Interface _User_Interface;
-        public KeybindManeger _keybindManeger;
+        public HUD _User_Interface;
+        
+
+        
 
         public bool FBF = false; // frame by frame for debugging
         private bool FBF_paused;
@@ -27,10 +29,13 @@ namespace Space_invaders_01
 
 
 
-        public GameState_InGame()
+        public GameState_InGame(KeybindManeger _keys) :base(_keys)
         {
-            _keybindManeger = new KeybindManeger();
+            can_pause = true;
 
+           
+
+           
             Create_Standard_GameSpace();
 
             Initiate_UI();
@@ -41,24 +46,24 @@ namespace Space_invaders_01
 
         public void Initiate_UI() // typ temp
         {
-            UI_element[] game_UI = new UI_element[3];
-            game_UI[0] = new UI_element(Game1.font_1,new Vector2(10,10),Color.Wheat, "SPACE   INVADERS");
+            HUD_element[] game_UI = new HUD_element[3];
+            game_UI[0] = new HUD_element(Game1.font_1,new Vector2(10,10),Color.Wheat, "SPACE   INVADERS");
 
-            game_UI[1] = new UI_element(Game1.font_1, new Vector2(15, 30), new Color(230,100,100), "Health: ");
-            game_UI[2] = new UI_element(Game1.font_1, new Vector2(100, 30), Color.Gold, "Score: ");
+            game_UI[1] = new HUD_element(Game1.font_1, new Vector2(15, 30), new Color(230,100,100), "Health: ");
+            game_UI[2] = new HUD_element(Game1.font_1, new Vector2(100, 30), Color.Gold, "Score: ");
 
             RTD_rectangle[] UI_backgrounds = new RTD_rectangle[1];
 
             UI_backgrounds[0] = new RTD_rectangle(new Color(50,50,55),Game1.pixel ,new Vector2(0,0), (int)Game1.Window_size.X, 60);
 
 
-            _User_Interface = new User_Interface(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
+            _User_Interface = new HUD(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
         }
 
         public void Create_Standard_GameSpace() //Temp
         {
             
-            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,3,5, 50, 50,10,10, _keybindManeger.player_move_left, _keybindManeger.player_move_right, _keybindManeger.player_shoot));
+            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,3,5, 50, 50,10,10, _keybindManeger));
             _GameSpace._player.curent_weapon = Game1._TypeManeger.standard_Prodectile_type;
             
          
@@ -98,7 +103,7 @@ namespace Space_invaders_01
 
                 if (_GameSpace._player.health <= 0)
                 {
-                    new_gamestate(new GameState_EndScreen());
+                    new_gamestate(new GameState_EndScreen(_keybindManeger));
                     return;
                 }
                 base.Update();

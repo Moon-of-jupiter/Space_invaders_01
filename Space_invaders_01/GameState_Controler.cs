@@ -16,24 +16,39 @@ namespace Space_invaders_01
 
     public class GameState_Controler
     {
-        public enum GameState {MainMenue = 0, InGame = 1, EndScreen = 2};
-        public GameState _gameState;
-
         
 
+        public KeybindManeger _keybindManeger;
+
+
+
         private GameState_Foundation current_gamestate;
-        public GameState_Controler() 
+        public GameState_Controler(KeybindManeger _keys) 
         {
-            current_gamestate = new GameState_InGame();
+            _keybindManeger = _keys;
+            current_gamestate = new GameState_InGame(_keybindManeger);
             
         }
 
+        public void New_Gamestate(GameState_Foundation _next_gamestate)
+        {
+            if (_next_gamestate != null)
+            {
+                current_gamestate = _next_gamestate;
+            }
+
+        }
+        
         public void Update_Current_Gamespace()
         {
-            if(current_gamestate.Next_state != null)
+            New_Gamestate(current_gamestate.Next_state);
+
+            if (current_gamestate.can_pause && Keyboard.GetState().IsKeyDown(_keybindManeger.Pause))
             {
-                current_gamestate = current_gamestate.Next_state;
+                current_gamestate = new SubGameState_Paused(_keybindManeger, current_gamestate, this);
             }
+
+            
             current_gamestate.Update();
         }
 

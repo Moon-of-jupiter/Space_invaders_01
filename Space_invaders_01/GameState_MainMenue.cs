@@ -15,8 +15,12 @@ namespace Space_invaders_01
 {
     public class GameState_MainMenue : GameState_Foundation
     {
-        public GameState_MainMenue()
+
+        private UI_maneger _ui;
+
+        public GameState_MainMenue(KeybindManeger _keys) : base(_keys)
         {
+            
 
         }
 

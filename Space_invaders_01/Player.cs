@@ -20,7 +20,8 @@ namespace Space_invaders_01
         public int weapon_cooldown_timer = 0;
         public bool has_shot = false;
         public Prodectile_type curent_weapon;
-        
+
+        public KeybindManeger _keybindManeger;
         
 
         
@@ -41,7 +42,7 @@ namespace Space_invaders_01
         
         public Rectangle spriteBox;
 
-        public Player(Vector2 _position, Texture2D _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, Keys _keyleft, Keys _keyright, Keys _keyshoot) {
+        public Player(Vector2 _position, Texture2D _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) {
             damege = 1000;
             tag = colition_tags.player;
             can_colide_with = new colition_tags[1] { colition_tags.enemy };
@@ -55,11 +56,12 @@ namespace Space_invaders_01
             this.hitbox_size = new Vector2(_hitbox_sizeX,_hitbox_sizeY);
             this.speed = _speed;
 
+            _keybindManeger = _keys;
 
 
-            Left_key = _keyleft;
-            Right_key = _keyright;
-            Shoot_key = _keyshoot;
+            Left_key = _keybindManeger.player_move_left;
+            Right_key = _keybindManeger.player_move_right;
+            Shoot_key = _keybindManeger.player_shoot;
         
         }
 

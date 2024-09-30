@@ -12,11 +12,21 @@ namespace Space_invaders_01
 
         static Game1 instance;
 
+        public KeybindManeger _keybindmaneger;
+
+        private bool pause_active = false;
+
+
         private GraphicsDeviceManager _graphics;
+        
         private SpriteBatch _spriteBatch;
 
         public static SpriteFont font_1;
         public static Texture2D pixel;
+
+        private static RenderTarget2D screen_render;
+        private static RenderTarget2D screen_render2;
+        public Texture2D previous_screen_render;
 
         //public Enemy_type standard_Enemy_Type;
 
@@ -61,9 +71,11 @@ namespace Space_invaders_01
 
         private void game_intitialize()
         {
+            _keybindmaneger = new KeybindManeger();
+
             _TypeManeger = new TypeManeger();
             _PhalanxPresetManeger = new PhalanxPresetManeger(70,70);
-            GS_Controler = new GameState_Controler();
+            GS_Controler = new GameState_Controler(_keybindmaneger);
             
             //Game_window = new Rectangle( (int)(Window_size.X*0.5f-Game_size.X*0.5+Game_window_offset.X), (int)Game_window_offset.Y, (int)Game_size.X, (int)Game_size.Y);
             
@@ -74,7 +86,11 @@ namespace Space_invaders_01
         {
             font_1 = Content.Load<SpriteFont>("font1");
             pixel = Content.Load<Texture2D>("Pixel");
+            
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            screen_render = new RenderTarget2D(GraphicsDevice, (int)Window_size.X, (int)Window_size.Y);
+            screen_render2 = new RenderTarget2D(GraphicsDevice, (int)Window_size.X, (int)Window_size.Y);
 
             // TODO: use this.Content to load your game content here
         }
@@ -97,15 +113,38 @@ namespace Space_invaders_01
             is_first_frame = false;
         }
 
+        
+
         protected override void Draw(GameTime gameTime)
         {
+            GraphicsDevice.SetRenderTarget(screen_render);
+
+           
             GraphicsDevice.Clear(Color.Black);
+
+            
+
+
             _spriteBatch.Begin();
             //_spriteBatch.Draw(pixel, Game_window, new Color(50,50,50));
 
             GS_Controler.Draw_Current_Gamespace(_spriteBatch);
+            
+            
             _spriteBatch.End();
 
+            GraphicsDevice.SetRenderTarget(null);
+
+            
+            _spriteBatch.Begin();
+            _spriteBatch.Draw(screen_render, new Rectangle(0, 0, (int)Window_size.X, (int)Window_size.Y),Color.White);
+            
+
+            _spriteBatch.End();
+
+
+           
+            
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);

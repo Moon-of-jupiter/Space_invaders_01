@@ -18,12 +18,16 @@ namespace Space_invaders_01
         public Keys player_move_right;
         public Keys player_shoot;
 
+        public Keys Pause;
+
         public Keys frame_by_frame;
         public KeybindManeger()
         {
             player_move_left = Keys.A;
             player_move_right = Keys.D;
             player_shoot = Keys.Space;
+
+            Pause = Keys.Tab;
 
             frame_by_frame = Keys.O;
         }

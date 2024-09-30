@@ -10,7 +10,7 @@ using SharpDX.XAudio2;
 using Space_invaders_01;
 namespace Space_invaders_01
 {
-    public class UI_element
+    public class HUD_element
     {
         public string UI_text {  get; private set; }
         public float UI_numb;
@@ -27,7 +27,7 @@ namespace Space_invaders_01
 
         
 
-        public UI_element(SpriteFont font, Vector2 text_pos, Color text_color, string text)
+        public HUD_element(SpriteFont font, Vector2 text_pos, Color text_color, string text)
         {
             UI_text = text;
             Font = font;
