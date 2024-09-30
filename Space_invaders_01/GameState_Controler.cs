@@ -41,15 +41,22 @@ namespace Space_invaders_01
         
         public void Update_Current_Gamespace()
         {
-            New_Gamestate(current_gamestate.Next_state);
+            
 
-            if (current_gamestate.can_pause && Keyboard.GetState().IsKeyDown(_keybindManeger.Pause))
+            if (current_gamestate.can_pause)
             {
-                current_gamestate = new SubGameState_Paused(_keybindManeger, current_gamestate, this);
+                if (_keybindManeger.Pause_key_pressed())
+                {
+                    current_gamestate = new SubGameState_Paused(_keybindManeger, current_gamestate, this);
+                }
             }
 
-            
+
             current_gamestate.Update();
+
+            New_Gamestate(current_gamestate.Next_state);
+
+
         }
 
         public void Draw_Current_Gamespace(SpriteBatch _spriteBatch)

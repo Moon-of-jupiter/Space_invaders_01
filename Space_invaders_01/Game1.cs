@@ -103,7 +103,7 @@ namespace Space_invaders_01
                 game_intitialize();
             }
 
-
+            _keybindmaneger.Run();
 
 
             GS_Controler.Update_Current_Gamespace();

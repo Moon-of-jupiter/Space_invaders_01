@@ -16,6 +16,8 @@ namespace Space_invaders_01
         public Texture2D Texture { get; private set; }
         public Color Color { get; private set; }
 
+        public KeybindManeger _keybindManeger;
+
         public string Text { get; private set; }
 
         public Rectangle Rectangle { get; private set; }
@@ -34,7 +36,7 @@ namespace Space_invaders_01
 
         public virtual void Run()
         {
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed && Rectangle.Contains(Mouse.GetState().Position))
+            if (_keybindManeger.mouse_left_button && Rectangle.Contains(Mouse.GetState().Position))
             {
                 is_pressed = true;
             }

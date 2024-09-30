@@ -34,7 +34,7 @@ namespace Space_invaders_01
 
            
 
-            userinterface = new UI_maneger(_ui);
+            userinterface = new UI_maneger(_keybindManeger, _ui);
 
         }
 

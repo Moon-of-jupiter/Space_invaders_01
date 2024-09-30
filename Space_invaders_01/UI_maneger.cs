@@ -17,9 +17,21 @@ namespace Space_invaders_01
         public UserInterface_Foundation[][] UI_ellements;
         public int page = 0;
 
-        public UI_maneger(UserInterface_Foundation[][] _ui_ellements)
+        KeybindManeger _keybindManeger;
+        
+        public UI_maneger(KeybindManeger _keys, UserInterface_Foundation[][] _ui_ellements)
         {
+            
             UI_ellements = _ui_ellements;
+
+            for(int i = 0; i < UI_ellements.Length; i++)
+            {
+                for (int j = 0; j < UI_ellements[i].Length; j++)
+                {
+                    UI_ellements[i][j]._keybindManeger = _keys;
+                }
+
+            }
 
         }
 
