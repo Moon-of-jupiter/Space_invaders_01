@@ -27,9 +27,9 @@ namespace Space_invaders_01
 
             previous_GameState = _previous_GameState;
 
-            UserInterface_Foundation[] _ui = new UserInterface_Foundation[1]
+            UserInterface_Foundation[][] _ui = new UserInterface_Foundation[1][]
             {
-                new UserInterface_Switch_GameState(Game1.pixel, Color.White, "return", Game1.Window_size*0.5f, new Vector2(100, 50), _previous_GameState, _controler_reference)
+                new UserInterface_Foundation[1]{ new UserInterface_Switch_GameState(Game1.pixel, Color.White, "return", Game1.Window_size*0.5f, new Vector2(100, 50), _previous_GameState, this) }
             };
 
             UserInterface = new UI_maneger(_ui);
@@ -53,7 +53,7 @@ namespace Space_invaders_01
             
             base.Draw(_spriteBatch);
 
-            
+            previous_GameState.Draw(_spriteBatch);
 
 
             UserInterface.Draw(_spriteBatch);

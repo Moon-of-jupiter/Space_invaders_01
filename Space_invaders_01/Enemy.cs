@@ -48,6 +48,7 @@ namespace Space_invaders_01
             this.starting_pos = _position;
             this.color = _type.color;
             this.size = _type.size;
+            this.spritesize = _type.size;
             this.damege = _type.damege;
 
             if (type.prodectile != null)
@@ -78,13 +79,14 @@ namespace Space_invaders_01
         
 
         public void Update(float x, float y) {
+
+            
+
             position = new Vector2(starting_pos.X += x,starting_pos.Y+y);
 
 
-            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
-            Vector2 offset_pos = new Vector2(Centerd_pos.X - size.X * 0.5f, Centerd_pos.Y - size.Y * 0.5f);
-
-            hitbox = new Rectangle((int)offset_pos.X, (int)offset_pos.Y, (int)size.X, (int)size.Y);
+            
+            base.Update();
 
             shoot();
         }
@@ -96,8 +98,9 @@ namespace Space_invaders_01
         }
 
         public override void Draw(SpriteBatch _spriteBatch) {
+
+            base.Draw(_spriteBatch);
             
-            _spriteBatch.Draw(texture, hitbox, color);
         }
 
     }

@@ -52,8 +52,9 @@ namespace Space_invaders_01
             this.vel = 0;
             this.texture = _texture;
             this.color = _color;
-            this.size = new Vector2(_sizeX,_sizeY);
-            this.hitbox_size = new Vector2(_hitbox_sizeX,_hitbox_sizeY);
+            this.spritesize = new Vector2(_sizeX,_sizeY);
+            this.hitbox_size = new Vector2(_hitbox_sizeX, _hitbox_sizeY);
+            this.size = new Vector2(_sizeX, _sizeY);
             this.speed = _speed;
 
             _keybindManeger = _keys;

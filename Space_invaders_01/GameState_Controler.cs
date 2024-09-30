@@ -26,7 +26,7 @@ namespace Space_invaders_01
         public GameState_Controler(KeybindManeger _keys) 
         {
             _keybindManeger = _keys;
-            current_gamestate = new GameState_InGame(_keybindManeger);
+            current_gamestate = new GameState_MainMenue(_keybindManeger);
             
         }
 

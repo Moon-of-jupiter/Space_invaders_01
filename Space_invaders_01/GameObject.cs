@@ -18,7 +18,9 @@ namespace Space_invaders_01
         public Texture2D texture;
         public Vector2 position;
         public Vector2 size;
+        public Vector2 spritesize;
         public Rectangle hitbox;
+        public Rectangle spritebox;
         public Color color;
         public float health;
         public float damege;
@@ -58,12 +60,18 @@ namespace Space_invaders_01
 
         public virtual void Update()
         {
+            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
+
+
+            hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
+            
 
         }
 
         public virtual void Draw(SpriteBatch _spriteBatch)
         {
-            Rectangle SpriteBox = GlobalMethods.Centralized_Rectangle(position, size);
+            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
+            Rectangle SpriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
             _spriteBatch.Draw(texture, SpriteBox, color);
         }
 

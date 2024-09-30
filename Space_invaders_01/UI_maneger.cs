@@ -14,9 +14,10 @@ namespace Space_invaders_01
 {
     public class UI_maneger
     {
-        public UserInterface_Foundation[] UI_ellements;
+        public UserInterface_Foundation[][] UI_ellements;
+        public int page = 0;
 
-        public UI_maneger(UserInterface_Foundation[] _ui_ellements)
+        public UI_maneger(UserInterface_Foundation[][] _ui_ellements)
         {
             UI_ellements = _ui_ellements;
 
@@ -24,18 +25,20 @@ namespace Space_invaders_01
 
         public void Run()
         {
-            for (int i = 0; i < UI_ellements.Length; i++)
+            for (int i = 0; i < UI_ellements[page].Length; i++)
             {
-                UI_ellements[i].Run();
+                UI_ellements[page][i].Run();
             }
 
         }
 
         public void Draw(SpriteBatch _spriteBatch)
         {
-            for (int i = 0; i < UI_ellements.Length; i++)
+            
+
+            for (int i = 0; i < UI_ellements[page].Length; i++)
             {
-                UI_ellements[i].Draw(_spriteBatch);
+                UI_ellements[page][i].Draw(_spriteBatch);
             }
         }
 

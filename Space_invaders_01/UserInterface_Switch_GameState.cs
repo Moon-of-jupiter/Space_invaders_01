@@ -15,12 +15,12 @@ namespace Space_invaders_01
     {
         public GameState_Foundation GameState_path {  get; private set; }
 
-        private GameState_Controler GameState_Controler_Reference;
+        private GameState_Foundation gamestate_reference;
        
 
-        public UserInterface_Switch_GameState(Texture2D _texture, Color _color, string _text, Vector2 _position, Vector2 _size, GameState_Foundation _path, GameState_Controler _gameState_Controler_Reference) : base( _texture, _color, _text, _position, _size)
+        public UserInterface_Switch_GameState(Texture2D _texture, Color _color, string _text, Vector2 _position, Vector2 _size, GameState_Foundation _path, GameState_Foundation _gamestate_reference) : base( _texture, _color, _text, _position, _size)
         {
-            GameState_Controler_Reference = _gameState_Controler_Reference;
+            gamestate_reference = _gamestate_reference;
             GameState_path = _path;
         }
 
@@ -31,7 +31,7 @@ namespace Space_invaders_01
             base.Run();
             if (is_pressed)
             {
-                GameState_Controler_Reference.New_Gamestate(GameState_path);
+                gamestate_reference.new_gamestate(GameState_path);
             }
 
 
