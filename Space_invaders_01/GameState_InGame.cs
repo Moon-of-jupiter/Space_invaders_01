@@ -17,7 +17,7 @@ namespace Space_invaders_01
     public class GameState_InGame : GameState_Foundation
     {
         public GameSpace _GameSpace;
-        public HUD _User_Interface;
+        public HUD _hud_interface;
         
 
         
@@ -29,7 +29,7 @@ namespace Space_invaders_01
 
 
 
-        public GameState_InGame(KeybindManeger _keys) :base(_keys)
+        public GameState_InGame(KeybindManeger _keys) : base(_keys)
         {
             can_pause = true;
 
@@ -57,7 +57,7 @@ namespace Space_invaders_01
             UI_backgrounds[0] = new RTD_rectangle(new Color(50,50,55),Game1.pixel ,new Vector2(0,0), (int)Game1.Window_size.X, 60);
 
 
-            _User_Interface = new HUD(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
+            _hud_interface = new HUD(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
         }
 
         public void Create_Standard_GameSpace() //Temp
@@ -111,10 +111,10 @@ namespace Space_invaders_01
 
                 FBF_paused = true;
             }
-            
 
-            _User_Interface.text_interface[1].Uppdate_UI_numb(_GameSpace._player.health);
-            _User_Interface.text_interface[2].Uppdate_UI_numb(_GameSpace.score);
+
+            _hud_interface.text_interface[1].Uppdate_UI_numb(_GameSpace._player.health);
+            _hud_interface.text_interface[2].Uppdate_UI_numb(_GameSpace.score);
             //add ui uppdate
 
         }
@@ -124,7 +124,7 @@ namespace Space_invaders_01
             base.Draw(_spriteBatch);
             _GameSpace.draw(_spriteBatch);
 
-            _User_Interface.Draw(_spriteBatch);
+            _hud_interface.Draw(_spriteBatch);
         }
 
     }

@@ -21,18 +21,20 @@ namespace Space_invaders_01
 
         public UI_maneger UserInterface { get; private set; }
 
-        public SubGameState_Paused(KeybindManeger _keys, GameState_Foundation _previous_GameState, GameState_Controler _controler_reference) : base(_keys)
+        public SubGameState_Paused(KeybindManeger _keys, GameState_Controler _controler_reference) : base(_keys)
         {
             
 
-            previous_GameState = _previous_GameState;
-
+            //previous_GameState = _previous_GameState;
+            /*
             UserInterface_Foundation[] _ui = new UserInterface_Foundation[1]
             {
                 new UserInterface_Switch_GameState(Game1.pixel, Color.White, "return", Game1.Window_size*0.5f, new Vector2(100, 50), _previous_GameState, _controler_reference)
             };
+            */
 
-            UserInterface = new UI_maneger(_ui);
+           
+            //UserInterface = new UI_maneger(_ui);
         }
 
 
@@ -40,7 +42,7 @@ namespace Space_invaders_01
         {
 
             base.Update();
-            UserInterface.Run();
+            //UserInterface.Run();
             
             
 
@@ -56,7 +58,7 @@ namespace Space_invaders_01
             
 
 
-            UserInterface.Draw(_spriteBatch);
+            //UserInterface.Draw(_spriteBatch);
 
             
         }
