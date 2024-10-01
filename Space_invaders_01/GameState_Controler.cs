@@ -26,7 +26,7 @@ namespace Space_invaders_01
         public GameState_Controler(KeybindManeger _keys) 
         {
             _keybindManeger = _keys;
-            current_gamestate = new GameState_MainMenue(_keybindManeger);
+            current_gamestate = new GameState_MainMenue(_keybindManeger, null);
             
         }
 
@@ -34,6 +34,7 @@ namespace Space_invaders_01
         {
             if (_next_gamestate != null)
             {
+                current_gamestate.New_Gamestate(null);
                 current_gamestate = _next_gamestate;
             }
 
@@ -54,7 +55,7 @@ namespace Space_invaders_01
 
             current_gamestate.Update();
 
-            New_Gamestate(current_gamestate.Next_state);
+            New_Gamestate(current_gamestate.next_state);
 
 
         }

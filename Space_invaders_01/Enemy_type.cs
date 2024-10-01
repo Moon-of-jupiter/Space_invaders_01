@@ -18,12 +18,12 @@ namespace Space_invaders_01
         public int points_uppon_destruction;
         public Vector2 size;
         public Color color;
-        public Texture2D texture;
+        public SpriteSheet texture;
 
         public bool is_animated;
         
 
-        public Enemy_type(Prodectile_type _prodectile,  float _max_HP, float _damege, int _points, Vector2 _size, Color _color, Texture2D _texture, bool _animated)
+        public Enemy_type(Prodectile_type _prodectile,  float _max_HP, float _damege, int _points, Vector2 _size, Color _color, SpriteSheet _texture, bool _animated)
         {
             is_animated = _animated;
             max_HP = _max_HP;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
@@ -27,21 +28,21 @@ namespace Space_invaders_01
         //public float max_health;
 
         public int cooldown;
-
-        public Texture2D texture;
+        public SpriteSheet sprite;
+        
         public Color base_color;
 
-        public Prodectile_type(Vector2 projectile_hitbox, Vector2 projectile_startoffset, int projectile_cooldown, int projectile_damege, float projectile_speed, float projectile_acceleration, Texture2D projectile_texture, Color projectile_base_color)
+        public Prodectile_type(Vector2 _hitbox, Vector2 _startoffset, int _cooldown, int _damege, float _speed, float _acceleration, SpriteSheet _sprite, Color _base_color)
         {
-            this.startoffset = projectile_startoffset;
+            this.startoffset = _startoffset;
             //this.max_health = projectile_health;
-            this.cooldown = projectile_cooldown;
-            this.hitbox = projectile_hitbox;
-            this.damege = projectile_damege;
-            this.speed = projectile_speed;
-            this.texture = projectile_texture;
-            this.base_color = projectile_base_color;
-            this.acceleration = projectile_acceleration;
+            this.cooldown = _cooldown;
+            this.hitbox = _hitbox;
+            this.damege = _damege;
+            this.speed = _speed;
+            this.sprite = _sprite;
+            this.base_color = _base_color;
+            this.acceleration = _acceleration;
 
             
             

@@ -26,7 +26,7 @@ namespace Space_invaders_01
 
         
         //world properties
-        public Vector2 pos;
+        
         public float vel;
 
         //visual properties
@@ -42,15 +42,15 @@ namespace Space_invaders_01
         
         public Rectangle spriteBox;
 
-        public Player(Vector2 _position, Texture2D _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) {
+        public Player(Vector2 _position, SpriteSheet _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) : base(colition_tags.player, _texture, new Vector2(_sizeX,_sizeY), new Vector2(_hitbox_sizeX,_hitbox_sizeY)) {
             damege = 1000;
-            tag = colition_tags.player;
+            
             can_colide_with = new colition_tags[1] { colition_tags.enemy };
 
             this.health = _starting_health;
-            this.pos = _position;
+            position = _position;
             this.vel = 0;
-            this.texture = _texture;
+            this.sprite = _texture;
             this.color = _color;
             this.spritesize = new Vector2(_sizeX,_sizeY);
             this.hitbox_size = new Vector2(_hitbox_sizeX, _hitbox_sizeY);
@@ -103,7 +103,7 @@ namespace Space_invaders_01
 
         private void Move(float f)
         {
-            pos = new Vector2(pos.X+f, pos.Y);
+            position = new Vector2(position.X+f, position.Y);
         }
 
         public void Stagger(int frames)
@@ -122,7 +122,7 @@ namespace Space_invaders_01
             }
             else { stagger_timer++; }
 
-            Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
+            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
 
 
             hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, hitbox_size + size);
@@ -136,7 +136,7 @@ namespace Space_invaders_01
         public override void Draw(SpriteBatch __spriteBatch)
         {
             
-            __spriteBatch.Draw(texture, spriteBox, color);
+            base.Draw(__spriteBatch);
         }
 
     }

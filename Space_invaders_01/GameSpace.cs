@@ -31,20 +31,20 @@ namespace Space_invaders_01
         public ColitionManeger _ColitionManeger;
         
 
-        public GameSpace(Player p)
+        public GameSpace(Player _player, PhalanxPreset[] _wave_chart)
         {
             //this._EnemyManeger = new EnemyManeger(r,s);
-            PhalanxPreset[] wave_chart = new PhalanxPreset[3] { Game1._PhalanxPresetManeger.Block_Standard_Monolith, Game1._PhalanxPresetManeger.Block_Space_invaders, Game1._PhalanxPresetManeger.GeneratePreset_OneType(Game1._TypeManeger.hardy_Enemy_Type, 11, 3) };
+            //PhalanxPreset[] wave_chart = new PhalanxPreset[3] { Game1._PhalanxPresetManeger.Block_Standard_Monolith, Game1._PhalanxPresetManeger.Block_Space_invaders, Game1._PhalanxPresetManeger.GeneratePreset_OneType(Game1._TypeManeger.hardy_Enemy_Type, 11, 3) };
 
 
-            this._EnemyWaveManeger = new EnemyWaveManeger(wave_chart);
+            this._EnemyWaveManeger = new EnemyWaveManeger(_wave_chart);
             this._ProdectileManeger = new ProdectileManeger();
             this._ExplotionManeger = new ExplotionManeger();
 
             Rectangle Enemy_End_Zone = new Rectangle(0, (int)Game1.Window_size.Y, (int)Game1.Window_size.X, (int)(Game1.Window_size.Y * 0.5f));
             this._ColitionManeger = new ColitionManeger(_ExplotionManeger, Enemy_End_Zone);
             
-            this._player = p;
+            this._player = _player;
             
 
         }
@@ -58,7 +58,7 @@ namespace Space_invaders_01
             
             if(_player.has_shot == true)
             {
-                _ProdectileManeger.Create_Player_Prodjectile(_player.pos, _player.curent_weapon);
+                _ProdectileManeger.Create_Player_Prodjectile(_player.position, _player.curent_weapon);
             }
 
             _ProdectileManeger.Update();

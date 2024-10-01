@@ -23,7 +23,7 @@ namespace Space_invaders_01
 
         
 
-        public SubGameState_Paused(KeybindManeger _keys, GameState_Foundation _previous_GameState, GameState_Controler _controler_reference) : base(_keys)
+        public SubGameState_Paused(KeybindManeger _keys, GameState_Foundation _previous_GameState, GameState_Controler _controler_reference) : base(_keys, _previous_GameState)
         {
             
 
@@ -34,7 +34,7 @@ namespace Space_invaders_01
                 new UserInterface_Foundation[2]
                 { 
                     new UserInterface_Switch_GameState(Game1.pixel, Color.White, "return", new Vector2(Game1.Window_size.X*0.5f,Game1.Window_size.Y*0.5f-60), new Vector2(100, 50), _previous_GameState, this),
-                    new UserInterface_Switch_GameState(Game1.pixel, Color.White, "menue", new Vector2(Game1.Window_size.X*0.5f,Game1.Window_size.Y*0.5f), new Vector2(100, 50), new GameState_MainMenue(_keybindManeger), this),
+                    new UserInterface_Switch_GameState(Game1.pixel, Color.White, "menue", new Vector2(Game1.Window_size.X*0.5f,Game1.Window_size.Y*0.5f), new Vector2(100, 50), new GameState_MainMenue(_keybindManeger, this), this),
                 }
             };
 
@@ -50,7 +50,7 @@ namespace Space_invaders_01
             if (_keybindManeger.Pause_key_pressed())
             {
                 
-                Next_state = previous_GameState;
+                New_Gamestate(previous_GameState);
                 
                 
             }

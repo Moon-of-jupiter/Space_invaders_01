@@ -44,9 +44,9 @@ namespace Space_invaders_01
         private GameState_Controler GS_Controler;
 
 
-        public static PhalanxPresetManeger _PhalanxPresetManeger;
+        //public static PhalanxPresetManeger _PhalanxPresetManeger;
 
-        public static TypeManeger _TypeManeger;
+        //public static TypeManeger _TypeManeger;
 
 
         bool space_is_pressed = false;
@@ -83,8 +83,8 @@ namespace Space_invaders_01
         {
             _keybindmaneger = new KeybindManeger();
 
-            _TypeManeger = new TypeManeger();
-            _PhalanxPresetManeger = new PhalanxPresetManeger(70,70);
+            //_TypeManeger = new TypeManeger();
+            
             GS_Controler = new GameState_Controler(_keybindmaneger);
             
             //Game_window = new Rectangle( (int)(Window_size.X*0.5f-Game_size.X*0.5+Game_window_offset.X), (int)Game_window_offset.Y, (int)Game_size.X, (int)Game_size.Y);
@@ -137,7 +137,7 @@ namespace Space_invaders_01
             
 
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
             //_spriteBatch.Draw(pixel, Game_window, new Color(50,50,50));
 
             GS_Controler.Draw_Current_Gamespace(_spriteBatch);

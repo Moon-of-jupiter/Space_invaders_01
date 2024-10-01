@@ -26,11 +26,11 @@ namespace Space_invaders_01
 
             this.health = _type.damege;
 
-            this.pos = _staringPos;
-            this.hitbox = new Rectangle((int)(pos.X - type.hitbox.X * 0.5f), (int)(pos.Y - type.hitbox.Y * 0.5f), (int)type.hitbox.X, (int)type.hitbox.Y);
+            this.position = _staringPos;
+            this.hitbox = new Rectangle((int)(position.X - type.hitbox.X * 0.5f), (int)(position.Y - type.hitbox.Y * 0.5f), (int)type.hitbox.X, (int)type.hitbox.Y);
             speed = 0;
 
-            Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
+            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
 
             hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, type.hitbox);
 
@@ -44,10 +44,10 @@ namespace Space_invaders_01
             }
             vel = new Vector2(0, -speed);
 
-            pos = new Vector2(pos.X - vel.X, pos.Y - vel.Y);
+            position = new Vector2(position.X - vel.X, position.Y - vel.Y);
 
 
-            Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
+            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
 
             hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, type.hitbox);
         }

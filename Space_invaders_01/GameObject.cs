@@ -15,8 +15,8 @@ namespace Space_invaders_01
 {
     public class GameObject
     {
-        public bool is_animated;
-        public Texture2D texture;
+        
+        public SpriteSheet sprite;
         public Vector2 position;
         public Vector2 size;
         public Vector2 spritesize;
@@ -26,15 +26,30 @@ namespace Space_invaders_01
         public float health;
         public float damege;
 
+        
+
+        public float animation_multiplier = 1;
+
+        public bool run_animation;
+        private int animation_step;
+        private float animation_timer = 0;
+
         public enum colition_tags { player = 1, enemy = 2, prodectile = 3}
         protected colition_tags tag;
         protected colition_tags[] can_colide_with;
 
 
 
-        public GameObject()
+        public GameObject(colition_tags _tag, SpriteSheet _sprite, Vector2 _sprite_size, Vector2 _hitbox_size)
         {
+            sprite = _sprite;
+            spritesize = _sprite_size;
+            size = _hitbox_size;
             
+
+            tag = _tag;
+
+
         }
 
         public int get_tag()
@@ -69,15 +84,40 @@ namespace Space_invaders_01
 
         }
 
-        public virtual void Draw(SpriteBatch _spriteBatch)
+        public virtual void Draw(SpriteBatch _spriteBatch) 
         {
             Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
             Rectangle SpriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
-
+            Texture2D texture = sprite.texture;
             
-            if (is_animated)
+            if (sprite.is_animated )
             {
-                _spriteBatch.Draw(texture, SpriteBox, color);
+                if (sprite.is_triggerd == false || run_animation)
+                {
+                    int converted_animation_step = animation_step * (texture.Height + 1);
+                    Rectangle sourceRectangle = new Rectangle(converted_animation_step, 0, texture.Height, texture.Height);
+                    _spriteBatch.Draw(texture, SpriteBox, sourceRectangle, color);
+                    if (animation_timer >= sprite.frames_per_step)
+                    {
+                        animation_step++;
+                        animation_timer = 0;
+                    }
+
+                    if (animation_step >= sprite.steps)
+                    {
+                        animation_step = 0;
+                        run_animation = false;
+                    }
+
+                    animation_timer += animation_multiplier;
+
+                }
+                else
+                {
+                    Rectangle sourceRectangle = new Rectangle(0, 0, texture.Height, texture.Height);
+                    _spriteBatch.Draw(texture, SpriteBox, sourceRectangle, color);
+
+                }
             }
             else
             {

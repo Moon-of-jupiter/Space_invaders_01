@@ -17,50 +17,103 @@ namespace Space_invaders_01
 {
     public class PhalanxPresetManeger
     {
+        private TypeManeger typeManeger;
+
         private float stadard_rowspacing;
         private float stadard_columnspacing;
+
+        public int border_distance = 30;
+        public float standard_vertical_adv;
+        public float standard_horizontal_move;
+
+        public float standard_death_acceleration;
+
+        public int colum_count;
+        public int row_count;
+
+
 
         
 
 
-
-        public PhalanxPreset Block_Standard_Monolith;
-        public PhalanxPreset Block_Space_invaders;
-
-
-        public PhalanxPresetManeger(float _RowSpacing, float _ColumSpacing)
+        public PhalanxPresetManeger(float _row_spacing, float _colum_spacing, int _colum_count, int _row_count,float _vertical_advancement, float _horizontal_movement, float _death_acceleration,  TypeManeger _typeManeger)
         {
-            stadard_rowspacing = _RowSpacing;
-            stadard_columnspacing = _ColumSpacing;
+            stadard_rowspacing = _row_spacing;
+            stadard_columnspacing = _colum_spacing;
 
+            standard_horizontal_move = _horizontal_movement;
+            standard_vertical_adv = _vertical_advancement;
+
+            standard_death_acceleration = _death_acceleration;
+
+
+            row_count = _row_count;
+            colum_count = _colum_count;
+
+            typeManeger = _typeManeger;
             
 
-            Block_Standard_Monolith = GeneratePreset_OneType(Game1._TypeManeger.standard_Enemy_Type, 10, 5);
+            //Block_Standard_Monolith = GeneratePreset_OneType(typeManeger.standard_Enemy_Type, colum_count, row_count);
 
-            Enemy_type[] space_invaders = new Enemy_type[5]
-            {
-                Game1._TypeManeger.easy_Enemy_Type, Game1._TypeManeger.easy_Enemy_Type,
-                Game1._TypeManeger.standard_Enemy_Type, Game1._TypeManeger.standard_Enemy_Type, Game1._TypeManeger.hardy_Enemy_Type
-            };
-            Block_Space_invaders = new PhalanxPreset(space_invaders, 10, 0, stadard_rowspacing, stadard_columnspacing, 50f, 1.05f, 30);
+            
+            //Block_Space_invaders = new PhalanxPreset(space_invaders, 10, 0, stadard_rowspacing, stadard_columnspacing, 50f, 1.05f, 30);
 
 
         }
 
-
-        
-        public PhalanxPreset GeneratePreset_OneType(Enemy_type type, int phalanx_countX, int phalanx_countY)
+        public PhalanxPreset Block_Space_invaders(float _vertical_advancement, float _horizontal_movement, float _acceleration)
         {
-            Enemy_type[] EnemyRows = new Enemy_type[phalanx_countY];
-
-            for(int i = 0; i <  phalanx_countY; i++)
+            Enemy_type[] space_invaders = new Enemy_type[5]
             {
-                EnemyRows[i] = type;
+                typeManeger.easy_Enemy_Type, typeManeger.easy_Enemy_Type,
+                typeManeger.standard_Enemy_Type, typeManeger.standard_Enemy_Type, typeManeger.hardy_Enemy_Type
+            };
+            return new PhalanxPreset(space_invaders, 10, 0, stadard_rowspacing, stadard_columnspacing, _vertical_advancement, _horizontal_movement, _acceleration, border_distance);
+        }
+
+        public PhalanxPreset Block_Space_invaders()
+        {
+            return Block_Dificult_invaders(standard_vertical_adv, standard_horizontal_move, standard_death_acceleration);
+        }
+
+        public PhalanxPreset Block_Dificult_invaders(float _vertical_advancement, float _horizontal_movement, float _acceleration)
+        {
+            Enemy_type[] space_invaders = new Enemy_type[6]
+            {
+                typeManeger.easy_Enemy_Type,typeManeger.easy_Enemy_Type,
+                typeManeger.standard_Enemy_Type, typeManeger.standard_Enemy_Type, 
+                typeManeger.hardy_Enemy_Type, typeManeger.hardy_Enemy_Type
+            };
+            return new PhalanxPreset(space_invaders, 10, 0, stadard_rowspacing, stadard_columnspacing, _vertical_advancement, _horizontal_movement, _acceleration, border_distance);
+        }
+
+        public PhalanxPreset Block_Dificult_invaders()
+        {
+            return Block_Dificult_invaders(standard_vertical_adv, standard_horizontal_move, standard_death_acceleration);
+        }
+
+
+
+
+
+
+        public PhalanxPreset GeneratePreset_OneType(Enemy_type _type, int _phalanx_countX, int _phalanx_countY, float _vertical_advancement,float _horizontal_movement, float _death_acceleration)
+        {
+            Enemy_type[] EnemyRows = new Enemy_type[_phalanx_countY];
+
+            for(int i = 0; i <  _phalanx_countY; i++)
+            {
+                EnemyRows[i] = _type;
             }
 
 
-            PhalanxPreset preset = new PhalanxPreset(EnemyRows, phalanx_countX, 0, stadard_rowspacing, stadard_columnspacing, 50f, 1.05f, 30);
+            PhalanxPreset preset = new PhalanxPreset(EnemyRows, _phalanx_countX, 0, stadard_rowspacing, stadard_columnspacing, _vertical_advancement, _horizontal_movement, _death_acceleration, border_distance);
             return  preset;
+        }
+
+        public PhalanxPreset GeneratePreset_OneType(Enemy_type _type)
+        {
+            return GeneratePreset_OneType(_type, colum_count, row_count, standard_vertical_adv, standard_horizontal_move, standard_death_acceleration);
         }
         
 

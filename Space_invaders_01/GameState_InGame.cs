@@ -18,7 +18,12 @@ namespace Space_invaders_01
     {
         public GameSpace _GameSpace;
         public HUD _User_Interface;
-        
+        public PhalanxPresetManeger _PhalanxPresetManeger;
+        public TypeManeger _TypeManeger;
+
+        public PhalanxPreset[][] levels;
+
+        private int level;
 
         
 
@@ -29,11 +34,21 @@ namespace Space_invaders_01
 
 
 
-        public GameState_InGame(KeybindManeger _keys) :base(_keys)
+        public GameState_InGame(KeybindManeger _keys, GameState_Foundation _previous_gamestate , int _level) :base(_keys, _previous_gamestate)
         {
             can_pause = true;
+            _TypeManeger = new TypeManeger();
+            _PhalanxPresetManeger = new PhalanxPresetManeger(70, 70, 10, 5, 50f, 1, 1.04f,  _TypeManeger);
 
-           
+            Initiate_Levels();
+            
+
+            level = 0;
+            if (_level <= levels.Count())
+           {
+                level = _level;
+                New_Gamestate(previous_state);
+           }
 
            
             Create_Standard_GameSpace();
@@ -42,6 +57,37 @@ namespace Space_invaders_01
 
 
 
+        }
+
+        private void Initiate_Levels()
+        {
+            float x_move = _PhalanxPresetManeger.standard_horizontal_move;
+            float y_move = _PhalanxPresetManeger.standard_vertical_adv;
+
+            
+            float acceleration = _PhalanxPresetManeger.standard_death_acceleration;
+            levels = new PhalanxPreset[4][]
+            {
+                new PhalanxPreset[1] // debug level
+                {
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.easy_Enemy_Type, 1, 1, y_move, x_move,acceleration)
+                },
+                new PhalanxPreset[2] 
+                {
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.easy_Enemy_Type),
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.standard_Enemy_Type),
+                },
+                new PhalanxPreset[2]
+                {
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.standard_Enemy_Type), _PhalanxPresetManeger.Block_Space_invaders()
+                },
+                new PhalanxPreset[2]
+                {
+                    _PhalanxPresetManeger.Block_Dificult_invaders(),
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.hardy_Enemy_Type, 11, 3, y_move, x_move, acceleration)
+                }
+                
+            };
         }
 
         public void Initiate_UI() // typ temp
@@ -62,9 +108,9 @@ namespace Space_invaders_01
 
         public void Create_Standard_GameSpace() //Temp
         {
-            
-            _GameSpace = new GameSpace(new Player(new Vector2(0, Game1.Window_size.Y - 100), Game1.pixel, Color.Wheat,3,5, 50, 50,10,10, _keybindManeger));
-            _GameSpace._player.curent_weapon = Game1._TypeManeger.standard_Prodectile_type;
+            Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.pixel, Color.Wheat, 3, 5, 50, 50, 10, 10, _keybindManeger);
+            _GameSpace = new GameSpace(player, levels[level]);
+            _GameSpace._player.curent_weapon = _TypeManeger.standard_Prodectile_type;
             
          
         }
@@ -103,15 +149,24 @@ namespace Space_invaders_01
 
                 if (_GameSpace._player.health <= 0)
                 {
-                    new_gamestate(new GameState_EndScreen(_keybindManeger));
+                    New_Gamestate(new GameState_EndScreen(_keybindManeger,this,false));
                     return;
                 }
+
+                if (_GameSpace._EnemyWaveManeger.is_cleared)
+                {
+                    New_Gamestate(new GameState_EndScreen(_keybindManeger, this, true));
+                    return;
+                }
+
                 base.Update();
                 _GameSpace.Update();
 
                 FBF_paused = true;
             }
             
+
+
 
             _User_Interface.text_interface[1].Uppdate_UI_numb(_GameSpace._player.health);
             _User_Interface.text_interface[2].Uppdate_UI_numb(_GameSpace.score);

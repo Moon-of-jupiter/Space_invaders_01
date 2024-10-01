@@ -18,6 +18,8 @@ namespace Space_invaders_01
 
         private int wave_counter = 0;
 
+        public bool is_cleared = false;
+
         public int score_this_tick {  get; private set; }
 
         public EnemyWaveManeger(PhalanxPreset[] _waves)
@@ -67,6 +69,15 @@ namespace Space_invaders_01
                 }
 
             }
+
+            if(wave_counter >= Total_nr_waves())
+            {
+                is_cleared = true;
+            }
+            
+            
+            
+
         }
 
         public void Draw(SpriteBatch _spriteBatch)

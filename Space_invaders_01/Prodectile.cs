@@ -15,7 +15,7 @@ namespace Space_invaders_01
     public class Prodectile : GameObject
     {
         
-        public Vector2 pos;
+        
         
         public Vector2 vel;
         public float speed {  get; protected set; }
@@ -23,16 +23,18 @@ namespace Space_invaders_01
 
         public Prodectile_type type { get; protected set; }
 
-        public Prodectile(Prodectile_type _type, Vector2 _staringPos){
-            tag = colition_tags.prodectile;
+        public Prodectile(Prodectile_type _type, Vector2 _staringPos) : base(colition_tags.prodectile, _type.sprite, _type.hitbox, _type.hitbox)
+        {
+            
             can_colide_with = new colition_tags[1] { colition_tags.enemy };
 
+            color = _type.base_color;
             this.type = _type;
 
             this.health = _type.damege;
 
-            this.pos = _staringPos;
-            this.hitbox = new Rectangle((int)(pos.X-type.hitbox.X*0.5f), (int)(pos.Y - type.hitbox.Y * 0.5f),(int)type.hitbox.X, (int)type.hitbox.Y);
+            this.position = _staringPos;
+            this.hitbox = new Rectangle((int)(position.X-type.hitbox.X*0.5f), (int)(position.Y - type.hitbox.Y * 0.5f),(int)type.hitbox.X, (int)type.hitbox.Y);
             this.speed = 0;
 
         }
@@ -44,10 +46,10 @@ namespace Space_invaders_01
             }
             vel = new Vector2(0, -speed);
 
-            pos = new Vector2(pos.X+vel.X, pos.Y+vel.Y);
+            position = new Vector2(position.X+vel.X, position.Y+vel.Y);
             
 
-            Vector2 Centerd_pos = new Vector2(pos.X + Game1.Window_size.X * 0.5f, pos.Y);
+            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
 
             hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, type.hitbox);
         }
@@ -56,7 +58,7 @@ namespace Space_invaders_01
 
         public override void Draw(SpriteBatch _spriteBatch)
         {
-            _spriteBatch.Draw(type.texture, hitbox, type.base_color);
+            base.Draw(_spriteBatch);
         }
 
         

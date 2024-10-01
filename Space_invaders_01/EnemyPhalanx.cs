@@ -33,7 +33,7 @@ namespace Space_invaders_01
         public float advancement_speed { get; private set; }
         public float death_acceleration { get; private set; }
 
-        private float x_acceleration;
+        //private float x_acceleration;
 
         private float x_velocety;
 
@@ -99,7 +99,7 @@ namespace Space_invaders_01
             right_border = new Rectangle((int)Game1.Window_size.X-border, 0, border, (int)Game1.Window_size.Y);
 
             x_velocety = 1;
-            x_acceleration = 0.1f;
+           
 
         }
 

@@ -31,7 +31,7 @@ namespace Space_invaders_01
             base.Run();
             if (is_pressed)
             {
-                gamestate_reference.new_gamestate(GameState_path);
+                gamestate_reference.New_Gamestate(GameState_path);
             }
 
 
