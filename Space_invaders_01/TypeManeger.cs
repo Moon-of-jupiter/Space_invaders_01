@@ -39,11 +39,11 @@ namespace Space_invaders_01
              
 
              standard_enemy_size = new Vector2(50, 50);
-             standard_Enemy_Type = new Enemy_type(null, 1, 1, 10, standard_enemy_size, Color.Aqua, Game1.pixel);
-             hardy_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 2, 1, 20, standard_enemy_size, Color.DarkCyan, Game1.pixel);
-             easy_Enemy_Type = new Enemy_type(null, 0.5f, 0.5f, 5, standard_enemy_size, Color.LightBlue, Game1.pixel);
-             boss_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 10, 10, 100, new Vector2(200, 200), Color.DarkOrchid, Game1.pixel);
-             smol_Enemy_Type = new Enemy_type(null ,0.1f, 0.1f, 1, new Vector2(20, 20), Color.White, Game1.pixel);
+             standard_Enemy_Type = new Enemy_type(null, 1, 1, 10, standard_enemy_size, Color.Aqua, SpriteManeger.alien_spritesheat_01, true);
+             hardy_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 2, 1, 20, standard_enemy_size, Color.DarkCyan, Game1.pixel, false);
+             easy_Enemy_Type = new Enemy_type(null, 0.5f, 0.5f, 5, standard_enemy_size, Color.LightBlue, Game1.pixel,false);
+             boss_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 10, 10, 100, new Vector2(200, 200), Color.DarkOrchid, Game1.pixel,false);
+             smol_Enemy_Type = new Enemy_type(null ,0.1f, 0.1f, 1, new Vector2(20, 20), Color.White, Game1.pixel,false);
 
 
              

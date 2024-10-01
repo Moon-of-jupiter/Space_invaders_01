@@ -15,6 +15,7 @@ namespace Space_invaders_01
 {
     public class GameObject
     {
+        public bool is_animated;
         public Texture2D texture;
         public Vector2 position;
         public Vector2 size;
@@ -72,7 +73,16 @@ namespace Space_invaders_01
         {
             Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
             Rectangle SpriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
-            _spriteBatch.Draw(texture, SpriteBox, color);
+
+            
+            if (is_animated)
+            {
+                _spriteBatch.Draw(texture, SpriteBox, color);
+            }
+            else
+            {
+                _spriteBatch.Draw(texture, SpriteBox, color);
+            }
         }
 
 

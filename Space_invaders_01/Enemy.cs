@@ -50,6 +50,7 @@ namespace Space_invaders_01
             this.size = _type.size;
             this.spritesize = _type.size;
             this.damege = _type.damege;
+            is_animated = _type.is_animated;
 
             if (type.prodectile != null)
             { 
@@ -98,8 +99,9 @@ namespace Space_invaders_01
         }
 
         public override void Draw(SpriteBatch _spriteBatch) {
-
+            
             base.Draw(_spriteBatch);
+            
             
         }
 
