@@ -23,12 +23,12 @@ namespace Space_invaders_01
 
         public Prodectile_type type { get; protected set; }
 
-        public Prodectile(Prodectile_type _type, Vector2 _staringPos) : base(colition_tags.prodectile, _type.sprite, _type.hitbox, _type.hitbox)
+        public Prodectile(Prodectile_type _type, Vector2 _staringPos) : base(colition_tags.prodectile, _type.sprite, _type.hitbox, _type.hitbox, _type.base_color)
         {
             
             can_colide_with = new colition_tags[1] { colition_tags.enemy };
 
-            color = _type.base_color;
+            
             this.type = _type;
 
             this.health = _type.damege;

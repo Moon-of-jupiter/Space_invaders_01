@@ -23,10 +23,14 @@ namespace Space_invaders_01
 
 
         private GameState_Foundation current_gamestate;
+
+        private SubGameState_BackGround background;
         public GameState_Controler(KeybindManeger _keys) 
         {
             _keybindManeger = _keys;
             current_gamestate = new GameState_MainMenue(_keybindManeger, null);
+
+            background = new SubGameState_BackGround(new int[] { 1, 1, 1, 20, 20, 40, 5 }, new SpriteSheet[] { SpriteManeger.stars_spritesheet_01, SpriteManeger.stars_spritesheet_02});
             
         }
 
@@ -62,6 +66,7 @@ namespace Space_invaders_01
 
         public void Draw_Current_Gamespace(SpriteBatch _spriteBatch)
         {
+            background.Draw(_spriteBatch);
             current_gamestate.Draw(_spriteBatch);
         }
 

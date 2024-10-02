@@ -132,7 +132,7 @@ namespace Space_invaders_01
             GraphicsDevice.SetRenderTarget(screen_render);
 
            
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(SpriteManeger.space_black);
 
             
 

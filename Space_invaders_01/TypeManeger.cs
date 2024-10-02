@@ -33,16 +33,16 @@ namespace Space_invaders_01
         {
              enemy_Prodectile_type = new Prodectile_type(new Vector2(9, 40), new Vector2(0, 0), 40, 1, 10, 0.1f, SpriteManeger.pixel, Color.DarkRed);
 
-             standard_Prodectile_type = new Prodectile_type(new Vector2(10, 30), new Vector2(0, -20), 15, 1, 100, 0.7f, SpriteManeger.pixel, Color.Lime);
+             standard_Prodectile_type = new Prodectile_type(new Vector2(10, 30), new Vector2(0, -20), 15, 1, 100, 0.7f, SpriteManeger.pixel, SpriteManeger.space_oragne);
              cheat_Prodectile_type = new Prodectile_type(new Vector2(15, 40), new Vector2(0, -20), 1, 1000, 150, 0.4f, SpriteManeger.pixel, Color.Lime);
 
              
 
              standard_enemy_size = new Vector2(50, 50);
-             standard_Enemy_Type = new Enemy_type(null, 1, 1, 10, standard_enemy_size, Color.Aqua, SpriteManeger.alien_spritesheet_01, true);
-             hardy_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 2, 1, 20, standard_enemy_size, Color.DarkCyan, SpriteManeger.alien_shoot_spritesheet_01, false);
-             easy_Enemy_Type = new Enemy_type(null, 0.5f, 0.5f, 5, standard_enemy_size, Color.LightBlue, SpriteManeger.alien_spritesheet_02,true);
-             boss_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 10, 10, 100, new Vector2(200, 200), Color.DarkOrchid, SpriteManeger.pixel,false);
+             standard_Enemy_Type = new Enemy_type(null, 1, 1, 10, standard_enemy_size, SpriteManeger.space_white, SpriteManeger.alien_spritesheet_01, true);
+             hardy_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 2, 1, 20, standard_enemy_size, SpriteManeger.space_white, SpriteManeger.alien_shoot_spritesheet_01, false);
+             easy_Enemy_Type = new Enemy_type(null, 0.5f, 0.5f, 5, standard_enemy_size, SpriteManeger.space_white, SpriteManeger.alien_spritesheet_02,true);
+             boss_Enemy_Type = new Enemy_type(enemy_Prodectile_type, 10, 10, 100, new Vector2(200, 200), SpriteManeger.space_white, SpriteManeger.pixel,false);
              smol_Enemy_Type = new Enemy_type(null ,0.1f, 0.1f, 1, new Vector2(20, 20), Color.White, SpriteManeger.pixel,false);
 
 

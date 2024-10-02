@@ -25,6 +25,7 @@ namespace Space_invaders_01
         public Color color;
         public float health;
         public float damege;
+        Random random = new Random();
 
         
 
@@ -33,19 +34,22 @@ namespace Space_invaders_01
         public bool run_animation;
         private int animation_step;
         private float animation_timer = 0;
+        private int animation_sleep_timer;
 
-        public enum colition_tags { player = 1, enemy = 2, prodectile = 3}
+        public enum colition_tags { other = 0,  player = 1, enemy = 2, prodectile = 3}
         protected colition_tags tag;
         protected colition_tags[] can_colide_with;
 
 
 
-        public GameObject(colition_tags _tag, SpriteSheet _sprite, Vector2 _sprite_size, Vector2 _hitbox_size)
+        public GameObject(colition_tags _tag, SpriteSheet _sprite, Vector2 _sprite_size, Vector2 _hitbox_size, Color _color)
         {
+            color = _color;
             sprite = _sprite;
             spritesize = _sprite_size;
             size = _hitbox_size;
-            
+
+            animation_sleep_timer = _sprite.offset *(int)(random.Next(0,20)*0.1f);
 
             tag = _tag;
 
@@ -87,12 +91,13 @@ namespace Space_invaders_01
         public virtual void Draw(SpriteBatch _spriteBatch) 
         {
             Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
-            Rectangle SpriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
+            Rectangle SpriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, spritesize);
             Texture2D texture = sprite.texture;
             
             if (sprite.is_animated )
             {
-                if (sprite.is_triggerd == false || run_animation)
+                
+                if (animation_sleep_timer <= 0 && ( sprite.is_triggerd == false || run_animation ))
                 {
                     int converted_animation_step = animation_step * (texture.Height + 1);
                     Rectangle sourceRectangle = new Rectangle(converted_animation_step, 0, texture.Height, texture.Height);
@@ -111,9 +116,12 @@ namespace Space_invaders_01
 
                     animation_timer += animation_multiplier;
 
+
+
                 }
                 else
                 {
+                    animation_sleep_timer--;
                     Rectangle sourceRectangle = new Rectangle(0, 0, texture.Height, texture.Height);
                     _spriteBatch.Draw(texture, SpriteBox, sourceRectangle, color);
 

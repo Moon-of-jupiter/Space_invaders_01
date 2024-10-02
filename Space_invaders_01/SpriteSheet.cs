@@ -21,10 +21,11 @@ namespace Space_invaders_01
         public bool is_triggerd;
         public int frames_per_step;
         public int steps;
-        
+        public int offset;
 
-        public SpriteSheet(ContentManager _content, string _texture_name, bool _is_animated, bool _is_triggerd, int _steps, int _frames_per_step)
+        public SpriteSheet(ContentManager _content, string _texture_name, bool _is_animated, bool _is_triggerd, int _steps, int _frames_per_step, int _offset)
         {
+            offset = _offset;
             texture = _content.Load<Texture2D>(_texture_name);
             is_animated = _is_animated;
             frames_per_step = _frames_per_step;

@@ -42,7 +42,7 @@ namespace Space_invaders_01
         
         public Rectangle spriteBox;
 
-        public Player(Vector2 _position, SpriteSheet _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) : base(colition_tags.player, _texture, new Vector2(_sizeX,_sizeY), new Vector2(_hitbox_sizeX,_hitbox_sizeY)) {
+        public Player(Vector2 _position, SpriteSheet _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) : base(colition_tags.player, _texture, new Vector2(_sizeX,_sizeY), new Vector2(_hitbox_sizeX,_hitbox_sizeY), _color) {
             damege = 1000;
             
             can_colide_with = new colition_tags[1] { colition_tags.enemy };
@@ -51,7 +51,7 @@ namespace Space_invaders_01
             position = _position;
             this.vel = 0;
             this.sprite = _texture;
-            this.color = _color;
+            
             this.spritesize = new Vector2(_sizeX,_sizeY);
             this.hitbox_size = new Vector2(_hitbox_sizeX, _hitbox_sizeY);
             this.size = new Vector2(_sizeX, _sizeY);

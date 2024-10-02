@@ -33,7 +33,7 @@ namespace Space_invaders_01
 
 
 
-        public Enemy(Enemy_type _type, Vector2 _position) : base(colition_tags.enemy, _type.texture, _type.size, _type.size)
+        public Enemy(Enemy_type _type, Vector2 _position) : base(colition_tags.enemy, _type.texture, _type.size, _type.size, _type.color)
         {
 
             
@@ -47,7 +47,7 @@ namespace Space_invaders_01
             this.type = _type;
             this.health = _type.max_HP;
             this.starting_pos = _position;
-            this.color = _type.color;
+            
             
             this.spritesize = _type.size;
             this.damege = _type.damege;
@@ -101,7 +101,10 @@ namespace Space_invaders_01
 
         public override void Draw(SpriteBatch _spriteBatch) 
         {
-            if (has_shot) { run_animation = true; }
+            if (has_shot) 
+            {
+                run_animation = true; 
+            }
 
             base.Draw(_spriteBatch);
             
