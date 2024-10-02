@@ -43,7 +43,9 @@ namespace Space_invaders_01
         public static Color space_black;
         public static Color space_purple;
         public static Color space_teal;
-        public static Color space_lavender1;
+        public static Color space_lavender;
+        public static Color space_lavender_dark;
+        public static Color space_lavender_light;
 
 
         static SpriteManeger()
@@ -81,6 +83,9 @@ namespace Space_invaders_01
             space_oragne = new Color(244, 80, 80);
             space_purple = new Color(64, 18, 139);
             space_teal = new Color(52, 128, 151);
+            space_lavender_light = new Color(160, 118, 249);
+            space_lavender = new Color(157, 118, 193);
+            space_lavender_dark = new Color(80, 64, 153);
         }
 
 
