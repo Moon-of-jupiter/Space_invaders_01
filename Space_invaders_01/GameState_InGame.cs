@@ -91,14 +91,14 @@ namespace Space_invaders_01
             };
         }
 
-        public void Initiate_UI() // typ temp
+        public void Initiate_UI()
         {
             HUD_element[] game_UI = new HUD_element[4];
-            game_UI[0] = new HUD_element(Game1.font_1,new Vector2(10,10),SpriteManeger.space_teal, "SPACE   INVADERS");
+            game_UI[0] = new HUD_element(Game1.font_1,new Vector2(10,10), SpriteManeger.space_lavender_light, "SPACE   INVADERS");
 
-            game_UI[1] = new HUD_element(Game1.font_1, new Vector2(15, 30), SpriteManeger.space_oragne, "Health: ");
-            game_UI[2] = new HUD_element(Game1.font_1, new Vector2(90, 30), SpriteManeger.space_white, "Wave: ");
-            game_UI[3] = new HUD_element(Game1.font_1, new Vector2(160, 30), Color.Gold, "Score: ");
+            game_UI[1] = new HUD_element(Game1.font_1, new Vector2(15, 30), SpriteManeger.ailien_mint, "Health: ");
+            game_UI[2] = new HUD_element(Game1.font_1, new Vector2(90, 30), SpriteManeger.ailien_mint, "Wave: ");
+            game_UI[3] = new HUD_element(Game1.font_1, new Vector2(160, 30), SpriteManeger.ailien_mint, "Score: ");
 
             RTD_rectangle[] UI_backgrounds = new RTD_rectangle[1];
 
@@ -108,12 +108,12 @@ namespace Space_invaders_01
             _User_Interface = new HUD(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
         }
 
-        public void Create_Standard_GameSpace() //Temp
+        public void Create_Standard_GameSpace()
         {
-            Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.ship_texture_01, SpriteManeger.space_white, 3, 5, 50, 50, 10, 10, _keybindManeger);
+            Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.ship_texture_01, SpriteManeger.space_white, _TypeManeger.standard_canon, 3, 5, 50, 50, 47, 47, _keybindManeger);
             _GameSpace = new GameSpace(player, levels[level]);
-            _GameSpace._player.curent_weapon = _TypeManeger.standard_Prodectile_type;
-            
+
+            _GameSpace._PowerUpManeger.Spawn_PowerUp(_TypeManeger.pu_duble_canon, new Vector2(0, 0));
          
         }
 

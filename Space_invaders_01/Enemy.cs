@@ -16,6 +16,7 @@ namespace Space_invaders_01
     {
         public Enemy_type type {  get; private set; }
         
+        public PowerUp_Foundation hidden_power_upp {  get; private set; }
         
         public Vector2 starting_pos;
 
@@ -36,12 +37,7 @@ namespace Space_invaders_01
 
         public Enemy(Enemy_type _type, Vector2 _position) : base(colition_tags.enemy, _type.texture, _type.size, _type.size, _type.color)
         {
-
             
-
-            
-
-
 
             //this.horisontal_acceleration = _horisontal_acceleration;
             this.sprite = _type.texture;
@@ -56,7 +52,7 @@ namespace Space_invaders_01
 
             if (type.prodectile != null)
             { 
-                shooting_cooldown = type.prodectile.cooldown * random.Next(1, 40);
+                shooting_cooldown = type.shooting_cooldown * random.Next(1, 40);
             }
         }
 
@@ -72,7 +68,7 @@ namespace Space_invaders_01
                 else
                 {
                     has_shot = true;
-                    shooting_cooldown = type.prodectile.cooldown * random.Next(1, 40);
+                    shooting_cooldown = type.shooting_cooldown * random.Next(1, 40);
                 }
 
 

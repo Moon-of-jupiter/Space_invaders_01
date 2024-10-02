@@ -23,9 +23,9 @@ namespace Space_invaders_01
             enemy_end_zone = _enemy_End_Zone;
         }
 
-        public void player_colition(Enemy _enemy, Player _player)
+        public void Player_Colition(Enemy _enemy, Player _player)
         {
-            if (_player.hitbox.Intersects(_enemy.hitbox) && _player.health > 0)
+            if (Object_Object_Colition(_enemy,_player))
             {
                 _enemy.Set_health(0);
                 _player.Add_health(-1);
@@ -39,25 +39,47 @@ namespace Space_invaders_01
         }
 
 
-
-        
-
-        public void object_projectile_collition(GameObject _target, Prodectile _prodectile)
+        public bool Object_Object_Colition(GameObject A, GameObject B)
         {
-            if( _prodectile == null || _target == null) {  return; }
+            if (A == null || B == null) { return false; }
 
-            if(_target.get_can_colide_with().Contains(_prodectile.get_tag()) || _prodectile.get_can_colide_with().Contains(_target.get_tag()))
+            if (A.get_can_colide_with().Contains(B.get_tag()) || B.get_can_colide_with().Contains(A.get_tag()))
             {
-                if (_target.hitbox.Intersects(_prodectile.hitbox) && _target.health > 0)
+                if (A.hitbox.Intersects(B.hitbox) && A.health > 0 && B.health > 0)
                 {
 
-                    _target.Add_health(-_prodectile.health);
-                    _prodectile.Add_health(-_target.damege);
-
-                    Vector2 ex_point = new Vector2(_prodectile.hitbox.X + _prodectile.hitbox.Width * 0.5f, _prodectile.hitbox.Y);
-                    reference_ExplotionManeger.Random_Explotion_FromPoint(ex_point, 40);
+                    return true;
 
                 }
+            }
+
+            return false;
+        }
+        
+
+        public void Object_Projectile_Collition(GameObject _target, Prodectile _prodectile)
+        {
+            
+            if (Object_Object_Colition(_target,_prodectile))
+            {
+
+                _target.Add_health(-_prodectile.health);
+                _prodectile.Add_health(-_target.damege);
+
+                Vector2 ex_point = new Vector2(_prodectile.hitbox.X + _prodectile.hitbox.Width * 0.5f, _prodectile.hitbox.Y);
+                reference_ExplotionManeger.Random_Explotion_FromPoint(ex_point, 40);
+
+            }
+            
+
+        }
+
+        public void PowerUp_Player_Colition(Player _player, PowerUp_GameObject _powerup)
+        {
+            if (Object_Object_Colition(_player, _powerup))
+            {
+                _powerup.powerup.Colition_Interaction(_player);
+                _powerup.Set_health(0);
             }
 
         }
@@ -77,34 +99,40 @@ namespace Space_invaders_01
         }
 
 
-        public void Run(Player _player, Enemy[] _enemies, List<Prodectile> _prodectiles)
+        public void Run(Player _player, Enemy[] _enemies, Prodectile[] _prodectiles, PowerUp_GameObject[] _powerups)
         {
+
+             for (int i = 0; i < _powerups.Length; i++)
+             {
+                 PowerUp_Player_Colition(_player, _powerups[i]);
+             }
+
             
              if (_enemies.Length != 0)
-            {   
+             {   
                 for (int i = 0; i < _enemies.Length; i++)
                 {
                     
                     while (_enemies[i].health > 0)
                     {
-                        player_colition(_enemies[i], _player);
+                        Player_Colition(_enemies[i], _player);
 
                         Check_Enemy_goal(_enemies[i], _player);
 
 
-                        for (int k = 0; k < _prodectiles.Count; k++)
+                        for (int k = 0; k < _prodectiles.Count(); k++)
                         {
                             if (_prodectiles[k].health > 0)
                             {
-                                object_projectile_collition(_player, _prodectiles[k]);
-                                object_projectile_collition(_enemies[i], _prodectiles[k]);
+                                Object_Projectile_Collition(_player, _prodectiles[k]);
+                                Object_Projectile_Collition(_enemies[i], _prodectiles[k]);
                             }
                         }
 
                         break;
                     }
                 }
-            }
+             }
 
         }
 

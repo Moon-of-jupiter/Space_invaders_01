@@ -16,7 +16,7 @@ namespace Space_invaders_01
     public class EnemyProdectile : Prodectile
     {
         
-        public EnemyProdectile(Prodectile_type _type, Vector2 _staringPos) : base(_type, _staringPos)
+        public EnemyProdectile(Prodectile_type _type, Vector2 _staringPos) : base(_type, _staringPos,0)
         {
             
             tag = colition_tags.prodectile;

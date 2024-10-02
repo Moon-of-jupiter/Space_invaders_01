@@ -17,26 +17,29 @@ namespace Space_invaders_01
     public class Prodectile_type
     {
         public Vector2 hitbox;
-        public int damege;
+        public float damege;
         public float speed;
         public float acceleration;
         //public float motion_timer_counter;
         //public float motion_scaling;
 
-        public Vector2 startoffset;
+        //public Vector2 startoffset;
 
         //public float max_health;
 
-        public int cooldown;
+        //public int cooldown;
         public SpriteSheet sprite;
         
+        
+
         public Color base_color;
 
-        public Prodectile_type(Vector2 _hitbox, Vector2 _startoffset, int _cooldown, int _damege, float _speed, float _acceleration, SpriteSheet _sprite, Color _base_color)
+        public Prodectile_type(Vector2 _hitbox, float _damege, float _speed, float _acceleration, SpriteSheet _sprite, Color _base_color)
         {
-            this.startoffset = _startoffset;
+            
+            //this.startoffset = _startoffset;
             //this.max_health = projectile_health;
-            this.cooldown = _cooldown;
+            //this.cooldown = _cooldown;
             this.hitbox = _hitbox;
             this.damege = _damege;
             this.speed = _speed;

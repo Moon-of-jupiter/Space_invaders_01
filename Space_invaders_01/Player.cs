@@ -19,7 +19,7 @@ namespace Space_invaders_01
 
         public int weapon_cooldown_timer = 0;
         public bool has_shot = false;
-        public Prodectile_type curent_weapon;
+        public Weapon curent_weapon;
 
         public KeybindManeger _keybindManeger;
         
@@ -30,34 +30,45 @@ namespace Space_invaders_01
         public float vel;
 
         //visual properties
-        
-        public Vector2 hitbox_size;
 
-        public float speed;
 
-        public Keys Left_key;
-        public Keys Right_key;
-        public Keys Shoot_key;
 
-        
+        private float speed;
+        private float base_speed;
+
+        public Player_Stat_Upgrade stat_bonus {  get; set; }
+        public int bonus_upgrade_timer {  get; set; } = -1;
+
+        public Keys Left_key { get; set; }
+        public Keys Right_key { get; set; }
+        public Keys Shoot_key { get; set; }
+
+
         public Rectangle spriteBox;
 
-        public Player(Vector2 _position, SpriteSheet _texture, Color _color, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) : base(colition_tags.player, _texture, new Vector2(_sizeX,_sizeY), new Vector2(_hitbox_sizeX,_hitbox_sizeY), _color) {
+        public Player(Vector2 _position, SpriteSheet _texture, Color _color, Weapon _weapon, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) : base(colition_tags.player, _texture, new Vector2(_sizeX,_sizeY), new Vector2(_hitbox_sizeX,_hitbox_sizeY), _color) {
+            stat_bonus = new Player_Stat_Upgrade(0,0);
+            
             damege = 1000;
             
-            can_colide_with = new colition_tags[1] { colition_tags.enemy };
+            can_colide_with = new colition_tags[] { colition_tags.enemy };
 
-            this.health = _starting_health;
+            curent_weapon = _weapon;
+
+            health = _starting_health;
             position = _position;
-            this.vel = 0;
-            this.sprite = _texture;
+            vel = 0;
+            sprite = _texture;
             
-            this.spritesize = new Vector2(_sizeX,_sizeY);
-            this.hitbox_size = new Vector2(_hitbox_sizeX, _hitbox_sizeY);
-            this.size = new Vector2(_sizeX, _sizeY);
-            this.speed = _speed;
+            spritesize = new Vector2(_sizeX,_sizeY);
+            
+            
+            size = new Vector2(_hitbox_sizeX, _hitbox_sizeY);
+            base_speed = _speed;
 
             _keybindManeger = _keys;
+
+            
 
 
             Left_key = _keybindManeger.player_move_left;
@@ -90,7 +101,11 @@ namespace Space_invaders_01
                 {
                     has_shot = true;
                     weapon_cooldown_timer = -curent_weapon.cooldown;
-                    Stagger(curent_weapon.cooldown+1);
+                    if (curent_weapon.stagger_on_cooldown)
+                    {
+                        Stagger(curent_weapon.cooldown + 1);
+                    }
+                    
                     run_animation = true;
                 }
             }
@@ -114,6 +129,21 @@ namespace Space_invaders_01
         
 
         public override void Update() {
+            if(bonus_upgrade_timer == 0)
+            {
+                stat_bonus = new Player_Stat_Upgrade(0, 0);
+                bonus_upgrade_timer = -1;
+            }
+            else
+            {
+                bonus_upgrade_timer--;
+            }
+
+
+            speed = base_speed + stat_bonus.speed;
+            curent_weapon.damege_bonus = stat_bonus.damege;
+
+
             if (health > 0)
             {
                 Intput();

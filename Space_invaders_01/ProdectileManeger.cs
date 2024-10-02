@@ -18,14 +18,20 @@ namespace Space_invaders_01
 
         public ProdectileManeger() { }
 
-        public void Create_Player_Prodjectile(Vector2 pos,Prodectile_type type)
+        public void Create_Player_Prodjectile(Vector2 _pos, Weapon _weapon)
         {
-            prodectiles.Add(new Prodectile(type, pos+type.startoffset));
+            Vector2 starting_pos = new Vector2(_pos.X + _weapon.origin_point.X + _weapon.shoting_pattern[_weapon.weapon_pattern_stage],  _pos.Y + _weapon.origin_point.Y);
+            prodectiles.Add(new Prodectile(_weapon.bullet_type, starting_pos, _weapon.damege_bonus));
+            _weapon.weapon_pattern_stage++;
+            if (_weapon.weapon_pattern_stage > _weapon.shoting_pattern.Count()-1)
+            {
+                _weapon.weapon_pattern_stage = 0;
+            }
         }
 
-        public void Create_Enemy_Prodectile(Vector2 pos, Prodectile_type type)
+        public void Create_Enemy_Prodectile(Vector2 _pos, Prodectile_type _type)
         {
-            prodectiles.Add(new EnemyProdectile(type, pos - type.startoffset));
+            prodectiles.Add(new EnemyProdectile(_type, _pos));
         }
 
         public void Handle_Enemy_Shooting(Enemy[] enemies)

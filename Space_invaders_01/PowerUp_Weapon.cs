@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using SharpDX.Direct3D9;
 using Space_invaders_01;
 
 namespace Space_invaders_01
 {
-    public class PowerUp_Stats : PowerUp_Foundation
+    public class PowerUp_Weapon : PowerUp_Foundation
     {
-        public Player_Stat_Upgrade bonus {  get; private set; }
+        public Weapon weapon;
 
-        public PowerUp_Stats(SpriteSheet _sprite, Color _color, Vector2 _sprite_size, Vector2 _hitbox_size, float _speed, int speed_bonus, int damege_bonus) : base(_sprite,_color,_sprite_size,_hitbox_size,_speed)
+        public PowerUp_Weapon(Weapon _weapon, SpriteSheet _sprite, Color _color, Vector2 _sprite_size, Vector2 _hitbox_size, float _speed) : base(_sprite, _color, _sprite_size, _hitbox_size, _speed)
         {
+            weapon = _weapon;
 
         }
 
@@ -23,8 +25,9 @@ namespace Space_invaders_01
         {
             base.Colition_Interaction(_player);
 
-            _player.stat_bonus = bonus;
+            _player.curent_weapon = weapon;
         }
+
 
 
     }

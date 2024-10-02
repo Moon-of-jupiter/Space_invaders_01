@@ -38,7 +38,8 @@ namespace Space_invaders_01
                 }
             };
 
-            UserInterface = new UI_maneger( _keybindManeger, _ui);
+            UserInterface = new UI_maneger( _keybindManeger);
+            UserInterface.Initialize(_ui);
         }
 
 

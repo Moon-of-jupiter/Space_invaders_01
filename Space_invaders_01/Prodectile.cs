@@ -14,19 +14,19 @@ namespace Space_invaders_01
 {
     public class Prodectile : GameObject
     {
-        
-        
-        
+
+        public float damege_bonus { get; set; } // for damege bonus power up
+
         public Vector2 vel;
         public float speed {  get; protected set; }
         
 
         public Prodectile_type type { get; protected set; }
 
-        public Prodectile(Prodectile_type _type, Vector2 _staringPos) : base(colition_tags.prodectile, _type.sprite, _type.hitbox, _type.hitbox, _type.base_color)
+        public Prodectile(Prodectile_type _type, Vector2 _staringPos, float _damege_bonus) : base(colition_tags.prodectile, _type.sprite, _type.hitbox, _type.hitbox, _type.base_color)
         {
-            
-            can_colide_with = new colition_tags[1] { colition_tags.enemy };
+            damege_bonus = _damege_bonus;
+            can_colide_with = new colition_tags[] { colition_tags.enemy };
 
             
             this.type = _type;

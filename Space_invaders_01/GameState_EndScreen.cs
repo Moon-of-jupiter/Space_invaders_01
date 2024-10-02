@@ -27,7 +27,7 @@ namespace Space_invaders_01
             Color _color = Color.Tomato;
             if (_win)
             {
-                _color = Color.Lime;
+                _color = SpriteManeger.ailien_mint;
             }
 
             previous_GameState = _previous_GameState;
@@ -40,7 +40,8 @@ namespace Space_invaders_01
                 }
             };
 
-            userinterface = new UI_maneger(_keys, _ui);
+            userinterface = new UI_maneger(_keys);
+            userinterface.Initialize(_ui);
 
         }
 

@@ -36,6 +36,8 @@ namespace Space_invaders_01
 
         public static SpriteSheet game_over01;
 
+        public static SpriteSheet blank_powerup;
+
 
 
         public static Color space_white;
@@ -46,6 +48,7 @@ namespace Space_invaders_01
         public static Color space_lavender;
         public static Color space_lavender_dark;
         public static Color space_lavender_light;
+        public static Color ailien_mint;
 
 
         static SpriteManeger()
@@ -73,6 +76,7 @@ namespace Space_invaders_01
 
             game_over01 = new SpriteSheet(content, "game_over", false, false, 1, 0, 0);
 
+            blank_powerup = new SpriteSheet(content, "BlankPowerUp", false, false, 1, 0, 0);
 
             pixel = new SpriteSheet(content, "Pixel", false, false, 1, 0,0);
 
@@ -86,6 +90,7 @@ namespace Space_invaders_01
             space_lavender_light = new Color(160, 118, 249);
             space_lavender = new Color(157, 118, 193);
             space_lavender_dark = new Color(80, 64, 153);
+            ailien_mint = new Color(0, 255, 202);
         }
 
 

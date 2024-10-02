@@ -35,7 +35,7 @@ namespace Space_invaders_01
         private float animation_timer = 0;
         private int animation_sleep_timer;
 
-        public enum colition_tags { other = 0,  player = 1, enemy = 2, prodectile = 3}
+        public enum colition_tags { other = 0,  player = 1, enemy = 2, prodectile = 3, powerup = 4}
         protected colition_tags tag;
         protected colition_tags[] can_colide_with;
 

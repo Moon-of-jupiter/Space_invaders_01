@@ -16,6 +16,8 @@ namespace Space_invaders_01
     {
         public EnemyPhalanx[] waves {  get; private set; }
 
+        
+
         public int wave_counter {  get; private set; } = 0;
 
         public bool is_cleared = false;

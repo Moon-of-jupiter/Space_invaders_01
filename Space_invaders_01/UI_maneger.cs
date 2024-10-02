@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -19,16 +20,23 @@ namespace Space_invaders_01
 
         KeybindManeger _keybindManeger;
         
-        public UI_maneger(KeybindManeger _keys, UserInterface_Foundation[][] _ui_ellements)
+        public UI_maneger(KeybindManeger _keys)
         {
-            
+            _keybindManeger = _keys;
+
+
+
+        }
+
+        public void Initialize(UserInterface_Foundation[][] _ui_ellements)
+        {
             UI_ellements = _ui_ellements;
 
-            for(int i = 0; i < UI_ellements.Length; i++)
+            for (int i = 0; i < UI_ellements.Length; i++)
             {
                 for (int j = 0; j < UI_ellements[i].Length; j++)
                 {
-                    UI_ellements[i][j]._keybindManeger = _keys;
+                    UI_ellements[i][j]._keybindManeger = _keybindManeger;
                 }
 
             }

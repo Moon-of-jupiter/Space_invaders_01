@@ -20,11 +20,14 @@ namespace Space_invaders_01
         public Color color;
         public SpriteSheet texture;
 
+        public int shooting_cooldown;
+
         public bool is_animated;
         
 
-        public Enemy_type(Prodectile_type _prodectile,  float _max_HP, float _damege, int _points, Vector2 _size, Color _color, SpriteSheet _texture, bool _animated)
+        public Enemy_type(Prodectile_type _prodectile, int _shoot_cooldown,  float _max_HP, float _damege, int _points, Vector2 _size, Color _color, SpriteSheet _texture, bool _animated)
         {
+            shooting_cooldown = _shoot_cooldown;
             is_animated = _animated;
             max_HP = _max_HP;
             damege = _damege;

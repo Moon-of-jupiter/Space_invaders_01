@@ -22,9 +22,12 @@ namespace Space_invaders_01
 
         public GameState_MainMenue(KeybindManeger _keys, GameState_Foundation _previous_gamestate) : base(_keys, _previous_gamestate)
         {
+
+            userinterface = new UI_maneger(_keybindManeger);
+
             UserInterface_Foundation[] _uipg1 = new UserInterface_Foundation[1]
             {
-                new UserInterface_Switch_GameState(SpriteManeger.play_button_01.texture, SpriteManeger.space_teal, "", Game1.Window_size*0.5f, new Vector2(200, 100), new GameState_InGame(_keys, this, 1), this)
+                new UserInterface_next_page(SpriteManeger.play_button_01.texture, SpriteManeger.space_teal, "", Game1.Window_size*0.5f, new Vector2(200, 100), userinterface, 1)
             };
             UserInterface_Foundation[] _uipg2 = new UserInterface_Foundation[3]
             {
@@ -39,8 +42,9 @@ namespace Space_invaders_01
 
            
 
-            userinterface = new UI_maneger(_keybindManeger, _ui);
-            userinterface.page = 1;
+            
+            userinterface.Initialize(_ui);
+            userinterface.page = 0;
         }
 
         public override void Update()
