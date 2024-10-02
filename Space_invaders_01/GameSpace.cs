@@ -54,8 +54,10 @@ namespace Space_invaders_01
         
         public void Update()
         {
+
             
             _player.Update();
+
             
             if(_player.has_shot == true)
             {
@@ -64,7 +66,7 @@ namespace Space_invaders_01
 
             _ProdectileManeger.Update();
 
-            _EnemyWaveManeger.Update();
+            _EnemyWaveManeger.Update((int)_player.health);
 
             _ProdectileManeger.Handle_Enemy_Shooting(_EnemyWaveManeger.Get_flat_array_of_current_wave());
 

@@ -27,8 +27,8 @@ namespace Space_invaders_01
         {
             if (_player.hitbox.Intersects(_enemy.hitbox) && _player.health > 0)
             {
-                _enemy.health = 0;
-                _player.health--;
+                _enemy.Set_health(0);
+                _player.Add_health(-1);
                 _player.Stagger(60);
 
                 Vector2 ex_point = new Vector2(_enemy.hitbox.X + _enemy.hitbox.Width * 0.5f, _enemy.hitbox.Bottom);
@@ -51,8 +51,8 @@ namespace Space_invaders_01
                 if (_target.hitbox.Intersects(_prodectile.hitbox) && _target.health > 0)
                 {
 
-                    _target.health -= _prodectile.health;
-                    _prodectile.health -= _target.damege;
+                    _target.Add_health(-_prodectile.health);
+                    _prodectile.Add_health(-_target.damege);
 
                     Vector2 ex_point = new Vector2(_prodectile.hitbox.X + _prodectile.hitbox.Width * 0.5f, _prodectile.hitbox.Y);
                     reference_ExplotionManeger.Random_Explotion_FromPoint(ex_point, 40);
@@ -66,8 +66,9 @@ namespace Space_invaders_01
         {        
             if (enemy_end_zone.Intersects(_enemy.exit_hitbox()))
             {
-                _enemy.health = 0;
-                _player.health--;
+
+                _enemy.Set_health(0);
+                _player.Add_health(-1);
 
                 reference_ExplotionManeger.Random_Explotion_FromPoint(new Vector2(_enemy.position.X+Game1.Window_size.X*0.5f, Game1.Window_size.Y),400);
             }

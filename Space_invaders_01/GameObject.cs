@@ -15,15 +15,15 @@ namespace Space_invaders_01
     public class GameObject
     {
         
-        public SpriteSheet sprite;
-        public Vector2 position;
-        public Vector2 size;
-        public Vector2 spritesize;
-        public Rectangle hitbox;
-        public Rectangle spritebox;
-        public Color color;
-        public float health;
-        public float damege;
+        public SpriteSheet sprite { get; set; }
+        public Vector2 position { get; set; }
+        public Vector2 size { get; set; }
+        public Vector2 spritesize { get; set; }
+        public Rectangle hitbox { get; set; }
+        public Rectangle spritebox { get; set; }
+        public Color color { get; set; }
+        public float health {  get; protected set; }
+        public float damege { get; set; }
         Random random = new Random();
 
         
@@ -74,6 +74,26 @@ namespace Space_invaders_01
             }
 
             return colition;
+        }
+
+        public void Add_health(float _health)
+        {
+            health += _health;
+
+            if(health < 0)
+            {
+                health = 0;
+            }
+        }
+
+        public void Set_health(float _health)
+        {
+            health = _health;
+
+            if (health < 0)
+            {
+                health = 0;
+            }
         }
 
 

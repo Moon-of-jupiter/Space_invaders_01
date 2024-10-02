@@ -93,15 +93,16 @@ namespace Space_invaders_01
 
         public void Initiate_UI() // typ temp
         {
-            HUD_element[] game_UI = new HUD_element[3];
-            game_UI[0] = new HUD_element(Game1.font_1,new Vector2(10,10),Color.Wheat, "SPACE   INVADERS");
+            HUD_element[] game_UI = new HUD_element[4];
+            game_UI[0] = new HUD_element(Game1.font_1,new Vector2(10,10),SpriteManeger.space_teal, "SPACE   INVADERS");
 
-            game_UI[1] = new HUD_element(Game1.font_1, new Vector2(15, 30), new Color(230,100,100), "Health: ");
-            game_UI[2] = new HUD_element(Game1.font_1, new Vector2(100, 30), Color.Gold, "Score: ");
+            game_UI[1] = new HUD_element(Game1.font_1, new Vector2(15, 30), SpriteManeger.space_oragne, "Health: ");
+            game_UI[2] = new HUD_element(Game1.font_1, new Vector2(90, 30), SpriteManeger.space_white, "Wave: ");
+            game_UI[3] = new HUD_element(Game1.font_1, new Vector2(160, 30), Color.Gold, "Score: ");
 
             RTD_rectangle[] UI_backgrounds = new RTD_rectangle[1];
 
-            UI_backgrounds[0] = new RTD_rectangle(new Color(50,50,55),Game1.pixel ,new Vector2(0,0), (int)Game1.Window_size.X, 60);
+            UI_backgrounds[0] = new RTD_rectangle(SpriteManeger.space_purple,Game1.pixel ,new Vector2(0,0), (int)Game1.Window_size.X, 60);
 
 
             _User_Interface = new HUD(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
@@ -183,7 +184,8 @@ namespace Space_invaders_01
 
 
             _User_Interface.text_interface[1].Uppdate_UI_numb(_GameSpace._player.health);
-            _User_Interface.text_interface[2].Uppdate_UI_numb(_GameSpace.score);
+            _User_Interface.text_interface[2].Uppdate_UI_numb(_GameSpace._EnemyWaveManeger.wave_counter+1);
+            _User_Interface.text_interface[3].Uppdate_UI_numb(_GameSpace.score);
             //add ui uppdate
 
         }

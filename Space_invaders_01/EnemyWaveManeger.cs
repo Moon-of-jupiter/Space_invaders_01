@@ -50,7 +50,7 @@ namespace Space_invaders_01
         }
 
 
-        public void Update()
+        public void Update(int _player_lives_left)
         {
             score_this_tick = 0;
 
@@ -65,7 +65,7 @@ namespace Space_invaders_01
                 if (waves[wave_counter].Count() <= 0)
                 {
                     wave_counter++;
-                    score_this_tick += 300;
+                    score_this_tick += 300 * _player_lives_left;
                 }
 
             }

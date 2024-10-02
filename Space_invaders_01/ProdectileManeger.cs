@@ -71,7 +71,7 @@ namespace Space_invaders_01
 
             for (int i = 0; i < prodectiles.Count; i++)
             {
-                if (prodectiles[i].hitbox.Bottom < -10 || prodectiles[i].hitbox.Top > Game1.Window_size.Y + 10) { prodectiles[i].health = -100; }
+                if (prodectiles[i].hitbox.Bottom < -10 || prodectiles[i].hitbox.Top > Game1.Window_size.Y + 10) { prodectiles[i].Set_health(0); }
                 prodectiles[i].Update();
 
                 

@@ -34,6 +34,8 @@ namespace Space_invaders_01
         public static SpriteSheet lvl2_button;
         public static SpriteSheet lvl3_button;
 
+        public static SpriteSheet game_over01;
+
 
 
         public static Color space_white;
@@ -41,6 +43,7 @@ namespace Space_invaders_01
         public static Color space_black;
         public static Color space_purple;
         public static Color space_teal;
+        public static Color space_lavender1;
 
 
         static SpriteManeger()
@@ -53,7 +56,7 @@ namespace Space_invaders_01
             alien_spritesheet_02 = new SpriteSheet(content, "alien_spritesheet02", true, false, 4, 25,0); // 43,10 // frame 1 = 1, frame 2 = 11, frame 3 = 22, frame 3 = 33
             alien_shoot_spritesheet_01 = new SpriteSheet(content, "alien_sprite_sheet_shoot01", true, true, 4, 5,0);
 
-            ship_texture_01 = new SpriteSheet(content, "ship_texture01", false, false, 1, 0, 0);
+            ship_texture_01 = new SpriteSheet(content, "spaceship_shoot_sprite_sheet", true, true, 3, 5, 0);
 
             stars_spritesheet_01 = new SpriteSheet(content, "stars_sprite_sheet01", true, false, 5, 25, 10);
             stars_spritesheet_02 = new SpriteSheet(content, "stars_sprite_sheet02", true, false, 5, 15, 25);
@@ -66,6 +69,7 @@ namespace Space_invaders_01
             lvl2_button = new SpriteSheet(content, "lvl2_texture", false, false, 1, 0, 0);
             lvl3_button = new SpriteSheet(content, "lvl3_texture", false, false, 1, 0, 0);
 
+            game_over01 = new SpriteSheet(content, "game_over", false, false, 1, 0, 0);
 
 
             pixel = new SpriteSheet(content, "Pixel", false, false, 1, 0,0);

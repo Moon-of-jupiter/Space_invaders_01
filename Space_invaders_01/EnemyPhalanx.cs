@@ -181,7 +181,7 @@ namespace Space_invaders_01
             score_this_tick = 0;
             if (check_border_colition(left_border))
             {
-                if (direction < 0)
+                if (x_velocety < 0)
                 {
                     direction = 1;
                     border_colition_logic();
@@ -189,7 +189,7 @@ namespace Space_invaders_01
             }
             else if (check_border_colition(right_border))
             {
-                if (direction > 0)
+                if (x_velocety > 0)
                 {
                     direction = -1;
                     border_colition_logic();
@@ -200,8 +200,17 @@ namespace Space_invaders_01
 
             if (game_over)
             {
-                death_acceleration = 1;
-                x_velocety = 1;
+                death_acceleration = 0;
+                if(x_velocety < 0)
+                {
+                    x_velocety = -1;
+                }
+                else
+                {
+                    x_velocety = 1;
+                }
+                x_velocety *= 10;
+                
             }
 
 

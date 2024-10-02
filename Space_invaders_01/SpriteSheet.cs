@@ -15,6 +15,7 @@ namespace Space_invaders_01
 {
     public class SpriteSheet
     {
+        // en klass som håller en textur + information till animation
         
         public Texture2D texture;
         public bool is_animated;

@@ -91,6 +91,7 @@ namespace Space_invaders_01
                     has_shot = true;
                     weapon_cooldown_timer = -curent_weapon.cooldown;
                     Stagger(curent_weapon.cooldown+1);
+                    run_animation = true;
                 }
             }
             else
@@ -117,6 +118,8 @@ namespace Space_invaders_01
             {
                 Intput();
 
+                
+
                 if (stagger_timer >= 0)
                 {
 
@@ -124,11 +127,13 @@ namespace Space_invaders_01
                 }
                 else { stagger_timer++; }
 
-                Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
+                base.Update();
 
-
-                hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, hitbox_size + size);
-                spriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
+                
+            }
+            else
+            {
+                health = 0;
             }
             
             
