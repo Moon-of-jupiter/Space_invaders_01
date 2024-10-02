@@ -18,6 +18,7 @@ namespace Space_invaders_01
         
         
         public Vector2 starting_pos;
+
         
 
         public Vector2 vel;
@@ -82,15 +83,22 @@ namespace Space_invaders_01
 
         public void Update(float x, float y) {
 
-            
-
-            position = new Vector2(starting_pos.X += x,starting_pos.Y+y);
-
-
-            
-            base.Update();
 
             shoot();
+            
+
+            
+
+            position = new Vector2(starting_pos.X += x, starting_pos.Y + y);
+
+            if (has_shot)
+            {
+                run_animation = true;
+            }
+
+            base.Update();
+
+            
         }
 
         public Rectangle exit_hitbox()
@@ -101,10 +109,7 @@ namespace Space_invaders_01
 
         public override void Draw(SpriteBatch _spriteBatch) 
         {
-            if (has_shot) 
-            {
-                run_animation = true; 
-            }
+            
 
             base.Draw(_spriteBatch);
             

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
 using Space_invaders_01;
 
 namespace Space_invaders_01
@@ -80,6 +79,26 @@ namespace Space_invaders_01
 
         public virtual void Update()
         {
+            if (animation_sleep_timer <= 0 && (sprite.is_triggerd == false || run_animation))
+            {
+                
+                if (animation_timer >= sprite.frames_per_step)
+                {
+                    animation_step++;
+                    animation_timer = 0;
+                }
+
+                if (animation_step >= sprite.steps)
+                {
+                    animation_step = 0;
+                    run_animation = false;
+                }
+
+                
+
+
+
+            }
             Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
 
 
@@ -102,21 +121,9 @@ namespace Space_invaders_01
                     int converted_animation_step = animation_step * (texture.Height + 1);
                     Rectangle sourceRectangle = new Rectangle(converted_animation_step, 0, texture.Height, texture.Height);
                     _spriteBatch.Draw(texture, SpriteBox, sourceRectangle, color);
-                    if (animation_timer >= sprite.frames_per_step)
-                    {
-                        animation_step++;
-                        animation_timer = 0;
-                    }
 
-                    if (animation_step >= sprite.steps)
-                    {
-                        animation_step = 0;
-                        run_animation = false;
-                    }
 
                     animation_timer += animation_multiplier;
-
-
 
                 }
                 else

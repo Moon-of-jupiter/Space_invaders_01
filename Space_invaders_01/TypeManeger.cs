@@ -31,7 +31,7 @@ namespace Space_invaders_01
 
         public TypeManeger()
         {
-             enemy_Prodectile_type = new Prodectile_type(new Vector2(9, 40), new Vector2(0, 0), 40, 1, 10, 0.1f, SpriteManeger.pixel, Color.DarkRed);
+             enemy_Prodectile_type = new Prodectile_type(new Vector2(9, 40), new Vector2(0, 0), 40, 1, 10, 0.1f, SpriteManeger.pixel, SpriteManeger.space_oragne);
 
              standard_Prodectile_type = new Prodectile_type(new Vector2(10, 30), new Vector2(0, -20), 15, 1, 100, 0.7f, SpriteManeger.pixel, SpriteManeger.space_oragne);
              cheat_Prodectile_type = new Prodectile_type(new Vector2(15, 40), new Vector2(0, -20), 1, 1000, 150, 0.4f, SpriteManeger.pixel, Color.Lime);

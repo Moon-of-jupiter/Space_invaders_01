@@ -56,6 +56,7 @@ namespace Space_invaders_01
                 }
             }
 
+            background.Update();
 
             current_gamestate.Update();
 

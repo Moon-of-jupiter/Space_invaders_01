@@ -41,6 +41,9 @@ namespace Space_invaders_01
         public override void Update()
         {
             base.Update();
+
+            previous_GameState.Update();
+
             userinterface.Run();
         }
 

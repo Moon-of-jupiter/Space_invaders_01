@@ -25,7 +25,7 @@ namespace Space_invaders_01
 
         public void player_colition(Enemy _enemy, Player _player)
         {
-            if (_player.hitbox.Intersects(_enemy.hitbox))
+            if (_player.hitbox.Intersects(_enemy.hitbox) && _player.health > 0)
             {
                 _enemy.health = 0;
                 _player.health--;
@@ -48,7 +48,7 @@ namespace Space_invaders_01
 
             if(_target.get_can_colide_with().Contains(_prodectile.get_tag()) || _prodectile.get_can_colide_with().Contains(_target.get_tag()))
             {
-                if (_target.hitbox.Intersects(_prodectile.hitbox))
+                if (_target.hitbox.Intersects(_prodectile.hitbox) && _target.health > 0)
                 {
 
                     _target.health -= _prodectile.health;
@@ -68,6 +68,8 @@ namespace Space_invaders_01
             {
                 _enemy.health = 0;
                 _player.health--;
+
+                reference_ExplotionManeger.Random_Explotion_FromPoint(new Vector2(_enemy.position.X+Game1.Window_size.X*0.5f, Game1.Window_size.Y),400);
             }
                 
             

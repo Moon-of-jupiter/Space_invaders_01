@@ -54,6 +54,7 @@ namespace Space_invaders_01
         
         public void Update()
         {
+            
             _player.Update();
             
             if(_player.has_shot == true)

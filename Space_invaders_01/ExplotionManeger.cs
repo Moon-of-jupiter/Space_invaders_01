@@ -15,13 +15,18 @@ namespace Space_invaders_01
     {
         public List<Explotion> explotions = new List<Explotion>();
 
-        private int standard_lastyness = 5;
+        
         private Random random = new Random();
 
-        public void Explotion_FromPoint(Vector2 _epicenter, int _size, Color _starting_color, Texture2D _texture, int _lastyness)
+        
+        
+
+        public void Explotion_FromPoint(Vector2 _epicenter, int _size, Color _starting_color, SpriteSheet _sprite, int _lastyness)
         {
-            Explotion explotion = new Explotion(_epicenter, _size, _starting_color, _texture, _lastyness);
+            Explotion explotion = new Explotion(_epicenter, _size, _starting_color, _sprite, _lastyness);
             explotions.Add(explotion);
+
+            
         }
 
         public void Random_Explotion_FromPoint(Vector2 _epicenter, int _aproximeat_size)
@@ -32,16 +37,18 @@ namespace Space_invaders_01
             int r4 = random.Next(100, 200);
             int r5 = random.Next(0, 5);
 
+            Color _color = SpriteManeger.space_oragne;
 
-            Color _starting_color = new Color(200 + r1 + r2,150 + r1,100 + r3);
-            Texture2D _texture = Game1.pixel; // temp
+            Color _starting_color = new Color(_color.R + r1 + r2,_color.G + r1,_color.B + r3);
+
+            SpriteSheet _sprite = SpriteManeger.explotion_sprite_sheet_01;
 
 
             int _size = (int)(_aproximeat_size * (float)(r4*0.01f));
-            int _lastyness = standard_lastyness + r5;
+            int _lastyness = _sprite.frames_per_step * _sprite.steps;
 
 
-            Explotion_FromPoint(_epicenter,_size,_starting_color, _texture, _lastyness);
+            Explotion_FromPoint(_epicenter,_size, _starting_color, _sprite, _lastyness);
 
 
         }
@@ -71,6 +78,7 @@ namespace Space_invaders_01
         {
             foreach (Explotion splotion in explotions)
             {
+                
                 splotion.Draw( _spriteBatch );
             }
         }

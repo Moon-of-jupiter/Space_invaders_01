@@ -13,42 +13,42 @@ using Space_invaders_01;
 
 namespace Space_invaders_01
 {
-    public class Explotion
+    public class Explotion : GameObject
     {
-        public Vector2 epicenter_point {  get; private set; }
-        public int size {  get; private set; }
+        
+        
         public Color starting_color { get; private set; }
         public Color end_color { get; private set; }
-        public Texture2D texture { get; private set; }
+        
 
         public int timer { get; private set; }
         private int timer_start;
 
 
-        public Explotion(Vector2 _center, int _size, Color _starting_color, Texture2D _texture, int _lastyness)
+        public Explotion(Vector2 _center, int _size, Color _starting_color, SpriteSheet _sprite, int _lastyness) : base(colition_tags.other, _sprite, new Vector2(_size,_size), new Vector2(), _starting_color)
         {
-            epicenter_point = _center;
-            size = _size;
+            position = new Vector2( _center.X - Game1.Window_size.X*0.5f, _center.Y);
+            
             starting_color = _starting_color;
             //end_color = _end_color;
-            texture = _texture;
+            sprite = _sprite;
             timer = _lastyness;
             timer_start = _lastyness;
+            run_animation = true;
         }
 
 
-        public void Update()
+        public override void Update()
         {
+            
+
+            base.Update();
             timer--;
         }
 
-        public void Draw(SpriteBatch _spriteBatch)
+        public override void Draw(SpriteBatch _spriteBatch)
         {
-            Vector2 offset = new Vector2(epicenter_point.X-size*0.5f, epicenter_point.Y - size*0.5f);
-            Rectangle rectangle_to_draw = new Rectangle((int)offset.X, (int)offset.Y,size,size);
-            
-            
-            _spriteBatch.Draw(texture,rectangle_to_draw,starting_color);
+            base.Draw(_spriteBatch);
 
         }
 

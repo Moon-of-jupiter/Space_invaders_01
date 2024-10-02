@@ -17,6 +17,7 @@ namespace Space_invaders_01
     public class EnemyPhalanx
     {
 
+        public bool game_over = false;
         public int score_this_tick {  get; private set; }
 
         private Rectangle left_border;
@@ -197,15 +198,20 @@ namespace Space_invaders_01
             }
             else { has_advanced = false; }
 
+            if (game_over)
+            {
+                death_acceleration = 1;
+                x_velocety = 1;
+            }
+
 
             for (int i = 0; i < phalanx.GetLength(0); i++)
             {
                 for (int j = 0; j < phalanx.GetLength(1); j++)
-                {
-                    
-                    
+                {                    
                     if (phalanx[i, j] != null)
                     {
+                        
                         if (phalanx[i, j].health <= 0)
                         {
                             score_this_tick += phalanx[i, j].type.points_uppon_destruction;
@@ -215,6 +221,7 @@ namespace Space_invaders_01
                         }
                         else
                         {
+                            
                             phalanx[i, j].Update(x_velocety, advancement);
                         }
                         

@@ -32,6 +32,7 @@ namespace Space_invaders_01
         private bool FBF_has_pressed;
         private int FBF_counter = 0;
 
+        public bool gameover = false;
 
 
         public GameState_InGame(KeybindManeger _keys, GameState_Foundation _previous_gamestate , int _level) :base(_keys, _previous_gamestate)
@@ -108,7 +109,7 @@ namespace Space_invaders_01
 
         public void Create_Standard_GameSpace() //Temp
         {
-            Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.pixel, Color.Wheat, 3, 5, 50, 50, 10, 10, _keybindManeger);
+            Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.ship_texture_01, SpriteManeger.space_white, 3, 5, 50, 50, 10, 10, _keybindManeger);
             _GameSpace = new GameSpace(player, levels[level]);
             _GameSpace._player.curent_weapon = _TypeManeger.standard_Prodectile_type;
             
@@ -124,6 +125,8 @@ namespace Space_invaders_01
                 FBF_paused = false;
                 FBF_has_pressed = true;
                 FBF = true;
+
+                
 
             }
             else if (Keyboard.GetState().IsKeyDown(_keybindManeger.frame_by_frame) == false)
@@ -147,19 +150,30 @@ namespace Space_invaders_01
             {
 
 
-                if (_GameSpace._player.health <= 0)
+                if (_GameSpace._player.health <= 0 && gameover == false)
                 {
                     New_Gamestate(new GameState_EndScreen(_keybindManeger,this,false));
+                    gameover = true;
+                    
+                    return;
+
+                }
+
+                if (_GameSpace._EnemyWaveManeger.is_cleared && gameover == false)
+                {
+                    New_Gamestate(new GameState_EndScreen(_keybindManeger, this, true));
+                    gameover = true;
+                    
                     return;
                 }
 
-                if (_GameSpace._EnemyWaveManeger.is_cleared)
+                if (_GameSpace._EnemyWaveManeger.waves[_GameSpace._EnemyWaveManeger.wave_counter] != null)
                 {
-                    New_Gamestate(new GameState_EndScreen(_keybindManeger, this, true));
-                    return;
+                    _GameSpace._EnemyWaveManeger.waves[_GameSpace._EnemyWaveManeger.wave_counter].game_over = gameover;
                 }
 
                 base.Update();
+                
                 _GameSpace.Update();
 
                 FBF_paused = true;

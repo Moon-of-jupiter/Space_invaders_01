@@ -15,7 +15,7 @@ namespace Space_invaders_01
 {
     public class GameState_MainMenue : GameState_Foundation
     {
-        private GameObject[] stars = new GameObject[43];
+        
         private float source_rectangle_trevertial;
         private UI_maneger userinterface;
         private Random random = new Random();
@@ -24,58 +24,23 @@ namespace Space_invaders_01
         {
             UserInterface_Foundation[] _uipg1 = new UserInterface_Foundation[1]
             {
-                new UserInterface_Switch_GameState(Game1.pixel, Color.White, "return", Game1.Window_size*0.5f, new Vector2(100, 50), new GameState_InGame(_keys, this, 3), this)
+                new UserInterface_Switch_GameState(SpriteManeger.play_button_01.texture, SpriteManeger.space_teal, "", Game1.Window_size*0.5f, new Vector2(200, 100), new GameState_InGame(_keys, this, 1), this)
             };
-            UserInterface_Foundation[] _uipg2 = new UserInterface_Foundation[1]
+            UserInterface_Foundation[] _uipg2 = new UserInterface_Foundation[3]
             {
-                new UserInterface_Switch_GameState(Game1.pixel, Color.White, "return", Game1.Window_size*0.5f, new Vector2(200, 50), new GameState_InGame(_keys, this, 1), this)
+                new UserInterface_Switch_GameState(SpriteManeger.lvl1_button.texture, SpriteManeger.space_teal, "",new Vector2(Game1.Window_size.X *0.5f , Game1.Window_size.Y *0.5f - 120), new Vector2(200, 100), new GameState_InGame(_keys, this, 1), this),
+                new UserInterface_Switch_GameState(SpriteManeger.lvl2_button.texture, SpriteManeger.space_teal, "",new Vector2(Game1.Window_size.X *0.5f , Game1.Window_size.Y *0.5f), new Vector2(200, 100), new GameState_InGame(_keys, this, 2), this),
+                new UserInterface_Switch_GameState(SpriteManeger.lvl3_button.texture, SpriteManeger.space_teal, "",new Vector2(Game1.Window_size.X *0.5f , Game1.Window_size.Y *0.5f + 120), new Vector2(200, 100), new GameState_InGame(_keys, this, 3), this)
             };
 
             UserInterface_Foundation[][] _ui = new UserInterface_Foundation[2][] {_uipg1, _uipg2};
 
-            int star_max_size = 3;
-            int star_min_size = 1;
-
-
-            for(int i = 0; i < stars.Count(); i++)
-            {
-                int size;
-                if (i > 3)
-                {
-                    size = random.Next(star_min_size, star_max_size);
-                    size *= size * size;
-                }
-                else
-                {
-                    size = random.Next(star_min_size, star_max_size) * 20;
-                }
-
-                
-
-                Color rColor = new Color(random.Next(200,255), random.Next(200, 255), random.Next(200, 255));
-
-                if (i < stars.Count() * 0.5f)
-                {
-                    stars[i] = new GameObject(GameObject.colition_tags.other, SpriteManeger.stars_spritesheet_01, new Vector2(size, size), new Vector2(0, 0), rColor);
-
-                }
-                else
-                {
-                    stars[i] = new GameObject(GameObject.colition_tags.other, SpriteManeger.stars_spritesheet_02, new Vector2(size, size), new Vector2(0, 0), rColor);
-                }
-
-                int randX = random.Next(-(int)(Game1.Window_size.X * 0.5f), (int)(Game1.Window_size.X*0.5f));
-                int randY = random.Next(0, (int)Game1.Window_size.Y);
-
-                stars[i].position = new Vector2(randX, randY);
-
-
-            }
+            
 
            
 
             userinterface = new UI_maneger(_keybindManeger, _ui);
-
+            userinterface.page = 1;
         }
 
         public override void Update()
@@ -90,10 +55,7 @@ namespace Space_invaders_01
             
             base.Draw(_spriteBatch);
             
-            foreach(GameObject star in stars)
-            {
-                //star.Draw(_spriteBatch);
-            }
+            
 
             userinterface.Draw(_spriteBatch);
             

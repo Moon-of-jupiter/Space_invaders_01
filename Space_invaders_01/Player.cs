@@ -113,30 +113,33 @@ namespace Space_invaders_01
         
 
         public override void Update() {
-            Intput();
-
-            if (stagger_timer >= 0)
+            if (health > 0)
             {
-                
-                Move(vel);
+                Intput();
+
+                if (stagger_timer >= 0)
+                {
+
+                    Move(vel);
+                }
+                else { stagger_timer++; }
+
+                Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
+
+
+                hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, hitbox_size + size);
+                spriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
             }
-            else { stagger_timer++; }
-
-            Vector2 Centerd_pos = new Vector2(position.X + Game1.Window_size.X * 0.5f, position.Y);
-
-
-            hitbox = GlobalMethods.Centralized_Rectangle(Centerd_pos, hitbox_size + size);
-            spriteBox = GlobalMethods.Centralized_Rectangle(Centerd_pos, size);
             
-
             
-
         }
 
         public override void Draw(SpriteBatch __spriteBatch)
         {
-            
-            base.Draw(__spriteBatch);
+            if (health > 0)
+            {
+                base.Draw(__spriteBatch);
+            }
         }
 
     }

@@ -74,6 +74,15 @@ namespace Space_invaders_01
 
         }
 
+        public override void Update()
+        {
+            base.Update();
+            for (int i = 0; i < stars.Count(); i++)
+            {
+                stars[i].Update();
+            }
+        }
+
         public override void Draw(SpriteBatch _spriteBatch)
         {
             base.Draw(_spriteBatch);
