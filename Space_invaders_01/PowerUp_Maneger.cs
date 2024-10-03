@@ -23,7 +23,11 @@ namespace Space_invaders_01
 
         public void Spawn_PowerUp(PowerUp_Foundation _powerup_type, Vector2 _position)
         {
-            powerups.Add(new PowerUp_GameObject(_powerup_type, _position));
+            if(_powerup_type != null)
+            {
+                powerups.Add(new PowerUp_GameObject(_powerup_type, _position));
+            }
+            
         }
 
         public void Update()

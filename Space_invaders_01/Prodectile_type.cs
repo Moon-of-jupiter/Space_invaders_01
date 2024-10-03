@@ -20,14 +20,7 @@ namespace Space_invaders_01
         public float damege;
         public float speed;
         public float acceleration;
-        //public float motion_timer_counter;
-        //public float motion_scaling;
-
-        //public Vector2 startoffset;
-
-        //public float max_health;
-
-        //public int cooldown;
+        
         public SpriteSheet sprite;
         
         
@@ -37,9 +30,7 @@ namespace Space_invaders_01
         public Prodectile_type(Vector2 _hitbox, float _damege, float _speed, float _acceleration, SpriteSheet _sprite, Color _base_color)
         {
             
-            //this.startoffset = _startoffset;
-            //this.max_health = projectile_health;
-            //this.cooldown = _cooldown;
+            
             this.hitbox = _hitbox;
             this.damege = _damege;
             this.speed = _speed;

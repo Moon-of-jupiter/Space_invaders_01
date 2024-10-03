@@ -69,7 +69,7 @@ namespace Space_invaders_01
 
             _ProdectileManeger.Update();
 
-            _EnemyWaveManeger.Update((int)_player.health);
+            _EnemyWaveManeger.Update((int)_player.health, _PowerUpManeger);
 
             _ProdectileManeger.Handle_Enemy_Shooting(_EnemyWaveManeger.Get_flat_array_of_current_wave());
 

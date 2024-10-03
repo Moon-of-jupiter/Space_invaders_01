@@ -52,7 +52,7 @@ namespace Space_invaders_01
         }
 
 
-        public void Update(int _player_lives_left)
+        public void Update(int _player_lives_left, PowerUp_Maneger _powerUpManeger)
         {
             score_this_tick = 0;
 
@@ -60,7 +60,7 @@ namespace Space_invaders_01
             { 
                 
 
-                waves[wave_counter].Update();
+                waves[wave_counter].Update(_powerUpManeger);
 
                 score_this_tick += waves[wave_counter].score_this_tick;
 

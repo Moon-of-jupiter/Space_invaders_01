@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -17,6 +18,8 @@ namespace Space_invaders_01
         public Keys player_move_left;
         public Keys player_move_right;
         public Keys player_shoot;
+
+        
 
         public Keys Pause;
 
@@ -37,6 +40,8 @@ namespace Space_invaders_01
             player_move_left = Keys.A;
             player_move_right = Keys.D;
             player_shoot = Keys.Space;
+
+            
 
             Pause = Keys.Tab;
 

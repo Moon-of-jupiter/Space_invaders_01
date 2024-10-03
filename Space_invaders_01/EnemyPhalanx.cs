@@ -25,6 +25,8 @@ namespace Space_invaders_01
         
         public Enemy[,] phalanx {  get; private set; }
 
+        private Random random = new Random();
+
         public int center_pointX {  get; private set; }
         public float collum_spaceing {  get; private set; }
         
@@ -91,6 +93,7 @@ namespace Space_invaders_01
                 {
                     Vector2 enemy_pos = new Vector2((j + 0.5f) * collum_spaceing - collum_spaceing * preset.nr_of_collums * 0.5f, starting_pos + (i-preset.rows.Length) * row_spaceing);
                     phalanx[j, i] = new Enemy(preset.rows[preset.rows.Length - i - 1], enemy_pos);
+                    
                 }
             }
 
@@ -100,9 +103,44 @@ namespace Space_invaders_01
             right_border = new Rectangle((int)Game1.Window_size.X-border, 0, border, (int)Game1.Window_size.Y);
 
             x_velocety = 1;
+
+            Distribute_Multiple_PowerUps(preset.powerups, preset.nr_of_powerups);
            
 
         }
+
+        private void Distribute_Multiple_PowerUps(PowerUp_Foundation[] _powerups, int _nr_of_powerups)
+        {
+            List<Enemy> enemies = Get_flat_array_of_enemys().ToList();
+            List<PowerUp_Foundation> powerups = _powerups.ToList();
+
+            for(int i = 0; i < _nr_of_powerups; i++)
+            {
+                if (powerups.Count > 0)
+                {
+                    int random_powerup = random.Next(0, powerups.Count());
+                    if (enemies.Count > 0)
+                    {
+                        int random_enemy = random.Next(0, enemies.Count());
+                        enemies[random_enemy].hidden_power_upp = powerups[random_powerup];
+                        enemies.RemoveAt(random_enemy);
+                        powerups.RemoveAt(random_powerup);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    powerups = _powerups.ToList();
+                }
+                
+
+            }
+        }
+
+        
 
 
         public int Count()
@@ -176,7 +214,7 @@ namespace Space_invaders_01
         }
 
 
-        public void Update()
+        public void Update(PowerUp_Maneger _powerUpManeger)
         {
             score_this_tick = 0;
             if (check_border_colition(left_border))
@@ -224,6 +262,7 @@ namespace Space_invaders_01
                         if (phalanx[i, j].health <= 0)
                         {
                             score_this_tick += phalanx[i, j].type.points_uppon_destruction;
+                            _powerUpManeger.Spawn_PowerUp(phalanx[i, j].hidden_power_upp, phalanx[i,j].position);
                             phalanx[i, j] = null;
                             x_velocety *= death_acceleration;
                             

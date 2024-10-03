@@ -71,21 +71,22 @@ namespace Space_invaders_01
             {
                 new PhalanxPreset[1] // debug level
                 {
-                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.easy_Enemy_Type, 1, 1, y_move, x_move,acceleration)
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.easy_Enemy_Type, 1, 1, y_move, x_move,acceleration, _PhalanxPresetManeger.all_powerups, _PhalanxPresetManeger.all_powerups.Length)
                 },
                 new PhalanxPreset[2] 
                 {
-                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.easy_Enemy_Type),
-                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.standard_Enemy_Type),
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.easy_Enemy_Type, _PhalanxPresetManeger.all_powerups, _PhalanxPresetManeger.all_powerups.Length),
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.standard_Enemy_Type, _PhalanxPresetManeger.all_powerups, 1),
                 },
                 new PhalanxPreset[2]
                 {
-                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.standard_Enemy_Type), _PhalanxPresetManeger.Block_Space_invaders()
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.standard_Enemy_Type, _PhalanxPresetManeger.all_powerups, 2), 
+                    _PhalanxPresetManeger.Block_Space_invaders(_PhalanxPresetManeger.all_powerups, 1)
                 },
                 new PhalanxPreset[2]
                 {
-                    _PhalanxPresetManeger.Block_Dificult_invaders(),
-                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.hardy_Enemy_Type, 11, 3, y_move, x_move, acceleration)
+                    _PhalanxPresetManeger.Block_Dificult_invaders(_PhalanxPresetManeger.all_powerups, 2),
+                    _PhalanxPresetManeger.GeneratePreset_OneType(_TypeManeger.hardy_Enemy_Type, 11, 3, y_move, x_move, acceleration,_PhalanxPresetManeger.all_powerups, 1)
                 }
                 
             };
@@ -93,16 +94,21 @@ namespace Space_invaders_01
 
         public void Initiate_UI()
         {
-            HUD_element[] game_UI = new HUD_element[4];
-            game_UI[0] = new HUD_element(Game1.font_1,new Vector2(10,10), SpriteManeger.space_lavender_light, "SPACE   INVADERS");
+            HUD_element[] game_UI = new HUD_element[]
+            {
+                new HUD_element(Game1.font_1,new Vector2(10,10), SpriteManeger.space_lavender_light, "SPACE   INVADERS"),
+                new HUD_element(Game1.font_1, new Vector2(15, 30), SpriteManeger.ailien_mint, "Health: "),
+                new HUD_element(Game1.font_1, new Vector2(90, 30), SpriteManeger.ailien_mint, "Wave: "),
+                new HUD_element(Game1.font_1, new Vector2(160, 30), SpriteManeger.ailien_mint, "Score: ")
+            };
+            
 
-            game_UI[1] = new HUD_element(Game1.font_1, new Vector2(15, 30), SpriteManeger.ailien_mint, "Health: ");
-            game_UI[2] = new HUD_element(Game1.font_1, new Vector2(90, 30), SpriteManeger.ailien_mint, "Wave: ");
-            game_UI[3] = new HUD_element(Game1.font_1, new Vector2(160, 30), SpriteManeger.ailien_mint, "Score: ");
+            RTD_rectangle[] UI_backgrounds = new RTD_rectangle[]
+            {
+                new RTD_rectangle(SpriteManeger.space_purple,Game1.pixel ,new Vector2(0,0), (int)Game1.Window_size.X, 60)
+            };  
 
-            RTD_rectangle[] UI_backgrounds = new RTD_rectangle[1];
-
-            UI_backgrounds[0] = new RTD_rectangle(SpriteManeger.space_purple,Game1.pixel ,new Vector2(0,0), (int)Game1.Window_size.X, 60);
+            
 
 
             _User_Interface = new HUD(game_UI, UI_backgrounds); // 0 = spelets namn // 1 = HP // 2 = score
@@ -110,10 +116,10 @@ namespace Space_invaders_01
 
         public void Create_Standard_GameSpace()
         {
-            Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.ship_texture_01, SpriteManeger.space_white, _TypeManeger.standard_canon, 3, 5, 50, 50, 47, 47, _keybindManeger);
+            Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.ship_texture_01, SpriteManeger.space_white, _TypeManeger.standard_canon, 3, 5, 50, 50, 47, 47, false, _keybindManeger);
             _GameSpace = new GameSpace(player, levels[level]);
 
-            _GameSpace._PowerUpManeger.Spawn_PowerUp(_TypeManeger.pu_lazer, new Vector2(0, 0));
+            //_GameSpace._PowerUpManeger.Spawn_PowerUp(_TypeManeger.pu_minigun, new Vector2(0, 0));
          
         }
 
@@ -176,6 +182,8 @@ namespace Space_invaders_01
                 base.Update();
                 
                 _GameSpace.Update();
+
+                is_mouse_visable = _GameSpace._player.mouse_controls == false;
 
                 FBF_paused = true;
             }

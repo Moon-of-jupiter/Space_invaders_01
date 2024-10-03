@@ -14,6 +14,7 @@ namespace Space_invaders_01
     {
         public HUD_element[] text_interface;
         public RTD_rectangle[] rectangles_interface;
+        
         //public Rectangle[] UI_BG;
 
         public HUD(HUD_element[] array_of_ui, RTD_rectangle[] arry_of_ui_backgrounds)

@@ -11,6 +11,7 @@ namespace Space_invaders_01
 {
     public class Game1 : Game
     {
+        
         public static Game1 Instance => instance;
 
         static Game1 instance;
@@ -75,7 +76,7 @@ namespace Space_invaders_01
             _graphics.PreferredBackBufferWidth = (int)Window_size.X;
             _graphics.ApplyChanges();
             
-
+            
             base.Initialize();
         }
 
@@ -119,7 +120,9 @@ namespace Space_invaders_01
 
 
             GS_Controler.Update_Current_Gamespace();
-            // TODO: Add your update logic here
+            IsMouseVisible = GS_Controler.is_mouse_visable;
+
+
 
             base.Update(gameTime);
             is_first_frame = false;

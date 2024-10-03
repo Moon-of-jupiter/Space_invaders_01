@@ -16,7 +16,7 @@ namespace Space_invaders_01
     {
         public Enemy_type type {  get; private set; }
         
-        public PowerUp_Foundation hidden_power_upp {  get; private set; }
+        public PowerUp_Foundation hidden_power_upp {  get; set; }
         
         public Vector2 starting_pos;
 

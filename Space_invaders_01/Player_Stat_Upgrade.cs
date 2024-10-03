@@ -13,10 +13,10 @@ namespace Space_invaders_01
 {
     public class Player_Stat_Upgrade
     {
-        public int speed;
-        public int damege;
+        public float speed;
+        public float damege;
 
-        public Player_Stat_Upgrade(int _speed, int _damege)
+        public Player_Stat_Upgrade(float _speed, float _damege)
         {
             speed = _speed;
             damege = _damege;

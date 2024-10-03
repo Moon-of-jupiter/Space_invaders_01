@@ -16,7 +16,8 @@ namespace Space_invaders_01
 
     public class GameState_Controler
     {
-        
+
+        public bool is_mouse_visable = true;
 
         public KeybindManeger _keybindManeger;
 
@@ -61,6 +62,8 @@ namespace Space_invaders_01
             current_gamestate.Update();
 
             New_Gamestate(current_gamestate.next_state);
+
+            is_mouse_visable = current_gamestate.is_mouse_visable;
 
 
         }

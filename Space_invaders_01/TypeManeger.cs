@@ -50,11 +50,17 @@ namespace Space_invaders_01
         public PowerUp_Stats t1_damege_upgrade;
         //public PowerUp_Stats t2_damege_upgrade;
 
+        public PowerUp_Heal t1_heal;
+
         public PowerUp_Weapon pu_duble_canon;
         public PowerUp_Weapon pu_minigun;
         public PowerUp_Weapon pu_sniper;
         public PowerUp_Weapon pu_lazer;
         public PowerUp_Weapon pu_sonic;
+
+
+
+       
 
 
 
@@ -106,10 +112,16 @@ namespace Space_invaders_01
 
 
 
-             standard_powerup_speed = 5;
-             standard_powerup_size = new Vector2(40,40);
+             standard_powerup_speed = 3;
+             standard_powerup_size = new Vector2(45,45);
 
-             pu_duble_canon = new PowerUp_Weapon(duble_canon, SpriteManeger.duble_canon_weapon, duble_canon.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
+             t1_damege_upgrade = new PowerUp_Stats(0, 2, SpriteManeger.blank_powerup, SpriteManeger.space_oragne, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
+             t1_speed_upgrade = new PowerUp_Stats(4, 0, SpriteManeger.blank_powerup, SpriteManeger.space_white, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
+
+             t1_heal = new PowerUp_Heal(1, SpriteManeger.blank_powerup, SpriteManeger.ailien_mint, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
+
+
+            pu_duble_canon = new PowerUp_Weapon(duble_canon, SpriteManeger.duble_canon_weapon, duble_canon.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
              pu_minigun = new PowerUp_Weapon(minigun, SpriteManeger.minigun_weapon, minigun.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
@@ -117,7 +129,7 @@ namespace Space_invaders_01
 
              pu_sniper = new PowerUp_Weapon(sniper, SpriteManeger.sniper_weapon, sniper.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
-            pu_sonic = new PowerUp_Weapon(sonic_blast, SpriteManeger.sonic_weapon, sonic_blast.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
+             pu_sonic = new PowerUp_Weapon(sonic_blast, SpriteManeger.sonic_weapon, sonic_blast.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
         }
         
 

@@ -15,6 +15,7 @@ namespace Space_invaders_01
 {
     public class GameState_Foundation
     {
+        public bool is_mouse_visable = true;
         public GameState_Foundation next_state {  get; private set; }
         public GameState_Foundation previous_state { get; private set; }
         public KeybindManeger _keybindManeger { get; set; }

@@ -44,11 +44,17 @@ namespace Space_invaders_01
         public Keys Shoot_key { get; set; }
 
 
+        private float target_pos;
+        public bool mouse_controls { get; set; } = false;
+
+
         public Rectangle spriteBox;
 
-        public Player(Vector2 _position, SpriteSheet _texture, Color _color, Weapon _weapon, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, KeybindManeger _keys) : base(colition_tags.player, _texture, new Vector2(_sizeX,_sizeY), new Vector2(_hitbox_sizeX,_hitbox_sizeY), _color) {
+        public Player(Vector2 _position, SpriteSheet _texture, Color _color, Weapon _weapon, int _starting_health, float _speed, int _sizeX, int _sizeY, int _hitbox_sizeX, int _hitbox_sizeY, bool _mouse_controls ,KeybindManeger _keys) : base(colition_tags.player, _texture, new Vector2(_sizeX,_sizeY), new Vector2(_hitbox_sizeX,_hitbox_sizeY), _color) {
             stat_bonus = new Player_Stat_Upgrade(0,0);
             
+            mouse_controls = _mouse_controls;
+
             damege = 1000;
             
             can_colide_with = new colition_tags[] { colition_tags.enemy };
@@ -81,23 +87,58 @@ namespace Space_invaders_01
         {
             vel = 0;
             has_shot = false;
+            bool shoot_key_or_mouse = false;
 
-            if (Keyboard.GetState().IsKeyDown(Left_key) && Keyboard.GetState().IsKeyDown(Right_key))
+            if (mouse_controls == false)
             {
                 
+
+                shoot_key_or_mouse = Keyboard.GetState().IsKeyDown(Shoot_key);
+
+                if (Keyboard.GetState().IsKeyDown(Left_key) && Keyboard.GetState().IsKeyDown(Right_key))
+                {
+
+                }
+                else if (Keyboard.GetState().IsKeyDown(Left_key))
+                {
+                    vel = -speed;
+                }
+                else if (Keyboard.GetState().IsKeyDown(Right_key))
+                {
+                    vel = speed;
+                }
             }
-            else if (Keyboard.GetState().IsKeyDown(Left_key))
+            else
             {
-                vel = -speed;
-            }
-            else if (Keyboard.GetState().IsKeyDown(Right_key))
-            {
-                vel = speed;
+                
+                shoot_key_or_mouse = Mouse.GetState().RightButton == ButtonState.Pressed;
+
+                target_pos = Mouse.GetState().X - Game1.Window_size.X*0.5f;
+
+                float new_speed = speed;
+
+                float distance_mouse_player = Vector2.Distance(new Vector2(target_pos, 0), new Vector2(position.X, 0));
+
+                if (distance_mouse_player < speed)
+                {
+                    new_speed = distance_mouse_player;
+                }
+
+                if(position.X > target_pos)
+                {
+                    vel = -new_speed;
+                }
+                else if(position.X < target_pos)
+                {
+                    vel = new_speed;
+                }
+
+
             }
 
             if (weapon_cooldown_timer >= 0)
             {
-                if (Keyboard.GetState().IsKeyDown(Shoot_key))
+                if (shoot_key_or_mouse)
                 {
                     has_shot = true;
                     weapon_cooldown_timer = -curent_weapon.cooldown;

@@ -31,7 +31,7 @@ namespace Space_invaders_01
             
             this.type = _type;
 
-            this.health = _type.damege;
+            this.health = _type.damege + _damege_bonus;
 
             this.position = _staringPos;
             this.hitbox = new Rectangle((int)(position.X-type.hitbox.X*0.5f), (int)(position.Y - type.hitbox.Y * 0.5f),(int)type.hitbox.X, (int)type.hitbox.Y);
