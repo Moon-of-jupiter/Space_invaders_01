@@ -121,7 +121,7 @@ namespace Space_invaders_01
              t1_heal = new PowerUp_Heal(1, SpriteManeger.blank_powerup, SpriteManeger.ailien_mint, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
 
-            pu_duble_canon = new PowerUp_Weapon(duble_canon, SpriteManeger.duble_canon_weapon, duble_canon.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
+             pu_duble_canon = new PowerUp_Weapon(duble_canon, SpriteManeger.duble_canon_weapon, duble_canon.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
              pu_minigun = new PowerUp_Weapon(minigun, SpriteManeger.minigun_weapon, minigun.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
