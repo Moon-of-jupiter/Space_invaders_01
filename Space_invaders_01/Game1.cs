@@ -33,13 +33,10 @@ namespace Space_invaders_01
         private static RenderTarget2D screen_render2;
         public Texture2D previous_screen_render;
 
-        //public Enemy_type standard_Enemy_Type;
+        
 
         static public Vector2 Window_size = new Vector2(1000,1000);
-        //public Vector2 Game_size = new Vector2(500, 600);
-        //public Vector2 Game_window_offset = new Vector2(0, 100);
-        //public Rectangle Game_window;
-        //public GameSpace _gamespace;
+        
 
 
         private GameState_Controler GS_Controler;
