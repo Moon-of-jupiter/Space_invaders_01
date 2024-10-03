@@ -39,7 +39,7 @@ namespace Space_invaders_01
         {
             can_pause = true;
             _TypeManeger = new TypeManeger();
-            _PhalanxPresetManeger = new PhalanxPresetManeger(70, 70, 10, 5, 50f, 1, 1.04f,  _TypeManeger);
+            _PhalanxPresetManeger = new PhalanxPresetManeger(70, 70, 10, 5, 50f, 1, 1.05f,  _TypeManeger);
 
             Initiate_Levels();
             
@@ -113,7 +113,7 @@ namespace Space_invaders_01
             Player player = new Player(new Vector2(0, Game1.Window_size.Y - 100), SpriteManeger.ship_texture_01, SpriteManeger.space_white, _TypeManeger.standard_canon, 3, 5, 50, 50, 47, 47, _keybindManeger);
             _GameSpace = new GameSpace(player, levels[level]);
 
-            _GameSpace._PowerUpManeger.Spawn_PowerUp(_TypeManeger.pu_duble_canon, new Vector2(0, 0));
+            _GameSpace._PowerUpManeger.Spawn_PowerUp(_TypeManeger.pu_lazer, new Vector2(0, 0));
          
         }
 

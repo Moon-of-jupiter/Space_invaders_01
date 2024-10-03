@@ -27,6 +27,7 @@ namespace Space_invaders_01
         public Prodectile_type minigun_Prodectile_type;
         public Prodectile_type sniper_Prodectile_type;
         public Prodectile_type lazer_Prodectile_type;
+        public Prodectile_type sonic_blast_Prodectile_type;
 
         public Prodectile_type cheat_Prodectile_type;
 
@@ -37,6 +38,7 @@ namespace Space_invaders_01
         public Weapon minigun;
         public Weapon sniper;
         public Weapon lazer;
+        public Weapon sonic_blast;
 
 
 
@@ -52,6 +54,7 @@ namespace Space_invaders_01
         public PowerUp_Weapon pu_minigun;
         public PowerUp_Weapon pu_sniper;
         public PowerUp_Weapon pu_lazer;
+        public PowerUp_Weapon pu_sonic;
 
 
 
@@ -66,6 +69,8 @@ namespace Space_invaders_01
              sniper_Prodectile_type = new Prodectile_type(new Vector2(15 , 65), 6, 50, 50, SpriteManeger.pixel, SpriteManeger.space_oragne);
 
              lazer_Prodectile_type = new Prodectile_type(new Vector2(5, 80), 0.3f, 75, 75, SpriteManeger.pixel, SpriteManeger.ailien_mint);
+
+             sonic_blast_Prodectile_type = new Prodectile_type(new Vector2(100, 10), 3, 100, 0.1f, SpriteManeger.blast_bullet01,SpriteManeger.space_teal);
 
 
              cheat_Prodectile_type = new Prodectile_type(new Vector2(15, 40), 1000, 150, 0.4f, SpriteManeger.pixel, Color.Lime);
@@ -90,20 +95,29 @@ namespace Space_invaders_01
              float[] mg_pattern = new float[] {0, -14.4f , -20, -14.4f, 0, 14.4f, 20, 14.4f }; //minigun canon patern
              minigun = new Weapon(minigun_Prodectile_type, new Vector2(0, -20), mg_pattern, 5, false);
 
-             float[] de_pattern = new float[] { 0 }; // deadeye cannon patern
-             sniper = new Weapon(sniper_Prodectile_type, new Vector2(0, -20), de_pattern, 60, true);
+             float[] sn_pattern = new float[] { 0 }; // sniper cannon patern
+             sniper = new Weapon(sniper_Prodectile_type, new Vector2(0, -20), sn_pattern, 55, true);
 
              float[] lz_pattern = new float[] { 0 }; // lazer cannon patern
              lazer = new Weapon(lazer_Prodectile_type, new Vector2(0,20), lz_pattern, 0, true);
 
+             float[] so_pattern = new float[] { 0 }; // sonic patern
+            sonic_blast = new Weapon(sonic_blast_Prodectile_type, new Vector2(0,-50), so_pattern, 40, true);
+
+
+
              standard_powerup_speed = 5;
              standard_powerup_size = new Vector2(40,40);
 
-             pu_duble_canon = new PowerUp_Weapon(duble_canon, SpriteManeger.blank_powerup, duble_canon.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
+             pu_duble_canon = new PowerUp_Weapon(duble_canon, SpriteManeger.duble_canon_weapon, duble_canon.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
+             pu_minigun = new PowerUp_Weapon(minigun, SpriteManeger.minigun_weapon, minigun.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
+             pu_lazer = new PowerUp_Weapon(lazer, SpriteManeger.lazer_weapon, lazer.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
+             pu_sniper = new PowerUp_Weapon(sniper, SpriteManeger.sniper_weapon, sniper.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
 
+            pu_sonic = new PowerUp_Weapon(sonic_blast, SpriteManeger.sonic_weapon, sonic_blast.bullet_type.base_color, standard_powerup_size, standard_powerup_size, standard_powerup_speed);
         }
         
 

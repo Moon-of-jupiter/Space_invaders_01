@@ -37,6 +37,14 @@ namespace Space_invaders_01
         public static SpriteSheet game_over01;
 
         public static SpriteSheet blank_powerup;
+        public static SpriteSheet duble_canon_weapon;
+        public static SpriteSheet minigun_weapon;
+        public static SpriteSheet lazer_weapon;
+        public static SpriteSheet sniper_weapon;
+        public static SpriteSheet sonic_weapon;
+
+
+        public static SpriteSheet blast_bullet01;
 
 
 
@@ -77,6 +85,14 @@ namespace Space_invaders_01
             game_over01 = new SpriteSheet(content, "game_over", false, false, 1, 0, 0);
 
             blank_powerup = new SpriteSheet(content, "BlankPowerUp", false, false, 1, 0, 0);
+            duble_canon_weapon = new SpriteSheet(content, "DubleCanonPowerUp", false, false, 1, 0, 0);
+            minigun_weapon = new SpriteSheet(content, "MinigunCanonPowerUp", false, false, 1, 0, 0);
+            lazer_weapon = new SpriteSheet(content, "LazerCanonPowerUp", false, false, 1, 0, 0);
+            sniper_weapon = new SpriteSheet(content, "SniperCanonPowerUp", false, false, 1, 0, 0);
+            sonic_weapon = new SpriteSheet(content, "SonicCanonPowerUp", false, false, 1, 0, 0);
+
+            blast_bullet01 = new SpriteSheet(content, "blast_bullet01", false, false, 1, 0, 0);
+
 
             pixel = new SpriteSheet(content, "Pixel", false, false, 1, 0,0);
 
